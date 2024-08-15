@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace rentACar2
 {
-    internal class readFromFile // Class will read vehicle information from a file and print in the console
+    internal class readFromDatabase // Class will read vehicle information from a file and print in the console
     {
         private string filePath;
+        private string data;
 
-        public readFromFile(string path)
+        public readFromDatabase(string path)
 /*
             string[] lines = File.ReadAllLines(textFile);
             foreach (string line in lines)
@@ -31,7 +32,7 @@ namespace rentACar2
             filePath = path;
         }
 
-        public readFromFile()
+        public readFromDatabase()
         {
             this.filePath = string.Empty;
         }
@@ -41,7 +42,7 @@ namespace rentACar2
             this.filePath = path;
         }
 
-        public String getText()
+        public string[] getText()
         {
             string returnStr = string.Empty;
             string[] lines = File.ReadAllLines(filePath);
@@ -49,7 +50,9 @@ namespace rentACar2
             foreach (string line in lines)
                 returnStr += line;
 
-            return returnStr;
+            string[] dataFromFile = returnStr.Split(',');
+
+            return dataFromFile;
         }
     }
 }

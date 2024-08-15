@@ -83,18 +83,32 @@ namespace rentACar2
 
             //Left off trying to change the panel heights to match display
 
-            rentalPanel.Height = screenHeight;
-           
             vehicleInfoTabs.Width = rentalPanel.Width;
 
+            
+
+            viewPanel.BorderStyle = BorderStyle.FixedSingle;
+            viewPanel.Left = rentalPanel.Width + 20;
+            viewPanel.Visible = true;
+            viewPanel.Anchor = AnchorStyles.Left | AnchorStyles.Top;
+            viewPanel.Width = (int)(screenWidth * 0.59);
+            viewPanel.Height = (int)(screenHeight * 0.8);
+
+            carPictureBox.Visible = true;
+            carPictureBox.Left = 0;
+            carPictureBox.BorderStyle = BorderStyle.FixedSingle;
+            carPictureBox.Width = viewPanel.Width;
+            carPictureBox.Height = viewPanel.Height;
+
+            controlPanel.Top = carPictureBox.Bottom - 65;
             controlPanel.Controls.Add(nextBtn);
             controlPanel.Controls.Add(rentBtn);
             controlPanel.Controls.Add(prevBtn);
+            controlPanel.Visible = true;
+            controlPanel.Left = viewPanel.Left + 100; 
 
-            controlPanel.Visible = false;
-            carPictureBox.Visible = false;
-            viewPanel.Visible = false;
-
+            rentalPanel.Height = screenHeight;
+            rentalPanel.Anchor = AnchorStyles.Left | AnchorStyles.Top;
         }
 
         private void loadInfoIntoTabs()
@@ -104,30 +118,36 @@ namespace rentACar2
 
         private void loadRentalInfoTab()
         {
+            readFromDatabase reader = new readFromDatabase("C:\\Users\\taufe\\source\\repos\\rentACar2\\rentACar2\\resx\\database.txt.txt");
+
+            string[] vehicleInfo = reader.getText();
+
             rentalPage.Width = 100;
             vehicleInfoTabs.Width = rentalPage.Width;
             vehiclePage.Width = rentalPage.Width;
             vehicleInfoTabs.SelectedIndex = 0;
             TabPage RentalTab = vehicleInfoTabs.SelectedTab;
-            Vehicle v1 = new Vehicle("Honda", "Civic", 2022, "Sedan");
+            //Vehicle v1 = new Vehicle("Honda", "Civic", 2022, "Sedan");
+            Vehicle v2 = new Vehicle(vehicleInfo);
             Label l1 = new Label();
             l1.MaximumSize = new Size(RentalTab.Width, 0);
             l1.AutoSize = true;
-            Rental r1 = new Rental(v1, "John", "Nolan", DateTime.Now, 10);
+            Rental r1 = new Rental(v2, "John", "Nolan", DateTime.Now, 10);
             l1.Text = r1.getRentalDetails();
             RentalTab.Controls.Add(l1);
-            loadVehicleInfoTab(v1);
+            loadVehicleInfoTab(v2);
             vehicleInfoTabs.SelectedIndex = 0;
+
         }
 
-        private void loadVehicleInfoTab(Vehicle v1)
+        private void loadVehicleInfoTab(Vehicle v)
         {
             vehicleInfoTabs.SelectedIndex = 1;
             TabPage vehicleTab = vehicleInfoTabs.SelectedTab;
             Label l1 = new Label();
             l1.MaximumSize = new Size(vehicleTab.Width, 0);
             l1.AutoSize = true;
-            l1.Text = v1.getVehicleDetails();
+            l1.Text = v.getVehicleDetails();
             vehicleTab.Controls.Add(l1);
         }
     }

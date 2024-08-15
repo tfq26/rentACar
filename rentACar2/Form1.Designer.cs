@@ -90,7 +90,7 @@
             rentalPanel.Controls.Add(vehicleInfoTabs);
             rentalPanel.Location = new Point(0, 0);
             rentalPanel.Name = "rentalPanel";
-            rentalPanel.Size = new Size(250, 518);
+            rentalPanel.Size = new Size(284, 569);
             rentalPanel.TabIndex = 4;
             // 
             // vehicleInfoTabs
@@ -102,7 +102,7 @@
             vehicleInfoTabs.Location = new Point(10, 12);
             vehicleInfoTabs.Name = "vehicleInfoTabs";
             vehicleInfoTabs.SelectedIndex = 0;
-            vehicleInfoTabs.Size = new Size(230, 496);
+            vehicleInfoTabs.Size = new Size(264, 547);
             vehicleInfoTabs.TabIndex = 0;
             // 
             // rentalPage
@@ -110,7 +110,7 @@
             rentalPage.Location = new Point(4, 24);
             rentalPage.Name = "rentalPage";
             rentalPage.Padding = new Padding(3);
-            rentalPage.Size = new Size(222, 468);
+            rentalPage.Size = new Size(256, 519);
             rentalPage.TabIndex = 0;
             rentalPage.Text = "Rentals";
             rentalPage.UseVisualStyleBackColor = true;
@@ -120,7 +120,7 @@
             vehiclePage.Location = new Point(4, 24);
             vehiclePage.Name = "vehiclePage";
             vehiclePage.Padding = new Padding(3);
-            vehiclePage.Size = new Size(222, 468);
+            vehiclePage.Size = new Size(256, 519);
             vehiclePage.TabIndex = 1;
             vehiclePage.Text = "Vehicle";
             vehiclePage.UseVisualStyleBackColor = true;
@@ -129,7 +129,7 @@
             // 
             miscPage.Location = new Point(4, 24);
             miscPage.Name = "miscPage";
-            miscPage.Size = new Size(222, 468);
+            miscPage.Size = new Size(256, 519);
             miscPage.TabIndex = 2;
             miscPage.Text = "Miscellaneous";
             miscPage.UseVisualStyleBackColor = true;
@@ -149,16 +149,16 @@
             viewPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             viewPanel.Controls.Add(controlPanel);
             viewPanel.Controls.Add(carPictureBox);
-            viewPanel.Location = new Point(585, 36);
+            viewPanel.Location = new Point(585, 0);
             viewPanel.Name = "viewPanel";
-            viewPanel.Size = new Size(643, 589);
+            viewPanel.Size = new Size(645, 625);
             viewPanel.TabIndex = 6;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1802, 998);
+            ClientSize = new Size(1836, 1049);
             Controls.Add(viewPanel);
             Controls.Add(rentalPanel);
             Icon = (Icon)resources.GetObject("$this.Icon");

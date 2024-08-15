@@ -25,6 +25,15 @@ namespace rentACar2
             vehicleInformation.Add("Type: " + type);
         }
 
+        public Vehicle(string[] vehicleInfo)
+        {
+            vehicleInformation = new List<string>();
+            vehicleInformation.Add("Make: " + vehicleInfo[0]);
+            vehicleInformation.Add("Model: " + vehicleInfo[1]);
+            vehicleInformation.Add("Year: " + Int32.Parse(vehicleInfo[2]));
+            vehicleInformation.Add("Type: " + vehicleInfo[3]);
+        }
+
         public string getVehicleDetails()
         {
             string returnStr = string.Empty;
