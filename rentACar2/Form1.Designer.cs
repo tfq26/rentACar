@@ -40,6 +40,7 @@
             miscPage = new TabPage();
             controlPanel = new Panel();
             viewPanel = new Panel();
+            exitBtn = new Button();
             ((System.ComponentModel.ISupportInitialize)carPictureBox).BeginInit();
             rentalPanel.SuspendLayout();
             vehicleInfoTabs.SuspendLayout();
@@ -49,16 +50,17 @@
             // 
             // prevBtn
             // 
-            prevBtn.Location = new Point(510, 0);
+            prevBtn.Location = new Point(3, -1);
             prevBtn.Name = "prevBtn";
             prevBtn.Size = new Size(133, 58);
             prevBtn.TabIndex = 0;
             prevBtn.Text = "Previous";
             prevBtn.UseVisualStyleBackColor = true;
+            prevBtn.Click += prevBtn_Click;
             // 
             // rentBtn
             // 
-            rentBtn.Location = new Point(253, 0);
+            rentBtn.Location = new Point(161, -1);
             rentBtn.Name = "rentBtn";
             rentBtn.Size = new Size(145, 58);
             rentBtn.TabIndex = 1;
@@ -67,17 +69,18 @@
             // 
             // nextBtn
             // 
-            nextBtn.Location = new Point(0, 0);
+            nextBtn.Location = new Point(504, -1);
             nextBtn.Name = "nextBtn";
             nextBtn.Size = new Size(136, 58);
             nextBtn.TabIndex = 2;
             nextBtn.Text = "Next";
             nextBtn.UseVisualStyleBackColor = true;
+            nextBtn.Click += nextBtn_Click;
             // 
             // carPictureBox
             // 
-            carPictureBox.ErrorImage = Properties.Resources.car_image_stock;
-            carPictureBox.InitialImage = Properties.Resources.car_image_stock;
+            carPictureBox.ErrorImage = Properties.Resources.image_missing;
+            carPictureBox.InitialImage = Properties.Resources.image_missing;
             carPictureBox.Location = new Point(3, 0);
             carPictureBox.Name = "carPictureBox";
             carPictureBox.Size = new Size(640, 312);
@@ -136,6 +139,7 @@
             // 
             // controlPanel
             // 
+            controlPanel.Controls.Add(exitBtn);
             controlPanel.Controls.Add(nextBtn);
             controlPanel.Controls.Add(prevBtn);
             controlPanel.Controls.Add(rentBtn);
@@ -154,6 +158,16 @@
             viewPanel.Size = new Size(645, 625);
             viewPanel.TabIndex = 6;
             // 
+            // exitBtn
+            // 
+            exitBtn.Location = new Point(337, -1);
+            exitBtn.Name = "exitBtn";
+            exitBtn.Size = new Size(145, 58);
+            exitBtn.TabIndex = 3;
+            exitBtn.Text = "Exit";
+            exitBtn.UseVisualStyleBackColor = true;
+            exitBtn.Click += exitBtn_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -164,6 +178,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
             Text = "Form1";
+            WindowState = FormWindowState.Minimized;
             ((System.ComponentModel.ISupportInitialize)carPictureBox).EndInit();
             rentalPanel.ResumeLayout(false);
             vehicleInfoTabs.ResumeLayout(false);
@@ -185,5 +200,6 @@
         private TabPage miscPage;
         private Panel controlPanel;
         private Panel viewPanel;
+        private Button exitBtn;
     }
 }

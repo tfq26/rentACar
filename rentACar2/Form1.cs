@@ -5,6 +5,13 @@ namespace rentACar2
 {
     public partial class Form1 : Form
     {
+        inventory lot = new inventory();
+        //inventory lot;
+        private int carCount = 1;
+        private Label vehicleLabel;
+        private Label customerLabel;
+
+
         public Form1()
         {
             InitializeComponent();
@@ -16,76 +23,18 @@ namespace rentACar2
             carPictureBox.Image = carPictureBox.InitialImage;
             rentalPanel.Controls.Add(vehicleInfoTabs);
             loadInfoIntoTabs();
+
+            //this.lot.createInventory();
+
             this.TopMost = true;
-            //  this.FormBorderStyle = FormBorderStyle.None;
+
             this.WindowState = FormWindowState.Maximized;
 
             int screenWidth = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width;
-           
+
             int screenHeight = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height;
 
-            //rentalPanel.Width = (int)(screenWidth * 0.3);
-            //rentalPanel.Height = (int)(screenHeight * 0.85);
-            //vehicleInfoTabs.Width = rentalPanel.Width;
-            //vehicleInfoTabs.Height = rentalPanel.Height;
-
-            //controlPanel.Top = 34;
-            //controlPanel.Left = rentalPanel.Width;
-
-            //controlPanel.Width = (int)(screenWidth * 0.5);
-            //controlPanel.Height = (int)(screenHeight * 0.85);
-
-            //controlPanel.Controls.Add(carPictureBox);
-            //controlPanel.Controls.Add(nextBtn);
-            //controlPanel.Controls.Add(rentBtn);
-            //controlPanel.Controls.Add(prevBtn);
-
-            //carPictureBox.Width = controlPanel.Width;
-            //carPictureBox.Height = controlPanel.Height;
-
-           /* rentalPanel.Width = (int)(screenWidth * 0.2);
-            rentalPanel.Height = (int)(screenHeight * 0.92);
             vehicleInfoTabs.Width = rentalPanel.Width;
-            vehicleInfoTabs.Height = rentalPanel.Height;
-
-            //controlPanel.Left = rentalPanel.Width + 20;
-
-            viewPanel.Width = (int)(screenWidth * 0.4); 
-            viewPanel.Height = (int)(screenHeight * 0.8);
-           // viewPanel.Controls.Add(carPictureBox);
-          //  viewPanel.Controls.Add(controlPanel);
-            viewPanel.BorderStyle = BorderStyle.Fixed3D;
-
-            carPictureBox.Width = viewPanel.Width;
-            carPictureBox.Height = (int)(viewPanel.Height * 0.5);
-            controlPanel.Top = (int)(carPictureBox.Top + (carPictureBox.Height * 1.7));
-            
-            controlPanel.Controls.Add(nextBtn);
-            controlPanel.Controls.Add(rentBtn);
-            controlPanel.Controls.Add(prevBtn);
-            controlPanel.Height = 10;
-
-
-            controlPanel.BorderStyle = BorderStyle.FixedSingle;
-          
-
-            foreach (Control control in rentalPanel.Controls)
-            {
-                control.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-
-            }
-
-            foreach (Control control in viewPanel.Controls)
-            {
-                control.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            }
-*/
-
-            //Left off trying to change the panel heights to match display
-
-            vehicleInfoTabs.Width = rentalPanel.Width;
-
-            
 
             viewPanel.BorderStyle = BorderStyle.FixedSingle;
             viewPanel.Left = rentalPanel.Width + 20;
@@ -105,7 +54,7 @@ namespace rentACar2
             controlPanel.Controls.Add(rentBtn);
             controlPanel.Controls.Add(prevBtn);
             controlPanel.Visible = true;
-            controlPanel.Left = viewPanel.Left + 100; 
+            controlPanel.Left = viewPanel.Left + 100;
 
             rentalPanel.Height = screenHeight;
             rentalPanel.Anchor = AnchorStyles.Left | AnchorStyles.Top;
@@ -113,42 +62,86 @@ namespace rentACar2
 
         private void loadInfoIntoTabs()
         {
-            loadRentalInfoTab();
+            loadVehicleInfoTab();
+            loadCustomerInfoTab();
+
         }
 
-        private void loadRentalInfoTab()
+        private void loadCustomerInfoTab()
         {
-            readFromDatabase reader = new readFromDatabase("C:\\Users\\taufe\\source\\repos\\rentACar2\\rentACar2\\resx\\database.txt.txt");
-
-            string[] vehicleInfo = reader.getText();
-
-            rentalPage.Width = 100;
-            vehicleInfoTabs.Width = rentalPage.Width;
-            vehiclePage.Width = rentalPage.Width;
+            rentalPage.Width = 185;
             vehicleInfoTabs.SelectedIndex = 0;
             TabPage RentalTab = vehicleInfoTabs.SelectedTab;
-            //Vehicle v1 = new Vehicle("Honda", "Civic", 2022, "Sedan");
-            Vehicle v2 = new Vehicle(vehicleInfo);
-            Label l1 = new Label();
-            l1.MaximumSize = new Size(RentalTab.Width, 0);
-            l1.AutoSize = true;
-            Rental r1 = new Rental(v2, "John", "Nolan", DateTime.Now, 10);
-            l1.Text = r1.getRentalDetails();
-            RentalTab.Controls.Add(l1);
-            loadVehicleInfoTab(v2);
-            vehicleInfoTabs.SelectedIndex = 0;
+            customerLabel = new Label();
+            customerLabel.MaximumSize = new Size(RentalTab.Width, 0);
+            customerLabel.AutoSize = true;
+            customer c1 = new customer("John", "Nolan", 48, 1234567890, "john_nolan@rookies.com", "555-123-4567");
+            customerLabel.Text = c1.getCustomerDetails();
+            RentalTab.Controls.Add(customerLabel);
+
+            // customerLabel.Refresh();
+        }
+
+        private void loadVehicleInfoTab()
+        {
+            //vehicleInfoTabs.Width = rentalPage.Width;
+            //vehiclePage.Width = rentalPage.Width;
+            ////vehicleInfoTabs.SelectedIndex = 1;
+            //vehicleLabel = new Label();
+            //TabPage vehicleTab = vehicleInfoTabs.SelectedTab;
+            //vehicleLabel.AutoSize = true;
+
+            //vehicleTab.Controls.Add(vehicleLabel);
+            vehicleLabel = new Label();
+
+            vehicleInfoTabs.SelectedIndex = 1;
+            TabPage vehicleTab = vehicleInfoTabs.SelectedTab;
+
+            vehicleLabel.MaximumSize = new Size(vehicleTab.Width, 0);
+            vehicleLabel.AutoSize = true;
+            //customer c1 = new customer("John", "Nolan", 48, 1234567890, "john_nolan@rookies.com", "555-123-4567");
+            //vehicleLabel.Text = c1.getCustomerDetails();
+            vehicleLabel.Text += getVehicleFromLot();
+            vehicleLabel.Refresh();
+            vehicleTab.Controls.Add(vehicleLabel);
 
         }
 
-        private void loadVehicleInfoTab(Vehicle v)
+        public string getVehicleFromLot()
         {
-            vehicleInfoTabs.SelectedIndex = 1;
-            TabPage vehicleTab = vehicleInfoTabs.SelectedTab;
-            Label l1 = new Label();
-            l1.MaximumSize = new Size(vehicleTab.Width, 0);
-            l1.AutoSize = true;
-            l1.Text = v.getVehicleDetails();
-            vehicleTab.Controls.Add(l1);
+            string returnStr = string.Empty;
+
+            var arr = lot.getInventory();
+
+            var len = arr.Length;
+
+            returnStr += arr[carCount].getVehicleDetails();
+
+            return returnStr;
+        }
+
+        private void nextBtn_Click(object sender, EventArgs e)
+        {
+            var len = lot.getInventory().Length;
+            if (carCount < len)
+            {
+                carCount++;
+            }
+            vehicleLabel.Refresh();
+        }
+
+        private void prevBtn_Click(object sender, EventArgs e)
+        {
+            var len = lot.getInventory().Length;
+            if (carCount < len)
+            {
+                carCount--;
+            }
+        }
+
+        private void exitBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
