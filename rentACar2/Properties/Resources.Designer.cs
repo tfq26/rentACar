@@ -61,20 +61,6 @@ namespace rentACar2.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Make, Model, Year, Type;
-        ///Toyota, Corolla, 2013, Sedan;
-        ///Honda, Civic, 2023, Sedan;
-        ///Toyota, Sequoia, 2022, SUV;
-        ///Tesla, Model 3, 2024, Sedan;
-        ///Tesla, Cybertruck, 2023, Pickup-truck.
-        /// </summary>
-        internal static string database {
-            get {
-                return ResourceManager.GetString("database", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap image_missing {

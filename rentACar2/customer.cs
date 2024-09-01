@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace rentACar2
 {
-    internal class customer
+    public class customer
     {
         private string firstName;
         private string lastName;
@@ -38,6 +38,16 @@ namespace rentACar2
             this.idNum = DOLNum;
             customerDetails = new List<string>();
             addDetails();
+        }
+
+        public customer(string[] customerInfo)
+        {
+            customerDetails = new List<string>();
+            this.firstName = customerInfo[0];
+            this.lastName = customerInfo[1];
+            this.age = Int32.Parse(customerInfo[2]);
+            this.email= customerInfo[3];
+            this.phoneNum = customerInfo[4];
         }
 
         private void addDetails()
@@ -88,17 +98,27 @@ namespace rentACar2
             this.idNum = newIdNum;
         }
 
-        public string getCustomerDetails()
+        //public string getCustomerDetails()
+        //{
+        //    addDetails();
+        //    string returnStr = "Customer Information\n\n";
+        //    foreach (string str in customerDetails)
+        //    {
+        //        returnStr += str + "\n";
+        //    }
+
+        //    int count = customerDetails.Count;
+        //    //returnStr += count.ToString();
+        //    return returnStr;
+        //}
+
+        public string[] getCustomerDetails()
         {
-            string returnStr = string.Empty;
+            addDetails();
 
-            foreach (string str in customerDetails)
-            {
-                returnStr += str;
-                returnStr += "\n";
-            }
+            String[] temp = customerDetails.ToArray();
 
-            return returnStr;
+            return temp;
         }
 
         private void updateRentalNum()

@@ -6,10 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Windows.Forms.VisualStyles;
 
 namespace rentACar2
 {
-    internal class vehicle
+    public class vehicle
     {
         private List<string> vehicleInformation;
         //private double rate;
@@ -20,7 +21,7 @@ namespace rentACar2
         private int mileage;
         private string condition;
         private string color;
-        private bool finance;
+        private string finance;
         private int totalRentalLife; // Keeps track of the number of days the vehicle has been rented in its life cycle
         private double averageRentalPeriod; // Tracks the average rental period for a specific vehicle
 
@@ -30,7 +31,7 @@ namespace rentACar2
         }
 
         public vehicle(string make, string model, int year, string type, int miles, string condition,
-            string color, bool financable)
+            string color, string financable)
         {
             vehicleInformation = new List<string>();
             this.make = make;
@@ -40,7 +41,6 @@ namespace rentACar2
             this.mileage = miles;
             this.condition = condition;
             this.color = color;
-            this.finance = financable;
         }
 
         public vehicle(string[] vehicleInfo)
@@ -53,31 +53,40 @@ namespace rentACar2
             this.mileage = Int32.Parse(vehicleInfo[4]);
             this.condition = vehicleInfo[5];
             this.color = vehicleInfo[6];
-            this.finance = bool.Parse(vehicleInfo[7]);
+            bool isFin = bool.Parse(vehicleInfo[7]);
         }
 
-        private vehicle(string[] vehicleInfo, Boolean testCase)
-        {
-            vehicleInformation = new List<string>();
-            int counter = 0;
-            foreach (string s in vehicleInfo) { 
-                vehicleInformation.Add("Line" + counter + ": " + s);
-                counter++;
-            }
-        }
+        //private vehicle(string[] vehicleInfo, Boolean testCase)
+        //{
+        //    vehicleInformation = new List<string>();
+        //    int counter = 0;
+        //    foreach (string s in vehicleInfo) { 
+        //        vehicleInformation.Add("Line" + counter + ": " + s);
+        //        counter++;
+        //    }
+        //}
 
-        public string getVehicleDetails()
+        //public string getVehicleDetails()
+        //{
+        //    setVehicleDetails();
+        //    string returnStr = "Vehicle Information\n\n";
+        //    foreach (string str in vehicleInformation)
+        //    {
+        //        returnStr += str + "\n";
+        //    }
+
+        //    int count = vehicleInformation.Count;
+        //    //returnStr += count.ToString();
+        //    return returnStr;
+        //}
+
+        public string[] getVehicleDetails()
         {
             setVehicleDetails();
-            string returnStr = "Vehicle Information\n";
-            foreach (string str in vehicleInformation)
-            {
-                returnStr += str + "\n";
-            }
 
-            int count = vehicleInformation.Count;
-            //returnStr += count.ToString();
-            return returnStr;
+            String[] temp = vehicleInformation.ToArray();
+
+            return temp;
         }
 
         public void setVehicleDetails()
@@ -86,16 +95,20 @@ namespace rentACar2
             vehicleInformation.Add("Model: " + this.model);
             vehicleInformation.Add("Year: " + this.year.ToString());
             vehicleInformation.Add("Type: " + this.type);
-            vehicleInformation.Add("Mileage: " + this.mileage);
+            vehicleInformation.Add("Mileage: " + $"{this.mileage:n0}");
             vehicleInformation.Add("Condition: " + this.condition);
             vehicleInformation.Add("Color: " + this.color);
-            vehicleInformation.Add("Financeable: " + this.finance);
+           // vehicleInformation.Add("Count: " + setVehicleImage());
         }
 
         public String getMake() => make;
         public String getModel() => model;
         public String getYear() => year.ToString();
         public String getType() => type;
+        public String getCondition() => condition;
+        public String getColor() => color;
+        public string getMiles => mileage.ToString();
+
         //public double getRate() => rate;
 
         public void setMake(String newMake)
@@ -118,10 +131,14 @@ namespace rentACar2
             type = newType;
         }
 
-        //public void setRate(double rate)
-        //{
-        //    this.rate = rate;
-        //}
+        public Image setVehicleImage()
+        {
+            string str = string.Empty;
+            int count = 0;
+            var files = Directory.GetFiles("C:\\Users\\taufe\\source\\repos\\rentACar2\\rentACar2\\Vehicle\\");
+            var image = Image.FromFile(files[0]);
+            return image;
+        }
 
         public void updateRentalLife(int d)
         {

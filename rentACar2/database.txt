@@ -1,3 +1,0 @@
-Tesla, model 3, 2023, sedan
-Honda, Civic, 2020, sedan
-BMW, X7, 2024, SUV

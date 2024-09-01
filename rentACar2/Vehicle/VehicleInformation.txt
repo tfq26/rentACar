@@ -1,1 +1,1 @@
-﻿Tesla, Model 3, 2024, Sedan, 4230, Like-New, Ultra Red, Yes
+﻿Tesla, Model 3, 2024, Sedan, 64230, Like-New, Ultra Red, True

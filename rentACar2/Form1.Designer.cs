@@ -34,16 +34,16 @@
             nextBtn = new Button();
             carPictureBox = new PictureBox();
             rentalPanel = new Panel();
-            vehicleInfoTabs = new TabControl();
+            InfoTabs = new TabControl();
             rentalPage = new TabPage();
             vehiclePage = new TabPage();
             miscPage = new TabPage();
             controlPanel = new Panel();
-            viewPanel = new Panel();
             exitBtn = new Button();
+            viewPanel = new Panel();
             ((System.ComponentModel.ISupportInitialize)carPictureBox).BeginInit();
             rentalPanel.SuspendLayout();
-            vehicleInfoTabs.SuspendLayout();
+            InfoTabs.SuspendLayout();
             controlPanel.SuspendLayout();
             viewPanel.SuspendLayout();
             SuspendLayout();
@@ -90,40 +90,42 @@
             // rentalPanel
             // 
             rentalPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            rentalPanel.Controls.Add(vehicleInfoTabs);
+            rentalPanel.Controls.Add(InfoTabs);
             rentalPanel.Location = new Point(0, 0);
             rentalPanel.Name = "rentalPanel";
-            rentalPanel.Size = new Size(284, 569);
+            rentalPanel.Size = new Size(384, 569);
             rentalPanel.TabIndex = 4;
             // 
-            // vehicleInfoTabs
+            // InfoTabs
             // 
-            vehicleInfoTabs.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            vehicleInfoTabs.Controls.Add(rentalPage);
-            vehicleInfoTabs.Controls.Add(vehiclePage);
-            vehicleInfoTabs.Controls.Add(miscPage);
-            vehicleInfoTabs.Location = new Point(10, 12);
-            vehicleInfoTabs.Name = "vehicleInfoTabs";
-            vehicleInfoTabs.SelectedIndex = 0;
-            vehicleInfoTabs.Size = new Size(264, 547);
-            vehicleInfoTabs.TabIndex = 0;
+            InfoTabs.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            InfoTabs.Controls.Add(rentalPage);
+            InfoTabs.Controls.Add(vehiclePage);
+            InfoTabs.Controls.Add(miscPage);
+            InfoTabs.Location = new Point(10, 12);
+            InfoTabs.Name = "InfoTabs";
+            InfoTabs.SelectedIndex = 0;
+            InfoTabs.Size = new Size(364, 547);
+            InfoTabs.TabIndex = 0;
             // 
             // rentalPage
             // 
+            rentalPage.Font = new Font("Segoe UI", 15F);
             rentalPage.Location = new Point(4, 24);
             rentalPage.Name = "rentalPage";
             rentalPage.Padding = new Padding(3);
-            rentalPage.Size = new Size(256, 519);
+            rentalPage.Size = new Size(356, 519);
             rentalPage.TabIndex = 0;
             rentalPage.Text = "Rentals";
             rentalPage.UseVisualStyleBackColor = true;
             // 
             // vehiclePage
             // 
+            vehiclePage.Font = new Font("Segoe UI", 15F);
             vehiclePage.Location = new Point(4, 24);
             vehiclePage.Name = "vehiclePage";
             vehiclePage.Padding = new Padding(3);
-            vehiclePage.Size = new Size(256, 519);
+            vehiclePage.Size = new Size(356, 519);
             vehiclePage.TabIndex = 1;
             vehiclePage.Text = "Vehicle";
             vehiclePage.UseVisualStyleBackColor = true;
@@ -132,7 +134,7 @@
             // 
             miscPage.Location = new Point(4, 24);
             miscPage.Name = "miscPage";
-            miscPage.Size = new Size(256, 519);
+            miscPage.Size = new Size(356, 519);
             miscPage.TabIndex = 2;
             miscPage.Text = "Miscellaneous";
             miscPage.UseVisualStyleBackColor = true;
@@ -148,16 +150,6 @@
             controlPanel.Size = new Size(643, 57);
             controlPanel.TabIndex = 5;
             // 
-            // viewPanel
-            // 
-            viewPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            viewPanel.Controls.Add(controlPanel);
-            viewPanel.Controls.Add(carPictureBox);
-            viewPanel.Location = new Point(585, 0);
-            viewPanel.Name = "viewPanel";
-            viewPanel.Size = new Size(645, 625);
-            viewPanel.TabIndex = 6;
-            // 
             // exitBtn
             // 
             exitBtn.Location = new Point(337, -1);
@@ -167,6 +159,16 @@
             exitBtn.Text = "Exit";
             exitBtn.UseVisualStyleBackColor = true;
             exitBtn.Click += exitBtn_Click;
+            // 
+            // viewPanel
+            // 
+            viewPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            viewPanel.Controls.Add(controlPanel);
+            viewPanel.Controls.Add(carPictureBox);
+            viewPanel.Location = new Point(585, 0);
+            viewPanel.Name = "viewPanel";
+            viewPanel.Size = new Size(645, 625);
+            viewPanel.TabIndex = 6;
             // 
             // Form1
             // 
@@ -181,7 +183,7 @@
             WindowState = FormWindowState.Minimized;
             ((System.ComponentModel.ISupportInitialize)carPictureBox).EndInit();
             rentalPanel.ResumeLayout(false);
-            vehicleInfoTabs.ResumeLayout(false);
+            InfoTabs.ResumeLayout(false);
             controlPanel.ResumeLayout(false);
             viewPanel.ResumeLayout(false);
             ResumeLayout(false);
@@ -194,7 +196,7 @@
         private Button nextBtn;
         private PictureBox carPictureBox;
         private Panel rentalPanel;
-        private TabControl vehicleInfoTabs;
+        private TabControl InfoTabs;
         private TabPage rentalPage;
         private TabPage vehiclePage;
         private TabPage miscPage;
