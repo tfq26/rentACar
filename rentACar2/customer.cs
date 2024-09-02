@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace rentACar2
 {
-    public class customer
+    public class Customer
     {
         private string firstName;
         private string lastName;
@@ -17,7 +17,7 @@ namespace rentACar2
         private long idNum;
         private int rentalNums; // Keeps track of the number of rentals by a specific customer
 
-        public customer()
+        public Customer()
         {
             this.firstName = string.Empty;
             this.lastName = string.Empty;
@@ -28,7 +28,7 @@ namespace rentACar2
             customerDetails = new List<string>();
     }
 
-    public customer(string firstName, string lastName, int age, long DOLNum, string email, string phoneNum)
+    public Customer(string firstName, string lastName, int age, long DOLNum, string email, string phoneNum)
         {
             this.firstName = firstName;
             this.lastName = lastName;
@@ -40,7 +40,7 @@ namespace rentACar2
             addDetails();
         }
 
-        public customer(string[] customerInfo)
+        public Customer(string[] customerInfo)
         {
             customerDetails = new List<string>();
             this.firstName = customerInfo[0];

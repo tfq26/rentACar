@@ -8,7 +8,7 @@ namespace rentACar2
 {
 internal class InvalidCustomerException : Exception
 {
-        public InvalidCustomerException(customer c) { }
+        public InvalidCustomerException(Customer c) { }
 
         public InvalidCustomerException(string message)
             : base(message) { }

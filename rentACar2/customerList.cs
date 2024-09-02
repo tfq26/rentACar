@@ -8,38 +8,38 @@ namespace rentACar2
 {
 internal class customerList
 {
-        public List<customer> database;
+        public List<Customer> database;
         public string testStr;
 
         public customerList()
         {
-            database = new List<customer>();
+            database = new List<Customer>();
             createDatabase();
         }
 
-        public customerList(List<customer> customers)
+        public customerList(List<Customer> customers)
         {
             this.database = customers;
             createDatabase();
         }
 
-        public void addCustomer(customer v)
+        public void addCustomer(Customer v)
         {
             database.Add(v);
         }
 
-        public customer[] getDatabase()
+        public Customer[] getDatabase()
         {
-            customer[] arr = database.ToArray();
+            Customer[] arr = database.ToArray();
             return arr;
         }
 
-        public void removeCustomer(customer v)
+        public void removeCustomer(Customer v)
         {
             database.Remove(v);
         }
 
-        public Boolean checkforCustomer(customer v)
+        public Boolean checkforCustomer(Customer v)
         {
             if (database.Contains(v))
             {
@@ -56,12 +56,17 @@ internal class customerList
         public void createDatabase()
         {
             string returnStr = string.Empty;
-            string[] lines = File.ReadAllLines("C:\\Users\\taufe\\source\\repos\\rentACar2\\rentACar2\\Customer\\CustomerInformation.txt");
+            string filePath = "Customer\\CustomerInformation.txt";
 
-            foreach (string line in lines)
-
+            if (File.Exists(filePath))
             {
-                database.Add(new customer(line.Split(",")));
+                string[] lines = File.ReadAllLines(filePath);
+
+                foreach (string line in lines)
+
+                {
+                    database.Add(new Customer(line.Split(",")));
+                }
             }
         }
     }

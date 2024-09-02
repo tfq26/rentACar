@@ -10,10 +10,11 @@ using System.Windows.Forms.VisualStyles;
 
 namespace rentACar2
 {
-    public class vehicle
+    public class Vehicle
     {
         private List<string> vehicleInformation;
         //private double rate;
+        private Guid Id;
         private string make;
         private string model;
         private int year;
@@ -25,35 +26,22 @@ namespace rentACar2
         private int totalRentalLife; // Keeps track of the number of days the vehicle has been rented in its life cycle
         private double averageRentalPeriod; // Tracks the average rental period for a specific vehicle
 
-        public vehicle()
+        public Vehicle()
         {
             vehicleInformation = new List<string>();
         }
 
-        public vehicle(string make, string model, int year, string type, int miles, string condition,
-            string color, string financable)
+        public Vehicle(string[] vehicleInfo)
         {
             vehicleInformation = new List<string>();
-            this.make = make;
-            this.model = model;
-            this.year = year;
-            this.type = type;
-            this.mileage = miles;
-            this.condition = condition;
-            this.color = color;
-        }
-
-        public vehicle(string[] vehicleInfo)
-        {
-            vehicleInformation = new List<string>();
-            this.make = vehicleInfo[0];
-            this.model = vehicleInfo[1];
-            this.year = Int32.Parse(vehicleInfo[2]);
-            this.type = vehicleInfo[3];
-            this.mileage = Int32.Parse(vehicleInfo[4]);
-            this.condition = vehicleInfo[5];
-            this.color = vehicleInfo[6];
-            bool isFin = bool.Parse(vehicleInfo[7]);
+            this.Id = Guid.Parse(vehicleInfo[0]);
+            this.make = vehicleInfo[1];
+            this.model = vehicleInfo[2];
+            this.year = Int32.Parse(vehicleInfo[3]);
+            this.type = vehicleInfo[4];
+            this.mileage = Int32.Parse(vehicleInfo[5]);
+            this.condition = vehicleInfo[6];
+            this.color = vehicleInfo[7];
         }
 
         //private vehicle(string[] vehicleInfo, Boolean testCase)
@@ -107,7 +95,8 @@ namespace rentACar2
         public String getType() => type;
         public String getCondition() => condition;
         public String getColor() => color;
-        public string getMiles => mileage.ToString();
+        public String getMiles() => mileage.ToString();
+        public String getId() => Id.ToString();
 
         //public double getRate() => rate;
 
@@ -131,13 +120,16 @@ namespace rentACar2
             type = newType;
         }
 
-        public Image setVehicleImage()
+        public Image getVehicleImage()
         {
-            string str = string.Empty;
-            int count = 0;
-            var files = Directory.GetFiles("C:\\Users\\taufe\\source\\repos\\rentACar2\\rentACar2\\Vehicle\\");
-            var image = Image.FromFile(files[0]);
-            return image;
+            string imagePath = "Vehicle\\" + this.Id.ToString() + ".jpeg";
+            if (File.Exists(imagePath))
+            {
+                var image = Image.FromFile(imagePath);
+                return image;
+            }
+            else
+                return null;
         }
 
         public void updateRentalLife(int d)

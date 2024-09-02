@@ -15,12 +15,12 @@ namespace rentACar2
         public DateTime endDate;
         private int daysRented;
         private Dictionary<String, String> rentalDetails;
-        private customer customer;
+        private Customer customer;
         private Boolean additionalCharge;
         public double total;
         private Dictionary<String, double> charges;
 
-        public contract(customer c, DateTime s, DateTime e, int d, Boolean ac) {
+        public contract(Customer c, DateTime s, DateTime e, int d, Boolean ac) {
 
             this.customer = c;
             this.startDate = s;
