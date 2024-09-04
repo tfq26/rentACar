@@ -33,7 +33,13 @@
     <None Update="Vehicle\B1BD52A6-0425-432D-8DC7-BD5063F875B0.jpeg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Vehicle\C518322F-8E30-46C5-9085-9777342A34A1.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Vehicle\D3A926B9-2E93-4733-A5B9-302D5BF7C15B.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Vehicle\EA2C7184-E6A9-45C3-ABEB-E9B6BF36A74E.jpeg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Vehicle\VehicleInformation.txt">

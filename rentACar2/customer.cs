@@ -98,20 +98,6 @@ namespace rentACar2
             this.idNum = newIdNum;
         }
 
-        //public string getCustomerDetails()
-        //{
-        //    addDetails();
-        //    string returnStr = "Customer Information\n\n";
-        //    foreach (string str in customerDetails)
-        //    {
-        //        returnStr += str + "\n";
-        //    }
-
-        //    int count = customerDetails.Count;
-        //    //returnStr += count.ToString();
-        //    return returnStr;
-        //}
-
         public string[] getCustomerDetails()
         {
             addDetails();

@@ -10,7 +10,7 @@ using System.Windows.Forms.VisualStyles;
 
 namespace rentACar2
 {
-    public class Vehicle
+    public class CustomerList
     {
         private List<string> vehicleInformation;
         //private double rate;
@@ -22,9 +22,14 @@ namespace rentACar2
         private int mileage;
         private string condition;
         private string color;
-        private string finance;
+        private int seats;
+        private int passengers;
+        private int storage;
+        private string drivetrain;
+        private int range;
         private int totalRentalLife; // Keeps track of the number of days the vehicle has been rented in its life cycle
         private double averageRentalPeriod; // Tracks the average rental period for a specific vehicle
+        private string errorMsg;
 
         public Vehicle()
         {
@@ -42,94 +47,58 @@ namespace rentACar2
             this.mileage = Int32.Parse(vehicleInfo[5]);
             this.condition = vehicleInfo[6];
             this.color = vehicleInfo[7];
+            this.seats = Int32.Parse(vehicleInfo[8]);
+            this.passengers = Int32.Parse(vehicleInfo[9]);
+            this.storage = Int32.Parse(vehicleInfo[10]);
+            this.drivetrain = vehicleInfo[11];
+            this.range = Int32.Parse(vehicleInfo[12]);
+            this.errorMsg = string.Empty;
         }
-
-        //private vehicle(string[] vehicleInfo, Boolean testCase)
-        //{
-        //    vehicleInformation = new List<string>();
-        //    int counter = 0;
-        //    foreach (string s in vehicleInfo) { 
-        //        vehicleInformation.Add("Line" + counter + ": " + s);
-        //        counter++;
-        //    }
-        //}
-
-        //public string getVehicleDetails()
-        //{
-        //    setVehicleDetails();
-        //    string returnStr = "Vehicle Information\n\n";
-        //    foreach (string str in vehicleInformation)
-        //    {
-        //        returnStr += str + "\n";
-        //    }
-
-        //    int count = vehicleInformation.Count;
-        //    //returnStr += count.ToString();
-        //    return returnStr;
-        //}
 
         public string[] getVehicleDetails()
         {
-            setVehicleDetails();
-
             String[] temp = vehicleInformation.ToArray();
 
             return temp;
         }
 
-        public void setVehicleDetails()
-        {
-            vehicleInformation.Add("Make: " + this.make);
-            vehicleInformation.Add("Model: " + this.model);
-            vehicleInformation.Add("Year: " + this.year.ToString());
-            vehicleInformation.Add("Type: " + this.type);
-            vehicleInformation.Add("Mileage: " + $"{this.mileage:n0}");
-            vehicleInformation.Add("Condition: " + this.condition);
-            vehicleInformation.Add("Color: " + this.color);
-           // vehicleInformation.Add("Count: " + setVehicleImage());
-        }
-
-        public String getMake() => make;
-        public String getModel() => model;
-        public String getYear() => year.ToString();
-        public String getType() => type;
-        public String getCondition() => condition;
-        public String getColor() => color;
-        public String getMiles() => mileage.ToString();
-        public String getId() => Id.ToString();
+        public String getMake() => make.Trim();
+        public String getModel() => model.Trim();
+        public String getYear() => year.ToString().Trim();
+        public String getType() => type.Trim();
+        public String getCondition() => condition.Trim();
+        public String getColor() => color.Trim();
+        public String getMiles() => mileage.ToString().Trim();
+        public String getId() => Id.ToString().Trim();
+        public String getSeats() => seats.ToString().Trim();
+        public String getPassengers() => passengers.ToString().Trim();
+        public String getStorage() => storage.ToString().Trim();
+        public String getDrivetrain() => drivetrain.Trim();
+        public String getRange() => range.ToString().Trim();
+        public String getErrorMsg() => this.errorMsg;
 
         //public double getRate() => rate;
-
-        public void setMake(String newMake)
+        public void setErrorMsg(String message)
         {
-            make = newMake;
-        }
-
-        public void setLastName(String newModel)
-        {
-            model = newModel;
-        }
-
-        public void setYear(int y)
-        {
-            year = y;
-        }
-
-        public void setType(String newType)
-        {
-            type = newType;
+            this.errorMsg = message;
         }
 
         public Image getVehicleImage()
         {
-            string imagePath = "Vehicle\\" + this.Id.ToString() + ".jpeg";
-            if (File.Exists(imagePath))
+            string imagePath = "Vehicle\\" + this.Id.ToString() + ".jpeg"; 
+            Image image = null;
+            
+            try
             {
-                var image = Image.FromFile(imagePath);
+                image = Image.FromFile(imagePath);
+                setErrorMsg(this.getYear() + " " + this.getMake() + " " + this.getModel());
                 return image;
             }
-            else
-                return null;
+            catch (Exception ex)
+            {
+                setErrorMsg("Error With Loading Image");
+                return image;
+            }
         }
 
         public void updateRentalLife(int d)
