@@ -1,4 +1,5 @@
 using rentACar2.Properties;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -66,9 +67,59 @@ namespace rentACar2
         {
             SetupVehicleDisplayInfo();
 
+            Dictionary<string, bool> makesList = new Dictionary<string, bool>();
+            Dictionary<string, bool> typesList = new Dictionary<string, bool>();
+            typesList.Add("", true);
+            makesList.Add("", true);
+
+            foreach (Vehicle veh in lot.getInventory())
+            {
+                if (!typesList.ContainsKey(veh.getType()))
+                {
+                    typesList.Add(veh.getType(), true);
+                }
+                if (!makesList.ContainsKey(veh.getMake()))
+                {
+                    makesList.Add(veh.getMake(), true);
+                }
+            }
+
+            comboMake.Items.Clear();
+            comboMake.Items.AddRange(makesList.Keys.ToArray());
+
+            comboType.Items.Clear();
+            comboType.Items.AddRange(typesList.Keys.ToArray());
+
+            DisplayVehicleList();
         }
 
-        
+        private void DisplayVehicleList()
+        {
+            Dictionary<string, bool> vehicleList = new Dictionary<string, bool>();
+
+            foreach (Vehicle veh in lot.getInventory())
+            {
+                string vehicleDesc = $"{veh.getYear()} {veh.getMake()} {veh.getModel()}";
+
+                if (veh.getMake() != comboMake.Text && comboMake.Text != "")
+                {
+                    continue;
+                }
+
+                if (veh.getType() != comboType.Text && comboType.Text != "")
+                {
+                    continue;
+                }
+
+                if (!vehicleList.ContainsKey(vehicleDesc))
+                {
+                    vehicleList.Add(vehicleDesc, true);
+                }
+            }
+
+            listboxVehicles.Items.Clear();
+            listboxVehicles.Items.AddRange(vehicleList.Keys.ToArray());
+        }
 
         private void rentalsToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -76,7 +127,17 @@ namespace rentACar2
 
             this.viewPanel.Visible = false;
 
-            this.
+            //this.
+        }
+
+        private void comboMake_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DisplayVehicleList();
+        }
+
+        private void comboType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DisplayVehicleList();
         }
     }
 }

@@ -10,7 +10,7 @@ using System.Windows.Forms.VisualStyles;
 
 namespace rentACar2
 {
-    public class CustomerList
+    public class Vehicle
     {
         private List<string> vehicleInformation;
         //private double rate;
