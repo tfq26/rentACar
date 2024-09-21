@@ -19,7 +19,7 @@
         public Customer[] getInventory()
         {
             loadInventory();
-            loadLogin(true);
+            loadLogin();
             Customer[] arr = CustomerList.ToArray();
             return arr;
         }
@@ -41,9 +41,12 @@
 
         public Boolean checkforCustomer(Guid id)
         {
-            if (CustomerList.Contains(c))
+            foreach (Customer c in CustomerList)
             {
-                return true;
+                if(c.getId() == id)
+                {
+                    return true;
+                }
             }
             return false;
         }
@@ -63,6 +66,30 @@
         private void loadLogin(Boolean temp)
         {
             customerLoginDetails.Add("Admin", "Admin123");
+        }
+
+        private void loadLogin()
+        {
+            string informationPath = "Customer\\userLoginInformation.txt";
+            if (File.Exists(informationPath))
+            {
+                string[] lines = File.ReadAllLines(informationPath);
+
+                foreach (string line in lines)
+                {
+                    if (line.StartsWith("GUID"))
+                        continue;
+
+                    customerLoginDetails.Add(line.Split(',')[1], line.Split(',')[2]);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Customer info file not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Environment.Exit(0);
+            }
+
+            
         }
 
         public void loadInventory()

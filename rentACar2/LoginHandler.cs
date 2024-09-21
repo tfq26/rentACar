@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
@@ -48,10 +49,9 @@ namespace rentACar2
             return false;
         }
 
-        public ReadOnlyDictionary<loginDetails, Customer> getLogins()
+        private Dictionary<loginDetails, Customer> getLogins()
         {
-            ReadOnlyDictionary<String, Customer> returnDict = login.AsReadOnly();
-            return returnDict;
+             return login;
         }
 
         private void loadLogin()

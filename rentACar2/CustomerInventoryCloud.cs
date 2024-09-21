@@ -42,6 +42,18 @@ namespace rentACar2
             }
             return false;
         }
+
+        public Boolean checkforCustomer(Guid id)
+        {
+            foreach (Customer c in CustomerList)
+            {
+                if (c.getId() == id)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         public Boolean checkforCustomer(string email, string password)
         {
             if (customerLoginDetails.ContainsKey(email))

@@ -50,11 +50,12 @@ namespace rentACar2
         public Customer(string[] customerInfo)
         {
             customerDetails = new List<string>();
-            this.firstName = customerInfo[0];
-            this.lastName = customerInfo[1];
-            this.age = Int32.Parse(customerInfo[2]);
-            this.email= customerInfo[3];
-            this.phoneNum = customerInfo[4];
+            this.id = Guid.Parse(customerInfo[0]);
+            this.firstName = customerInfo[1];
+            this.lastName = customerInfo[2];
+            this.age = Int32.Parse(customerInfo[3]);
+            this.email= customerInfo[4];
+            this.phoneNum = customerInfo[5];
         }
 
         private void addDetails()
@@ -74,7 +75,6 @@ namespace rentACar2
         public Boolean getRentalState() => this.rentalState;
         public Guid getId() => id;
         public int getAge() => age;
-
         public long getIdNum() => idNum;
 
         public void setFirstName(String newFirstName)
@@ -85,6 +85,11 @@ namespace rentACar2
         public void setLastName(String newLastName)
         {
             lastName = newLastName;
+        }
+
+        public void setGUID(Guid id)
+        {
+            this.id = id;
         }
 
         public void setAge(int a)
