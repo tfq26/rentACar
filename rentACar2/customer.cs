@@ -12,10 +12,13 @@ namespace rentACar2
         private string lastName;
         private string email;
         private string phoneNum;
-        private List<string> customerDetails;
         private int age;
         private long idNum;
         private int rentalNums; // Keeps track of the number of rentals by a specific customer
+        private Boolean rentalState;
+        private Guid id;
+        private List<string> customerDetails;
+
 
         public Customer()
         {
@@ -26,9 +29,11 @@ namespace rentACar2
             this.age = 0;
             this.idNum = 0;
             customerDetails = new List<string>();
+            this.rentalState = false;
+            this.id = Guid.Empty;
     }
 
-    public Customer(string firstName, string lastName, int age, long DOLNum, string email, string phoneNum)
+    public Customer(string firstName, string lastName, int age, long DOLNum, string email, string phoneNum, Guid userId)
         {
             this.firstName = firstName;
             this.lastName = lastName;
@@ -36,6 +41,8 @@ namespace rentACar2
             this.phoneNum = phoneNum;
             this.age = age;
             this.idNum = DOLNum;
+            this.rentalState = false;
+            this.id = userId;
             customerDetails = new List<string>();
             addDetails();
         }
@@ -64,6 +71,8 @@ namespace rentACar2
         public String getLastName() => lastName;
         public String getEmail() => email;
         public String getPhone() => phoneNum;
+        public Boolean getRentalState() => this.rentalState;
+        public Guid getId() => id;
         public int getAge() => age;
 
         public long getIdNum() => idNum;
@@ -77,11 +86,11 @@ namespace rentACar2
         {
             lastName = newLastName;
         }
-      
-         public void setAge(int a)
-         {
+
+        public void setAge(int a)
+        {
             age = a;
-         }
+        }
 
         public void setEmail(String newEmail)
         {
@@ -96,6 +105,11 @@ namespace rentACar2
         public void setIdNum(int newIdNum)
         {
             this.idNum = newIdNum;
+        }
+
+        public void setRentalState(bool newRentalState)
+        {
+            this.rentalState = newRentalState;
         }
 
         public string[] getCustomerDetails()

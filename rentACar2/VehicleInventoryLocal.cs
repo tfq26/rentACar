@@ -14,7 +14,7 @@ namespace rentACar2
 
         public VehicleInventoryLocal()
         {
-            
+            loadInventory();
         }
 
         public void addVehicle(Vehicle v)

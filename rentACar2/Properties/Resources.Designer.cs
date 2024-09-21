@@ -63,6 +63,16 @@ namespace rentACar2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap defaultPFP {
+            get {
+                object obj = ResourceManager.GetObject("defaultPFP", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap image_missing {
             get {
                 object obj = ResourceManager.GetObject("image_missing", resourceCulture);

@@ -10,6 +10,7 @@ namespace rentACar2
     internal class CustomerInventoryCloud : ICustomerInventory
     {
         public List<Customer> CustomerList = new List<Customer>();
+        public Dictionary<string, string> customerLoginDetails = new Dictionary<string, string>();
         public string testStr;
 
         public CustomerInventoryCloud()
@@ -41,6 +42,13 @@ namespace rentACar2
             }
             return false;
         }
+        public Boolean checkforCustomer(string email, string password)
+        {
+            if (customerLoginDetails.ContainsKey(email))
+                if (customerLoginDetails.ContainsValue(password))
+                    return true;
+            return false;
+        }
 
         public int getInventoryCount()
         {
@@ -57,7 +65,7 @@ namespace rentACar2
 
                 foreach (string line in lines)
                 {
-                    if (line.StartsWith("Id"))
+                    if (line.StartsWith("GUID"))
                         continue;
 
                     CustomerList.Add(new Customer(line.Split(",")));

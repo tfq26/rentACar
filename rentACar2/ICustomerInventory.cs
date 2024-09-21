@@ -14,11 +14,13 @@ namespace rentACar2
 
         public void removeCustomer(Customer c);
 
-        public Boolean checkforCustomer(Customer c);
+        public Boolean checkforCustomer(Guid id);
 
         public int getInventoryCount();
 
         public void loadInventory();
+
+        public Boolean checkforCustomer(string email, string password);
 
     }
 }

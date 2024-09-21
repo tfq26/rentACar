@@ -1,15 +1,9 @@
-﻿using rentACar2.Properties;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace rentACar2
+﻿namespace rentACar2
 {
     internal class CustomerInventoryLocal : ICustomerInventory
     {
         public List<Customer> CustomerList = new List<Customer>();
+        public Dictionary<string, string> customerLoginDetails = new Dictionary<string, string>();
         public string testStr;
 
         public CustomerInventoryLocal()
@@ -24,21 +18,40 @@ namespace rentACar2
 
         public Customer[] getInventory()
         {
+            loadInventory();
+            loadLogin(true);
             Customer[] arr = CustomerList.ToArray();
             return arr;
         }
+
+        //public Customer[] GetActiveRentals()
+        //{
+        //    List<Customer> arr = new List<Customer>();
+        //    foreach (Customer c in CustomerList)
+        //    {
+        //        if (c.active)
+        //            return arr;
+        //    }
+        //}
 
         public void removeCustomer(Customer c)
         {
             CustomerList.Remove(c);
         }
 
-        public Boolean checkforCustomer(Customer c)
+        public Boolean checkforCustomer(Guid id)
         {
             if (CustomerList.Contains(c))
             {
                 return true;
             }
+            return false;
+        }
+        public Boolean checkforCustomer(string email, string password)
+        {
+            if (customerLoginDetails.ContainsKey(email))
+                if(customerLoginDetails.ContainsValue(password)) 
+                    return true;
             return false;
         }
 
@@ -47,17 +60,21 @@ namespace rentACar2
             return CustomerList.Count;
         }
 
+        private void loadLogin(Boolean temp)
+        {
+            customerLoginDetails.Add("Admin", "Admin123");
+        }
+
         public void loadInventory()
         {
-            string returnStr = string.Empty;
-            string filePath = "Vehicle\\VehicleInformation.txt";
-            if (File.Exists(filePath))
+            string informationPath = "Customer\\CustomerInformation.txt";
+            if (File.Exists(informationPath))
             {
-                string[] lines = File.ReadAllLines(filePath);
+                string[] lines = File.ReadAllLines(informationPath);
 
                 foreach (string line in lines)
                 {
-                    if (line.StartsWith("Id"))
+                    if (line.StartsWith("GUID"))
                         continue;
 
                     CustomerList.Add(new Customer(line.Split(",")));
@@ -65,7 +82,8 @@ namespace rentACar2
             }
             else
             {
-                MessageBox.Show("Vehicle info file not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Customer info file not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Environment.Exit(0);
             }
         }
     }

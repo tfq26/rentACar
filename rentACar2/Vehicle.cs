@@ -34,6 +34,20 @@ namespace rentACar2
         public Vehicle()
         {
             vehicleInformation = new List<string>();
+            this.Id = Guid.Empty;
+            this.make = "";
+            this.model = "";
+            this.year = 0;
+            this.type = "";
+            this.mileage = 0;
+            this.condition = "";
+            this.color = "";
+            this.seats = 0;
+            this.passengers = 0;
+            this.storage = 0;
+            this.drivetrain = "";
+            this.range = 0;
+            this.errorMsg = "Empty Vehicle";
         }
 
         public Vehicle(string[] vehicleInfo)

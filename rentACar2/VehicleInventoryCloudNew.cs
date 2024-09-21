@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Azure.Storage.Blobs.Models;
+using Azure.Storage.Blobs;
+using System.IO;
 
 namespace rentACar2
 {
@@ -11,10 +14,45 @@ namespace rentACar2
     {
         public List<Vehicle> vehicleList = new List<Vehicle>();
         public string testStr;
+        private string connectionString;
 
         public VehicleInventoryCloud()
         {
+            blobManager();
+        }
+
+        private void blobManager()
+        {
+            connectionString = "";
+
+            var blobServiceClient = new BlobServiceClient(connectionString);
+
+            BlobContainerClient blobContainerClient = new BlobContainerClient(connectionString, "null");
+
+            try
             
+            { 
+                blobContainerClient = blobServiceClient.GetBlobContainerClient("vehicleinformation");
+            }
+            
+            catch (Exception ex)
+            
+            {
+                MessageBox.Show("Error accessing Vehicle Information");
+                Thread.Sleep(5000);
+                Environment.Exit(0);
+            }
+
+             string downloadFilePath = "cloudresx\\";
+
+            foreach (BlobItem item in blobContainerClient.GetBlobs())
+            
+            {
+                BlobClient blobClient = new BlobClient(connectionString, blobContainerClient.Name, item.Name);
+                
+                //blobClient.Upload()
+            }
+
         }
 
         public void addVehicle(Vehicle v)
@@ -49,6 +87,7 @@ namespace rentACar2
 
         public void loadInventory()
         {
+            //blobManager();
             string returnStr = string.Empty;
             string filePath = "Vehicle\\VehicleInformation.txt";
             if (File.Exists(filePath))
