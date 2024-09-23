@@ -21,7 +21,7 @@
         public Customer[] getInventory()
         {
             loadInventory();
-            loadLogin();
+            loadLogin(true);
             Customer[] arr = CustomerList.ToArray();
             return arr;
         }
@@ -72,7 +72,7 @@
 
         private void loadLogin()
         {
-            string loginPath = "C:\\Users\\taufe\\source\\repos\\rentACar2\\rentACar2\\Customer\\UserLoginInformation.txt";
+            string loginPath = @"Customer\UserLoginInformation.txt";
             if (File.Exists(loginPath))
             {
                  string[] lines = File.ReadAllLines(loginPath);
@@ -96,7 +96,7 @@
 
         public void loadInventory()
         {
-            string informationPath = "Customer\\CustomerInformation.txt";
+            string informationPath = @"Customer\CustomerInformation.txt";
             if (File.Exists(informationPath))
             {
                 string[] lines = File.ReadAllLines(informationPath);
