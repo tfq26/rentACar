@@ -115,6 +115,7 @@
             btnSwitchAccountView = new Button();
             label2 = new Label();
             lblDisplayTitle = new Label();
+            exitBtnLogin = new Button();
             BrowsePanel.SuspendLayout();
             profilePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -939,6 +940,7 @@
             // 
             // splashPanel
             // 
+            splashPanel.Controls.Add(exitBtnLogin);
             splashPanel.Controls.Add(createAccountPanel);
             splashPanel.Controls.Add(btnSwitchAccountView);
             splashPanel.Controls.Add(label2);
@@ -1130,7 +1132,7 @@
             // 
             btnSwitchAccountView.BackColor = Color.FromArgb(235, 167, 54);
             btnSwitchAccountView.Font = new Font("Impact", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnSwitchAccountView.Location = new Point(125, 640);
+            btnSwitchAccountView.Location = new Point(34, 642);
             btnSwitchAccountView.Name = "btnSwitchAccountView";
             btnSwitchAccountView.Size = new Size(237, 41);
             btnSwitchAccountView.TabIndex = 13;
@@ -1156,6 +1158,18 @@
             lblDisplayTitle.Size = new Size(507, 175);
             lblDisplayTitle.TabIndex = 10;
             lblDisplayTitle.Text = "Carpick";
+            // 
+            // exitBtnLogin
+            // 
+            exitBtnLogin.BackColor = Color.Red;
+            exitBtnLogin.Font = new Font("Impact", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            exitBtnLogin.Location = new Point(356, 642);
+            exitBtnLogin.Name = "exitBtnLogin";
+            exitBtnLogin.Size = new Size(92, 41);
+            exitBtnLogin.TabIndex = 14;
+            exitBtnLogin.Text = "Exit";
+            exitBtnLogin.UseVisualStyleBackColor = false;
+            exitBtnLogin.Click += exitBtnLogin_Click;
             // 
             // Carpick
             // 
@@ -1278,5 +1292,6 @@
         private Label label2;
         private Label lblDisplayTitle;
         private Label lblDisplayError;
+        private Button exitBtnLogin;
     }
 }

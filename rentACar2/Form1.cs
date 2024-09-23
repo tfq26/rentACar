@@ -323,5 +323,10 @@ namespace rentACar2
                 checkLogin(boxUsernameLogin.Text, boxPasswordLogin.Text);
             }
         }
+
+        private void exitBtnLogin_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }

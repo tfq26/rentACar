@@ -5,6 +5,8 @@
         public List<Customer> CustomerList = new List<Customer>();
         public Dictionary<string, string> customerLoginDetails = new Dictionary<string, string>();
         public string testStr;
+        private string customerPath = @"Customer";
+        
 
         public CustomerInventoryLocal()
         {
@@ -70,10 +72,10 @@
 
         private void loadLogin()
         {
-            string informationPath = "Customer\\userLoginInformation.txt";
-            if (File.Exists(informationPath))
+            string loginPath = "C:\\Users\\taufe\\source\\repos\\rentACar2\\rentACar2\\Customer\\UserLoginInformation.txt";
+            if (File.Exists(loginPath))
             {
-                string[] lines = File.ReadAllLines(informationPath);
+                 string[] lines = File.ReadAllLines(loginPath);
 
                 foreach (string line in lines)
                 {
@@ -85,7 +87,7 @@
             }
             else
             {
-                MessageBox.Show("Customer info file not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Login info file not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Environment.Exit(0);
             }
 
