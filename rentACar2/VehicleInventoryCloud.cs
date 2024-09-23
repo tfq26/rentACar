@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Azure.Storage.Blobs.Models;
 using Azure.Storage.Blobs;
 using System.IO;
+using Azure.Identity;
 
 namespace rentACar2
 {
@@ -25,7 +26,9 @@ namespace rentACar2
         {
             connectionString = "";
 
-            var blobServiceClient = new BlobServiceClient(connectionString);
+            var blobServiceClient = new BlobServiceClient(
+        new Uri("https://<storage-account-name>.blob.core.windows.net"),
+        new DefaultAzureCredential());
 
             BlobContainerClient blobContainerClient = new BlobContainerClient(connectionString, "null");
 
