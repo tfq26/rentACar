@@ -8,6 +8,7 @@ using Azure.Storage.Blobs.Models;
 using Azure.Storage.Blobs;
 using System.IO;
 using System.Configuration;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace rentACar2
 {
@@ -24,7 +25,10 @@ namespace rentACar2
 
         private void blobManager()
         {
-            connectionString = ConfigurationManager.ConnectionStrings["YourNameHere"].ConnectionString;
+            var filename = @"C:\temp\connectionStr.txt";
+
+            // Read connection string
+            connectionString = File.ReadAllText(filename);
 
             var blobServiceClient = new BlobServiceClient(connectionString);
 
