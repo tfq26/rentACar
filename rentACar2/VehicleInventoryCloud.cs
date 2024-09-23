@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Azure.Storage.Blobs.Models;
 using Azure.Storage.Blobs;
 using System.IO;
+using System.Configuration;
 
 namespace rentACar2
 {
@@ -23,7 +24,7 @@ namespace rentACar2
 
         private void blobManager()
         {
-            connectionString = "";
+            connectionString = ConfigurationManager.ConnectionStrings["YourNameHere"].ConnectionString;
 
             var blobServiceClient = new BlobServiceClient(connectionString);
 

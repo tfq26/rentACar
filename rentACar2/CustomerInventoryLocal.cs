@@ -21,7 +21,7 @@
         public Customer[] getInventory()
         {
             loadInventory();
-            loadLogin();
+            loadLogin(true);
             Customer[] arr = CustomerList.ToArray();
             return arr;
         }
