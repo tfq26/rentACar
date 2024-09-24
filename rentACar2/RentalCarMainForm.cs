@@ -9,12 +9,12 @@ namespace rentACar2
     public partial class Carpick : Form
     {
         public List<Vehicle> lot;
+        public List<Vehicle> currentLot;
         public List<Customer> database;
-        public List<int> indices;
         int currentVehicleIndex = 0;
         private Dictionary<Vehicle, String> matchVehicles = new Dictionary<Vehicle, String>();
-        VehicleInventoryLocal localVeh = new VehicleInventoryLocal();
-        //VehicleInventoryCloud localVeh = new VehicleInventoryCloud();
+        //VehicleInventoryLocal localVeh = new VehicleInventoryLocal();
+        IVehicleInventory localVeh = new VehicleInventoryCloud();
         CustomerInventoryLocal localCus = new CustomerInventoryLocal();
 
 
@@ -28,10 +28,9 @@ namespace rentACar2
         private void nextBtn_Click(object sender, EventArgs e)
         {
             int count = 0;
-            if (currentVehicleIndex < indices.Count)
+            if (currentVehicleIndex < matchVehicles.Keys.Count - 1)
             {
-                count++;
-                currentVehicleIndex = indices[count];
+                currentVehicleIndex++;
             }
             SetupVehicleDisplayInfo();
         }
@@ -56,6 +55,8 @@ namespace rentACar2
             foreach (Vehicle v in localVeh.getInventory())
             {
                 lot.Add(v);
+                string veh2Desc = $"{v.getYear()} {v.getMake()} {v.getModel()}";
+                matchVehicles.Add(v, veh2Desc);
             }
 
             foreach (Customer c in localCus.getInventory())
@@ -94,47 +95,47 @@ namespace rentACar2
 
         private void setupSplashInfo()
         {
-            lblDisplayError.Visible = false;
-            mainPanel.Controls.Add(BrowsePanel);
-            mainPanel.Controls.Add(MainMenuStrip);
-            mainPanel.Controls.Add(listPanel);
-            mainPanel.Controls.Add(MenuBar);
-            mainPanel.Controls.Add(splashPanel);
+            //lblDisplayError.Visible = false;
+            //mainPanel.Controls.Add(BrowsePanel);
+            //mainPanel.Controls.Add(MainMenuStrip);
+            //mainPanel.Controls.Add(listPanel);
+            //mainPanel.Controls.Add(MenuBar);
+            //mainPanel.Controls.Add(splashPanel);
 
-            foreach (Control item in mainPanel.Controls)
-            {
-                if (item != splashPanel)
-                {
-                    item.Visible = false;
-                }
-            }
+            //foreach (Control item in mainPanel.Controls)
+            //{
+            //    if (item != splashPanel)
+            //    {
+            //        item.Visible = false;
+            //    }
+            //}
         }
 
         private void checkLogin(string userEmail, string userPassword)
         {
-            if (localCus.checkforCustomer(userEmail, userPassword))
-            {
-                foreach (Control item in mainPanel.Controls)
-                {
-                    if ((item != splashPanel))
-                    {
-                        item.Visible = true;
-                        item.Enabled = true;
-                    }
-                }
-                splashPanel.Visible = false;
-            }
-            else
-            {
-                lblDisplayError.Visible = true;
-                lblDisplayError.Text = "User not found";
-            }
+            //if (localCus.checkforCustomer(userEmail, userPassword))
+            //{
+            //    foreach (Control item in mainPanel.Controls)
+            //    {
+            //        if ((item != splashPanel))
+            //        {
+            //            item.Visible = true;
+            //            item.Enabled = true;
+            //        }
+            //    }
+            //    splashPanel.Visible = false;
+            //}
+            //else
+            //{
+            //    lblDisplayError.Visible = true;
+            //    lblDisplayError.Text = "User not found";
+            //}
         }
 
         private void SetupVehicleDisplayInfo()
         {
-            //Vehicle veh = (Vehicle)lot[currentVehicleIndex];
-            Vehicle veh = (Vehicle)lot[0];
+            Vehicle veh = matchVehicles.Keys.ToArray()[currentVehicleIndex];
+            //Vehicle veh = (Vehicle)lot[0];
             carPictureBox.Image = veh.getVehicleImage();
 
             lblDisplayVehicleTitle.Text = veh.getErrorMsg();
@@ -159,12 +160,12 @@ namespace rentACar2
 
             //carPictureBox.Image = cus.getVehicleImage();
 
-            lblDisplayFirst.Text = cus.getFirstName();
-            lblDisplayLast.Text = cus.getLastName();
-            lblDisplayAge.Text = cus.getAge().ToString();
-            lblDisplayPhone.Text = cus.getPhone();
-            lblDisplayEmail.Text = cus.getEmail();
-            boxDisplayID.Text = cus.getIdNum().ToString();
+            //lblDisplayFirst.Text = cus.getFirstName();
+            //lblDisplayLast.Text = cus.getLastName();
+            //lblDisplayAge.Text = cus.getAge().ToString();
+            //lblDisplayPhone.Text = cus.getPhone();
+            //lblDisplayEmail.Text = cus.getEmail();
+            //boxDisplayID.Text = cus.getIdNum().ToString();
 
         }
 
@@ -172,6 +173,8 @@ namespace rentACar2
         {
             listboxVehicles.Items.Clear();
             matchVehicles.Clear();
+            currentVehicleIndex = 0;
+
             Dictionary<Vehicle, int> vehicleList = new Dictionary<Vehicle, int>();
             int count = 0;
             foreach (Vehicle veh in lot)
@@ -187,24 +190,25 @@ namespace rentACar2
                     continue;
                 }
 
-                if (!vehicleList.ContainsKey(veh))
+                if (!matchVehicles.ContainsKey(veh))
                 {
-                    int temp = lot.IndexOf(veh);
-                    vehicleList.Add(veh, temp);
+                    string veh2Desc = $"{veh.getYear()} {veh.getMake()} {veh.getModel()}";
+                    matchVehicles.Add(veh, veh2Desc);
+                    listboxVehicles.Items.Add(veh2Desc);
                 }
             }
 
-            foreach (int index in vehicleList.Values)
-            {
-                Vehicle veh2 = lot[index];
-                string veh2Desc = $"{veh2.getYear()} {veh2.getMake()} {veh2.getModel()}";
-                matchVehicles.Add(veh2, veh2Desc);
-            }
+            //foreach (int index in vehicleList.Values)
+            //{
+            //    Vehicle veh2 = lot[index];
+            //    string veh2Desc = $"{veh2.getYear()} {veh2.getMake()} {veh2.getModel()}";
+            //    matchVehicles.Add(veh2, veh2Desc);
+            //}
             //matchVehicles.Add(new Vehicle(), "");
-            listboxVehicles.Items.AddRange(matchVehicles.Values.ToArray());
-            indices = vehicleList.Values.ToList();
-            if (indices.Count > 0)
-                currentVehicleIndex = indices[0];
+            //listboxVehicles.Items.AddRange(matchVehicles.Values.ToArray());
+            //indices = vehicleList.Values.ToList();
+            //if (indices.Count > 0)
+            //    currentVehicleIndex = indices[0];
         }
 
         private void DisplayCustomerList()
@@ -242,52 +246,54 @@ namespace rentACar2
 
         private void listboxVehicles_Click(object sender, EventArgs e)
         {
-            getVehicleFromDescription();
+            //getVehicleFromDescription();
             currentVehicleIndex = listboxVehicles.SelectedIndex;
-        }
-
-        private void getVehicleFromDescription()
-        {
-            for (int i = 0; i < lot.Count; i++)
-            {
-                string selectedVehicleDetails = listboxVehicles.Items[listboxVehicles.SelectedIndex].ToString();
-                if (selectedVehicleDetails.Contains(lot[i].getMake()) && selectedVehicleDetails.Contains(lot[i].getModel()))
-                {
-                    currentVehicleIndex = i;
-
-                    lblDisplayRange.Text = i.ToString();
-                }
-            }
             SetupVehicleDisplayInfo();
         }
+
+        //private void getVehicleFromDescription()
+        //{
+        //    for (int i = 0; i < lot.Count; i++)
+        //    {
+        //        string selectedVehicleDetails = listboxVehicles.Items[listboxVehicles.SelectedIndex].ToString();
+        //        if (selectedVehicleDetails.Contains(lot[i].getMake()) && selectedVehicleDetails.Contains(lot[i].getModel()))
+        //        {
+        //            currentVehicleIndex = i;
+
+        //            lblDisplayRange.Text = i.ToString();
+        //        }
+        //    }
+        //    SetupVehicleDisplayInfo();
+        //}
 
 
         private void rentalsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            BrowsePanel.Visible = true;
-            profilePanel.Visible = false;
+            //BrowsePanel.Visible = true;
+            //profilePanel.Visible = false;
         }
 
         private void browseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            BrowsePanel.Visible = true;
-            profilePanel.Visible = false;
+            //BrowsePanel.Visible = true;
+            //profilePanel.Visible = false;
         }
         private void profileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            profilePanel.Visible = true;
+            //profilePanel.Visible = true;
         }
 
         private void homeToolStripMenuItem_DoubleClick(object sender, EventArgs e)
         {
             homeToolStripMenuItem.DropDown.Close();
             BrowsePanel.Visible = true;
-            profilePanel.Visible = false;
+            //profilePanel.Visible = false;
         }
 
         private void listboxVehicles_SelectedValueChanged(object sender, EventArgs e)
         {
-            getVehicleFromDescription();
+            //getVehicleFromDescription();
+            currentVehicleIndex = listboxVehicles.SelectedIndex;
             SetupVehicleDisplayInfo();
         }
 
@@ -313,15 +319,15 @@ namespace rentACar2
 
         private void checkLogin(object sender, EventArgs e)
         {
-            checkLogin(boxUsernameLogin.Text, boxPasswordLogin.Text);
+            //checkLogin(boxUsernameLogin.Text, boxPasswordLogin.Text);
         }
 
         private void enterPressed(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
-            {
-                checkLogin(boxUsernameLogin.Text, boxPasswordLogin.Text);
-            }
+            //if (e.KeyCode == Keys.Enter)
+            //{
+            //    checkLogin(boxUsernameLogin.Text, boxPasswordLogin.Text);
+            //}
         }
 
         private void exitBtnLogin_Click(object sender, EventArgs e)
