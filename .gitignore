@@ -362,3 +362,5 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /rentACar2/connectionString.xml
+*.xml
+/rentACar2/cloudresx/connectionString.txt
