@@ -1,8 +1,10 @@
-﻿namespace rentACar2
+﻿using System.Reflection.Metadata.Ecma335;
+
+namespace rentACar2
 {
-    internal class CustomerInventoryLocal : ICustomerInventory
+    public class CustomerInventoryLocal : ICustomerInventory
     {
-        public List<Customer> CustomerList = new List<Customer>();
+        public List<Customer> Customers = new List<Customer>();
         public Dictionary<string, string> customerLoginDetails = new Dictionary<string, string>();
         public string testStr;
         private string customerPath = @"Customer";
@@ -10,40 +12,31 @@
 
         public CustomerInventoryLocal()
         {
-
+            loadInventory();
+            loadLogin(true);
         }
 
         public void addCustomer(Customer c)
         {
-            CustomerList.Add(c);
+            Customers.Add(c);
         }
 
         public Customer[] getInventory()
         {
             loadInventory();
-            loadLogin(true);
-            Customer[] arr = CustomerList.ToArray();
+            
+            Customer[] arr = Customers.ToArray();
             return arr;
         }
 
-        //public Customer[] GetActiveRentals()
-        //{
-        //    List<Customer> arr = new List<Customer>();
-        //    foreach (Customer c in CustomerList)
-        //    {
-        //        if (c.active)
-        //            return arr;
-        //    }
-        //}
-
         public void removeCustomer(Customer c)
         {
-            CustomerList.Remove(c);
+            Customers.Remove(c);
         }
 
         public Boolean checkforCustomer(Guid id)
         {
-            foreach (Customer c in CustomerList)
+            foreach (Customer c in Customers)
             {
                 if(c.getId() == id)
                 {
@@ -62,7 +55,7 @@
 
         public int getInventoryCount()
         {
-            return CustomerList.Count;
+            return Customers.Count;
         }
 
         private void loadLogin(Boolean temp)
@@ -90,8 +83,24 @@
                 MessageBox.Show("Login info file not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Environment.Exit(0);
             }
+        }
 
-            
+        public Customer getCustomer(string email, string password)
+        {
+            Customer customer = null;
+            if(checkforCustomer(email, password))
+            {
+                IEnumerator<Customer> enumerator = Customers.GetEnumerator();
+                Customer temp = enumerator.Current;
+                 if(temp.getEmail() != email)
+                {
+                    enumerator.MoveNext();
+                } else
+                {
+                    customer = enumerator.Current;
+                }
+            }
+            return customer;
         }
 
         public void loadInventory()
@@ -106,7 +115,7 @@
                     if (line.StartsWith("GUID"))
                         continue;
 
-                    CustomerList.Add(new Customer(line.Split(",")));
+                    Customers.Add(new Customer(line.Split(",")));
                 }
             }
             else

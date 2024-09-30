@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace rentACar2
 {
-    internal class CustomerInventoryCloud : ICustomerInventory
+    public class CustomerInventoryCloud : ICustomerInventory
     {
-        public List<Customer> CustomerList = new List<Customer>();
+        public List<Customer> Customers = new List<Customer>();
         public Dictionary<string, string> customerLoginDetails = new Dictionary<string, string>();
         public string testStr;
 
@@ -20,23 +20,23 @@ namespace rentACar2
 
         public void addCustomer(Customer c)
         {
-            CustomerList.Add(c); 
+            Customers.Add(c); 
         }
 
         public Customer[] getInventory()
         {
-            Customer[] arr = CustomerList.ToArray();
+            Customer[] arr = Customers.ToArray();
             return arr; 
         }
 
         public void removeCustomer(Customer c)
         {
-            CustomerList.Remove(c);
+            Customers.Remove(c);
         }
 
         public Boolean checkforCustomer(Customer c)
         {
-            if (CustomerList.Contains(c))
+            if (Customers.Contains(c))
             {
                 return true;
             }
@@ -45,7 +45,7 @@ namespace rentACar2
 
         public Boolean checkforCustomer(Guid id)
         {
-            foreach (Customer c in CustomerList)
+            foreach (Customer c in Customers)
             {
                 if (c.getId() == id)
                 {
@@ -64,7 +64,26 @@ namespace rentACar2
 
         public int getInventoryCount()
         {
-            return CustomerList.Count;
+            return Customers.Count;
+        }
+
+        public Customer getCustomer(string email, string password)
+        {
+            Customer customer = null;
+            if (checkforCustomer(email, password))
+            {
+                IEnumerator<Customer> enumerator = Customers.GetEnumerator();
+
+                if (enumerator.Current.getEmail() != email)
+                {
+                    enumerator.MoveNext();
+                }
+                else
+                {
+                    customer = enumerator.Current;
+                }
+            }
+            return customer;
         }
 
         public void loadInventory()
@@ -80,7 +99,7 @@ namespace rentACar2
                     if (line.StartsWith("GUID"))
                         continue;
 
-                    CustomerList.Add(new Customer(line.Split(",")));
+                    Customers.Add(new Customer(line.Split(",")));
                 }
             }
             else

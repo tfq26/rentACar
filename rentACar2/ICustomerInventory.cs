@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace rentACar2
 {
-    internal interface ICustomerInventory
+    public interface ICustomerInventory
     {
         public void addCustomer(Customer c);
 
@@ -21,6 +21,8 @@ namespace rentACar2
         public void loadInventory();
 
         public Boolean checkforCustomer(string email, string password);
+
+        public Customer getCustomer(string email, string password);
 
     }
 }

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace rentACar2
 {
-    public partial class CustomerProfileForm : Form
+    public partial class CustomerProfileForm : System.Windows.Forms.Form
     {
         public CustomerProfileForm()
         {
@@ -19,7 +19,16 @@ namespace rentACar2
 
         private void CustomerProfileForm_Load(object sender, EventArgs e)
         {
+        }
 
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(Environment.ExitCode);
+        }
+
+        public void logout_Click(object sender, EventArgs e)
+        {
+            Program.loginForm.Visible = true;
         }
     }
 }

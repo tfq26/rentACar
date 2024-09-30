@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace rentACar2
 {
-    internal class VehicleInventoryLocal : IVehicleInventory
+    public class VehicleInventoryLocal : IVehicleInventory
     {
         public List<Vehicle> vehicleList = new List<Vehicle>();
         public string testStr;

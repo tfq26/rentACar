@@ -14,5 +14,7 @@
 
         public void loadInventory();
 
+        //public void loadInventory(string infoPath, string imagePath);
+
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace rentACar2
 {
-    partial class Carpick
+    partial class RentalCarMainForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Carpick));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RentalCarMainForm));
             BrowsePanel = new Panel();
             lblRange = new Label();
             lblDisplayDrivetrain = new Label();
@@ -297,9 +297,9 @@
             lblDisplayVehicleTitle.BackColor = Color.Transparent;
             lblDisplayVehicleTitle.BorderStyle = BorderStyle.Fixed3D;
             lblDisplayVehicleTitle.Font = new Font("Impact", 20.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            lblDisplayVehicleTitle.ForeColor = Color.Black;
+            lblDisplayVehicleTitle.ForeColor = Color.DarkOrange;
             lblDisplayVehicleTitle.ImageAlign = ContentAlignment.TopCenter;
-            lblDisplayVehicleTitle.Location = new Point(53, 83);
+            lblDisplayVehicleTitle.Location = new Point(242, 34);
             lblDisplayVehicleTitle.Name = "lblDisplayVehicleTitle";
             lblDisplayVehicleTitle.Size = new Size(208, 36);
             lblDisplayVehicleTitle.TabIndex = 37;
@@ -381,12 +381,13 @@
             // listboxVehicles
             // 
             listboxVehicles.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            listboxVehicles.BackColor = Color.Cornsilk;
             listboxVehicles.Font = new Font("Microsoft New Tai Lue", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             listboxVehicles.FormattingEnabled = true;
             listboxVehicles.ItemHeight = 21;
             listboxVehicles.Location = new Point(26, 93);
             listboxVehicles.Name = "listboxVehicles";
-            listboxVehicles.Size = new Size(332, 424);
+            listboxVehicles.Size = new Size(332, 613);
             listboxVehicles.TabIndex = 6;
             listboxVehicles.Click += listboxVehicles_Click;
             listboxVehicles.SelectedIndexChanged += listboxVehicles_Click;
@@ -396,6 +397,7 @@
             // comboType
             // 
             comboType.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            comboType.BackColor = Color.PeachPuff;
             comboType.DropDownStyle = ComboBoxStyle.DropDownList;
             comboType.FormattingEnabled = true;
             comboType.Location = new Point(85, 52);
@@ -407,6 +409,7 @@
             // comboMake
             // 
             comboMake.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            comboMake.BackColor = Color.PeachPuff;
             comboMake.DropDownStyle = ComboBoxStyle.DropDownList;
             comboMake.FormattingEnabled = true;
             comboMake.Location = new Point(85, 18);
@@ -437,7 +440,7 @@
             // 
             // MenuBar
             // 
-            MenuBar.BackColor = Color.LightSkyBlue;
+            MenuBar.BackColor = Color.SandyBrown;
             MenuBar.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             MenuBar.Items.AddRange(new ToolStripItem[] { homeToolStripMenuItem });
             MenuBar.Location = new Point(0, 0);
@@ -461,24 +464,22 @@
             // browseToolStripMenuItem
             // 
             browseToolStripMenuItem.Name = "browseToolStripMenuItem";
-            browseToolStripMenuItem.Size = new Size(148, 30);
+            browseToolStripMenuItem.Size = new Size(180, 30);
             browseToolStripMenuItem.Text = "Browse";
             browseToolStripMenuItem.ToolTipText = "Browse Vehicles";
-            browseToolStripMenuItem.Click += browseToolStripMenuItem_Click;
             // 
             // rentalsToolStripMenuItem
             // 
             rentalsToolStripMenuItem.Name = "rentalsToolStripMenuItem";
-            rentalsToolStripMenuItem.Size = new Size(148, 30);
+            rentalsToolStripMenuItem.Size = new Size(180, 30);
             rentalsToolStripMenuItem.Text = "Rentals";
             rentalsToolStripMenuItem.ToolTipText = "Current Rentals";
-            rentalsToolStripMenuItem.Click += rentalsToolStripMenuItem_Click;
             // 
             // profileToolStripMenuItem
             // 
             profileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { logoutToolStripMenuItem, editToolStripMenuItem });
             profileToolStripMenuItem.Name = "profileToolStripMenuItem";
-            profileToolStripMenuItem.Size = new Size(148, 30);
+            profileToolStripMenuItem.Size = new Size(180, 30);
             profileToolStripMenuItem.Text = "Profile";
             profileToolStripMenuItem.ToolTipText = "Current Profile";
             profileToolStripMenuItem.Click += profileToolStripMenuItem_Click;
@@ -486,34 +487,36 @@
             // logoutToolStripMenuItem
             // 
             logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            logoutToolStripMenuItem.Size = new Size(144, 30);
+            logoutToolStripMenuItem.Size = new Size(180, 30);
             logoutToolStripMenuItem.Text = "Logout";
+            logoutToolStripMenuItem.Click += logoutToolStripMenuItem_Click;
             // 
             // editToolStripMenuItem
             // 
             editToolStripMenuItem.Name = "editToolStripMenuItem";
-            editToolStripMenuItem.Size = new Size(144, 30);
+            editToolStripMenuItem.Size = new Size(180, 30);
             editToolStripMenuItem.Text = "Edit";
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.ForeColor = Color.Red;
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(148, 30);
+            exitToolStripMenuItem.Size = new Size(180, 30);
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.ToolTipText = "Exit Application";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
-            // Carpick
+            // RentalCarMainForm
             // 
             AutoScaleMode = AutoScaleMode.None;
-            BackColor = Color.AliceBlue;
+            BackColor = Color.Bisque;
             ClientSize = new Size(1172, 874);
             Controls.Add(listPanel);
             Controls.Add(BrowsePanel);
             Controls.Add(MenuBar);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "Carpick";
+            Name = "RentalCarMainForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Carpick";
             Load += Form1_Load;
             BrowsePanel.ResumeLayout(false);

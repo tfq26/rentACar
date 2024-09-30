@@ -28,18 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerProfileForm));
             profilePanel = new Panel();
-            boxDisplayID = new TextBox();
+            MenuBar = new MenuStrip();
+            homeToolStripMenuItem = new ToolStripMenuItem();
+            homeToolStripMenuItemProfile = new ToolStripMenuItem();
+            optionsToolStripMenuItemProfile = new ToolStripMenuItem();
+            logoutToolStripMenuItemProfile = new ToolStripMenuItem();
+            editToolStripMenuItemProfile = new ToolStripMenuItem();
+            exitToolStripMenuItemProfile = new ToolStripMenuItem();
+            cusPictureBox = new PictureBox();
+            numberBox = new TextBox();
+            emailBox = new TextBox();
+            ageBox = new TextBox();
+            idBox = new TextBox();
             lblDisplayLast = new Label();
             lblDisplayFirst = new Label();
             lblID = new Label();
-            lblDisplayPhone = new Label();
-            lblDisplayEmail = new Label();
-            lblDisplayAge = new Label();
             lblPhone = new Label();
             lblEmail = new Label();
             lblAge = new Label();
-            pictureBox1 = new PictureBox();
             label5 = new Label();
             label6 = new Label();
             label7 = new Label();
@@ -57,24 +65,26 @@
             label19 = new Label();
             label20 = new Label();
             profilePanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            MenuBar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)cusPictureBox).BeginInit();
             SuspendLayout();
             // 
             // profilePanel
             // 
             profilePanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            profilePanel.BackColor = Color.Transparent;
-            profilePanel.Controls.Add(boxDisplayID);
+            profilePanel.BackColor = Color.BlanchedAlmond;
+            profilePanel.Controls.Add(MenuBar);
+            profilePanel.Controls.Add(cusPictureBox);
+            profilePanel.Controls.Add(numberBox);
+            profilePanel.Controls.Add(emailBox);
+            profilePanel.Controls.Add(ageBox);
+            profilePanel.Controls.Add(idBox);
             profilePanel.Controls.Add(lblDisplayLast);
             profilePanel.Controls.Add(lblDisplayFirst);
             profilePanel.Controls.Add(lblID);
-            profilePanel.Controls.Add(lblDisplayPhone);
-            profilePanel.Controls.Add(lblDisplayEmail);
-            profilePanel.Controls.Add(lblDisplayAge);
             profilePanel.Controls.Add(lblPhone);
             profilePanel.Controls.Add(lblEmail);
             profilePanel.Controls.Add(lblAge);
-            profilePanel.Controls.Add(pictureBox1);
             profilePanel.Controls.Add(label5);
             profilePanel.Controls.Add(label6);
             profilePanel.Controls.Add(label7);
@@ -92,35 +102,144 @@
             profilePanel.Controls.Add(label19);
             profilePanel.Controls.Add(label20);
             profilePanel.ForeColor = SystemColors.HotTrack;
-            profilePanel.Location = new Point(47, 38);
+            profilePanel.Location = new Point(0, 0);
             profilePanel.Name = "profilePanel";
-            profilePanel.Size = new Size(827, 733);
+            profilePanel.Size = new Size(950, 750);
             profilePanel.TabIndex = 34;
-            profilePanel.Visible = false;
             // 
-            // boxDisplayID
+            // MenuBar
             // 
-            boxDisplayID.BackColor = Color.Snow;
-            boxDisplayID.Font = new Font("Impact", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            boxDisplayID.ForeColor = Color.Black;
-            boxDisplayID.Location = new Point(197, 292);
-            boxDisplayID.Name = "boxDisplayID";
-            boxDisplayID.PlaceholderText = "321321321312";
-            boxDisplayID.ReadOnly = true;
-            boxDisplayID.Size = new Size(234, 47);
-            boxDisplayID.TabIndex = 58;
+            MenuBar.BackColor = Color.SandyBrown;
+            MenuBar.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            MenuBar.Items.AddRange(new ToolStripItem[] { homeToolStripMenuItem });
+            MenuBar.Location = new Point(0, 0);
+            MenuBar.MdiWindowListItem = homeToolStripMenuItem;
+            MenuBar.Name = "MenuBar";
+            MenuBar.ShowItemToolTips = true;
+            MenuBar.Size = new Size(950, 33);
+            MenuBar.TabIndex = 63;
+            MenuBar.Text = "menuStrip1";
+            // 
+            // homeToolStripMenuItem
+            // 
+            homeToolStripMenuItem.AutoToolTip = true;
+            homeToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { homeToolStripMenuItemProfile, optionsToolStripMenuItemProfile, exitToolStripMenuItemProfile });
+            homeToolStripMenuItem.Name = "homeToolStripMenuItem";
+            homeToolStripMenuItem.Size = new Size(76, 29);
+            homeToolStripMenuItem.Text = "Home";
+            homeToolStripMenuItem.ToolTipText = "Home Window";
+            // 
+            // homeToolStripMenuItemProfile
+            // 
+            homeToolStripMenuItemProfile.Name = "homeToolStripMenuItemProfile";
+            homeToolStripMenuItemProfile.Size = new Size(180, 30);
+            homeToolStripMenuItemProfile.Text = "Home";
+            // 
+            // optionsToolStripMenuItemProfile
+            // 
+            optionsToolStripMenuItemProfile.DropDownItems.AddRange(new ToolStripItem[] { logoutToolStripMenuItemProfile, editToolStripMenuItemProfile });
+            optionsToolStripMenuItemProfile.Name = "optionsToolStripMenuItemProfile";
+            optionsToolStripMenuItemProfile.Size = new Size(180, 30);
+            optionsToolStripMenuItemProfile.Text = "Options";
+            // 
+            // logoutToolStripMenuItemProfile
+            // 
+            logoutToolStripMenuItemProfile.Name = "logoutToolStripMenuItemProfile";
+            logoutToolStripMenuItemProfile.Size = new Size(180, 30);
+            logoutToolStripMenuItemProfile.Text = "Logout";
+            logoutToolStripMenuItemProfile.TextImageRelation = TextImageRelation.TextBeforeImage;
+            logoutToolStripMenuItemProfile.ToolTipText = "Logout of current Account";
+            logoutToolStripMenuItemProfile.Click += logout_Click;
+            // 
+            // editToolStripMenuItemProfile
+            // 
+            editToolStripMenuItemProfile.Name = "editToolStripMenuItemProfile";
+            editToolStripMenuItemProfile.Size = new Size(180, 30);
+            editToolStripMenuItemProfile.Text = "Edit";
+            // 
+            // exitToolStripMenuItemProfile
+            // 
+            exitToolStripMenuItemProfile.ForeColor = Color.Red;
+            exitToolStripMenuItemProfile.Name = "exitToolStripMenuItemProfile";
+            exitToolStripMenuItemProfile.Size = new Size(180, 30);
+            exitToolStripMenuItemProfile.Text = "Exit";
+            exitToolStripMenuItemProfile.ToolTipText = "Exit Application";
+            exitToolStripMenuItemProfile.Click += exitToolStripMenuItem_Click;
+            // 
+            // cusPictureBox
+            // 
+            cusPictureBox.BackColor = Color.Black;
+            cusPictureBox.BorderStyle = BorderStyle.FixedSingle;
+            cusPictureBox.ErrorImage = Properties.Resources.defaultPFP;
+            cusPictureBox.Image = Properties.Resources.defaultPFP;
+            cusPictureBox.InitialImage = Properties.Resources.defaultPFP;
+            cusPictureBox.Location = new Point(597, 61);
+            cusPictureBox.Name = "cusPictureBox";
+            cusPictureBox.Size = new Size(200, 200);
+            cusPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            cusPictureBox.TabIndex = 30;
+            cusPictureBox.TabStop = false;
+            cusPictureBox.Tag = "Customer";
+            // 
+            // numberBox
+            // 
+            numberBox.BackColor = Color.Snow;
+            numberBox.Font = new Font("Verdana", 14.25F);
+            numberBox.ForeColor = Color.Black;
+            numberBox.Location = new Point(224, 230);
+            numberBox.Name = "numberBox";
+            numberBox.PlaceholderText = "555-555-5555";
+            numberBox.ReadOnly = true;
+            numberBox.Size = new Size(234, 31);
+            numberBox.TabIndex = 61;
+            // 
+            // emailBox
+            // 
+            emailBox.BackColor = Color.Snow;
+            emailBox.Font = new Font("Verdana", 14.25F);
+            emailBox.ForeColor = Color.Black;
+            emailBox.Location = new Point(137, 175);
+            emailBox.Name = "emailBox";
+            emailBox.PlaceholderText = "test@carpick.net";
+            emailBox.ReadOnly = true;
+            emailBox.Size = new Size(234, 31);
+            emailBox.TabIndex = 60;
+            // 
+            // ageBox
+            // 
+            ageBox.BackColor = Color.Snow;
+            ageBox.Font = new Font("Verdana", 14.25F);
+            ageBox.ForeColor = Color.Black;
+            ageBox.Location = new Point(120, 119);
+            ageBox.Name = "ageBox";
+            ageBox.PlaceholderText = "21";
+            ageBox.ReadOnly = true;
+            ageBox.Size = new Size(234, 31);
+            ageBox.TabIndex = 59;
+            // 
+            // idBox
+            // 
+            idBox.BackColor = Color.Snow;
+            idBox.Font = new Font("Verdana", 14.25F);
+            idBox.ForeColor = Color.Black;
+            idBox.Location = new Point(189, 283);
+            idBox.Name = "idBox";
+            idBox.PlaceholderText = "321321321312";
+            idBox.ReadOnly = true;
+            idBox.Size = new Size(234, 31);
+            idBox.TabIndex = 58;
             // 
             // lblDisplayLast
             // 
             lblDisplayLast.Anchor = AnchorStyles.None;
             lblDisplayLast.AutoSize = true;
             lblDisplayLast.BackColor = Color.Transparent;
-            lblDisplayLast.Font = new Font("Impact", 36F, FontStyle.Bold | FontStyle.Underline);
+            lblDisplayLast.Font = new Font("Verdana", 20.25F, FontStyle.Bold);
             lblDisplayLast.ForeColor = Color.Black;
             lblDisplayLast.ImageAlign = ContentAlignment.TopCenter;
-            lblDisplayLast.Location = new Point(580, 377);
+            lblDisplayLast.Location = new Point(249, 52);
             lblDisplayLast.Name = "lblDisplayLast";
-            lblDisplayLast.Size = new Size(234, 60);
+            lblDisplayLast.Size = new Size(174, 32);
             lblDisplayLast.TabIndex = 57;
             lblDisplayLast.Text = "Last Name";
             // 
@@ -129,12 +248,12 @@
             lblDisplayFirst.Anchor = AnchorStyles.None;
             lblDisplayFirst.AutoSize = true;
             lblDisplayFirst.BackColor = Color.Transparent;
-            lblDisplayFirst.Font = new Font("Impact", 36F, FontStyle.Bold | FontStyle.Underline);
+            lblDisplayFirst.Font = new Font("Verdana", 20.25F, FontStyle.Bold);
             lblDisplayFirst.ForeColor = Color.Black;
             lblDisplayFirst.ImageAlign = ContentAlignment.TopCenter;
-            lblDisplayFirst.Location = new Point(327, 377);
+            lblDisplayFirst.Location = new Point(61, 52);
             lblDisplayFirst.Name = "lblDisplayFirst";
-            lblDisplayFirst.Size = new Size(242, 60);
+            lblDisplayFirst.Size = new Size(179, 32);
             lblDisplayFirst.TabIndex = 51;
             lblDisplayFirst.Text = "First Name";
             // 
@@ -142,57 +261,21 @@
             // 
             lblID.Anchor = AnchorStyles.None;
             lblID.AutoSize = true;
-            lblID.Font = new Font("Impact", 24F);
-            lblID.Location = new Point(346, 611);
+            lblID.Font = new Font("Verdana", 14.25F);
+            lblID.Location = new Point(59, 286);
             lblID.Name = "lblID";
-            lblID.Size = new Size(159, 39);
+            lblID.Size = new Size(124, 23);
             lblID.TabIndex = 55;
             lblID.Text = "ID Number:";
-            // 
-            // lblDisplayPhone
-            // 
-            lblDisplayPhone.Anchor = AnchorStyles.None;
-            lblDisplayPhone.AutoSize = true;
-            lblDisplayPhone.Font = new Font("Impact", 24F);
-            lblDisplayPhone.ForeColor = SystemColors.WindowFrame;
-            lblDisplayPhone.Location = new Point(556, 558);
-            lblDisplayPhone.Name = "lblDisplayPhone";
-            lblDisplayPhone.Size = new Size(187, 39);
-            lblDisplayPhone.TabIndex = 54;
-            lblDisplayPhone.Text = "5555555555";
-            // 
-            // lblDisplayEmail
-            // 
-            lblDisplayEmail.Anchor = AnchorStyles.None;
-            lblDisplayEmail.AutoSize = true;
-            lblDisplayEmail.Font = new Font("Impact", 24F);
-            lblDisplayEmail.ForeColor = SystemColors.WindowFrame;
-            lblDisplayEmail.Location = new Point(430, 503);
-            lblDisplayEmail.Name = "lblDisplayEmail";
-            lblDisplayEmail.Size = new Size(289, 39);
-            lblDisplayEmail.TabIndex = 53;
-            lblDisplayEmail.Text = "carpickTest@vs.com";
-            // 
-            // lblDisplayAge
-            // 
-            lblDisplayAge.Anchor = AnchorStyles.None;
-            lblDisplayAge.AutoSize = true;
-            lblDisplayAge.Font = new Font("Impact", 24F);
-            lblDisplayAge.ForeColor = SystemColors.WindowFrame;
-            lblDisplayAge.Location = new Point(411, 447);
-            lblDisplayAge.Name = "lblDisplayAge";
-            lblDisplayAge.Size = new Size(34, 39);
-            lblDisplayAge.TabIndex = 52;
-            lblDisplayAge.Text = "0";
             // 
             // lblPhone
             // 
             lblPhone.Anchor = AnchorStyles.None;
             lblPhone.AutoSize = true;
-            lblPhone.Font = new Font("Impact", 24F);
-            lblPhone.Location = new Point(346, 558);
+            lblPhone.Font = new Font("Verdana", 14.25F);
+            lblPhone.Location = new Point(59, 233);
             lblPhone.Name = "lblPhone";
-            lblPhone.Size = new Size(214, 39);
+            lblPhone.Size = new Size(159, 23);
             lblPhone.TabIndex = 51;
             lblPhone.Text = "Phone Number:";
             // 
@@ -200,10 +283,10 @@
             // 
             lblEmail.Anchor = AnchorStyles.None;
             lblEmail.AutoSize = true;
-            lblEmail.Font = new Font("Impact", 24F);
-            lblEmail.Location = new Point(346, 503);
+            lblEmail.Font = new Font("Verdana", 14.25F);
+            lblEmail.Location = new Point(59, 178);
             lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(93, 39);
+            lblEmail.Size = new Size(72, 23);
             lblEmail.TabIndex = 50;
             lblEmail.Text = "Email:";
             // 
@@ -211,25 +294,12 @@
             // 
             lblAge.Anchor = AnchorStyles.None;
             lblAge.AutoSize = true;
-            lblAge.Font = new Font("Impact", 24F);
-            lblAge.Location = new Point(346, 447);
+            lblAge.Font = new Font("Verdana", 14.25F);
+            lblAge.Location = new Point(59, 122);
             lblAge.Name = "lblAge";
-            lblAge.Size = new Size(72, 39);
+            lblAge.Size = new Size(55, 23);
             lblAge.TabIndex = 49;
             lblAge.Text = "Age:";
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.ErrorImage = Properties.Resources.defaultPFP;
-            pictureBox1.Image = Properties.Resources.defaultPFP;
-            pictureBox1.InitialImage = Properties.Resources.defaultPFP;
-            pictureBox1.Location = new Point(520, 0);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(186, 194);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 30;
-            pictureBox1.TabStop = false;
-            pictureBox1.Tag = "Customer";
             // 
             // label5
             // 
@@ -237,7 +307,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Impact", 12F);
             label5.ForeColor = SystemColors.WindowFrame;
-            label5.Location = new Point(1425, 1090);
+            label5.Location = new Point(1487, 1099);
             label5.Name = "label5";
             label5.Size = new Size(27, 25);
             label5.TabIndex = 29;
@@ -249,7 +319,7 @@
             label6.Anchor = AnchorStyles.None;
             label6.AutoSize = true;
             label6.Font = new Font("Impact", 12F);
-            label6.Location = new Point(1327, 1090);
+            label6.Location = new Point(1389, 1099);
             label6.Name = "label6";
             label6.Size = new Size(50, 20);
             label6.TabIndex = 28;
@@ -261,7 +331,7 @@
             label7.AutoSize = true;
             label7.Font = new Font("Impact", 12F);
             label7.ForeColor = SystemColors.WindowFrame;
-            label7.Location = new Point(964, 1090);
+            label7.Location = new Point(1026, 1099);
             label7.Name = "label7";
             label7.Size = new Size(34, 20);
             label7.TabIndex = 27;
@@ -272,7 +342,7 @@
             label8.Anchor = AnchorStyles.None;
             label8.AutoSize = true;
             label8.Font = new Font("Impact", 12F);
-            label8.Location = new Point(859, 1089);
+            label8.Location = new Point(921, 1098);
             label8.Name = "label8";
             label8.Size = new Size(75, 20);
             label8.TabIndex = 26;
@@ -284,7 +354,7 @@
             label9.AutoSize = true;
             label9.Font = new Font("Impact", 12F);
             label9.ForeColor = SystemColors.WindowFrame;
-            label9.Location = new Point(1432, 1068);
+            label9.Location = new Point(1494, 1077);
             label9.Name = "label9";
             label9.Size = new Size(17, 20);
             label9.TabIndex = 25;
@@ -295,7 +365,7 @@
             label10.Anchor = AnchorStyles.None;
             label10.AutoSize = true;
             label10.Font = new Font("Impact", 12F);
-            label10.Location = new Point(1327, 1069);
+            label10.Location = new Point(1389, 1078);
             label10.Name = "label10";
             label10.Size = new Size(60, 20);
             label10.TabIndex = 24;
@@ -307,7 +377,7 @@
             label11.AutoSize = true;
             label11.Font = new Font("Impact", 12F);
             label11.ForeColor = SystemColors.WindowFrame;
-            label11.Location = new Point(1432, 1045);
+            label11.Location = new Point(1494, 1054);
             label11.Name = "label11";
             label11.Size = new Size(17, 20);
             label11.TabIndex = 23;
@@ -318,7 +388,7 @@
             label12.Anchor = AnchorStyles.None;
             label12.AutoSize = true;
             label12.Font = new Font("Impact", 12F);
-            label12.Location = new Point(1327, 1044);
+            label12.Location = new Point(1389, 1053);
             label12.Name = "label12";
             label12.Size = new Size(87, 20);
             label12.TabIndex = 22;
@@ -330,7 +400,7 @@
             label13.AutoSize = true;
             label13.Font = new Font("Impact", 12F);
             label13.ForeColor = SystemColors.WindowFrame;
-            label13.Location = new Point(1432, 1022);
+            label13.Location = new Point(1494, 1031);
             label13.Name = "label13";
             label13.Size = new Size(17, 20);
             label13.TabIndex = 21;
@@ -341,7 +411,7 @@
             label14.Anchor = AnchorStyles.None;
             label14.AutoSize = true;
             label14.Font = new Font("Impact", 12F);
-            label14.Location = new Point(1327, 1022);
+            label14.Location = new Point(1389, 1031);
             label14.Name = "label14";
             label14.Size = new Size(48, 20);
             label14.TabIndex = 20;
@@ -356,7 +426,7 @@
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Impact", 20.25F, FontStyle.Italic);
             button1.ForeColor = Color.ForestGreen;
-            button1.Location = new Point(1315, 1142);
+            button1.Location = new Point(1377, 1151);
             button1.Name = "button1";
             button1.Size = new Size(144, 58);
             button1.TabIndex = 2;
@@ -369,7 +439,7 @@
             label15.AutoSize = true;
             label15.Font = new Font("Impact", 12F);
             label15.ForeColor = SystemColors.WindowFrame;
-            label15.Location = new Point(963, 1069);
+            label15.Location = new Point(1025, 1078);
             label15.Name = "label15";
             label15.Size = new Size(38, 20);
             label15.TabIndex = 19;
@@ -384,7 +454,7 @@
             button2.FlatStyle = FlatStyle.Flat;
             button2.Font = new Font("Impact", 20.25F, FontStyle.Italic);
             button2.ForeColor = Color.Blue;
-            button2.Location = new Point(1083, 1139);
+            button2.Location = new Point(1145, 1148);
             button2.Name = "button2";
             button2.Size = new Size(153, 61);
             button2.TabIndex = 1;
@@ -397,7 +467,7 @@
             label16.AutoSize = true;
             label16.Font = new Font("Impact", 12F);
             label16.ForeColor = SystemColors.WindowFrame;
-            label16.Location = new Point(960, 1046);
+            label16.Location = new Point(1022, 1055);
             label16.Name = "label16";
             label16.Size = new Size(53, 20);
             label16.TabIndex = 17;
@@ -408,7 +478,7 @@
             label19.Anchor = AnchorStyles.None;
             label19.AutoSize = true;
             label19.Font = new Font("Impact", 12F);
-            label19.Location = new Point(859, 1068);
+            label19.Location = new Point(921, 1077);
             label19.Name = "label19";
             label19.Size = new Size(44, 20);
             label19.TabIndex = 12;
@@ -419,7 +489,7 @@
             label20.Anchor = AnchorStyles.None;
             label20.AutoSize = true;
             label20.Font = new Font("Impact", 12F);
-            label20.Location = new Point(859, 1045);
+            label20.Location = new Point(921, 1054);
             label20.Name = "label20";
             label20.Size = new Size(60, 20);
             label20.TabIndex = 10;
@@ -429,31 +499,31 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(927, 827);
+            ClientSize = new Size(949, 751);
             Controls.Add(profilePanel);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "CustomerProfileForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "CustomerProfileForm";
             Load += CustomerProfileForm_Load;
             profilePanel.ResumeLayout(false);
             profilePanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            MenuBar.ResumeLayout(false);
+            MenuBar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)cusPictureBox).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private Panel profilePanel;
-        private TextBox boxDisplayID;
+        private TextBox idBox;
         private Label lblDisplayLast;
         private Label lblDisplayFirst;
         private Label lblID;
-        private Label lblDisplayPhone;
-        private Label lblDisplayEmail;
-        private Label lblDisplayAge;
         private Label lblPhone;
         private Label lblEmail;
         private Label lblAge;
-        private PictureBox pictureBox1;
         private Label label5;
         private Label label6;
         private Label label7;
@@ -470,5 +540,16 @@
         private Label label16;
         private Label label19;
         private Label label20;
+        private TextBox numberBox;
+        private TextBox emailBox;
+        private TextBox ageBox;
+        private MenuStrip MenuBar;
+        private ToolStripMenuItem homeToolStripMenuItem;
+        private ToolStripMenuItem exitToolStripMenuItemProfile;
+        private PictureBox cusPictureBox;
+        private ToolStripMenuItem homeToolStripMenuItemProfile;
+        private ToolStripMenuItem optionsToolStripMenuItemProfile;
+        private ToolStripMenuItem logoutToolStripMenuItemProfile;
+        private ToolStripMenuItem editToolStripMenuItemProfile;
     }
 }

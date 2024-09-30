@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             splashPanel = new Panel();
+            titleLabelLogin = new Label();
             exitBtnLogin = new Button();
             createAccountPanel = new Panel();
             loginPanel = new Panel();
@@ -49,7 +51,7 @@
             lblDisplayUsernamePrompt = new Label();
             btnSwitchAccountView = new Button();
             label2 = new Label();
-            lblDisplayTitle = new Label();
+            loginDebugbtn = new Button();
             splashPanel.SuspendLayout();
             createAccountPanel.SuspendLayout();
             loginPanel.SuspendLayout();
@@ -57,26 +59,39 @@
             // 
             // splashPanel
             // 
+            splashPanel.Controls.Add(titleLabelLogin);
             splashPanel.Controls.Add(exitBtnLogin);
             splashPanel.Controls.Add(createAccountPanel);
             splashPanel.Controls.Add(btnSwitchAccountView);
             splashPanel.Controls.Add(label2);
-            splashPanel.Controls.Add(lblDisplayTitle);
-            splashPanel.Location = new Point(268, 60);
+            splashPanel.Location = new Point(12, 8);
             splashPanel.Name = "splashPanel";
-            splashPanel.Size = new Size(519, 745);
+            splashPanel.Size = new Size(520, 750);
             splashPanel.TabIndex = 1;
+            // 
+            // titleLabelLogin
+            // 
+            titleLabelLogin.AutoSize = true;
+            titleLabelLogin.Font = new Font("Verdana", 80.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            titleLabelLogin.ForeColor = Color.DarkOrange;
+            titleLabelLogin.Location = new Point(21, 18);
+            titleLabelLogin.Name = "titleLabelLogin";
+            titleLabelLogin.Size = new Size(456, 130);
+            titleLabelLogin.TabIndex = 15;
+            titleLabelLogin.Text = "Carpick";
             // 
             // exitBtnLogin
             // 
             exitBtnLogin.BackColor = Color.Red;
             exitBtnLogin.Font = new Font("Impact", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            exitBtnLogin.ForeColor = SystemColors.Control;
             exitBtnLogin.Location = new Point(356, 642);
             exitBtnLogin.Name = "exitBtnLogin";
             exitBtnLogin.Size = new Size(92, 41);
             exitBtnLogin.TabIndex = 14;
             exitBtnLogin.Text = "Exit";
             exitBtnLogin.UseVisualStyleBackColor = false;
+            exitBtnLogin.Click += exitBtnLogin_Click;
             // 
             // createAccountPanel
             // 
@@ -98,7 +113,8 @@
             // 
             // loginPanel
             // 
-            loginPanel.BackColor = SystemColors.Window;
+            loginPanel.BackColor = Color.Cornsilk;
+            loginPanel.Controls.Add(loginDebugbtn);
             loginPanel.Controls.Add(lblDisplayError);
             loginPanel.Controls.Add(LoginButton);
             loginPanel.Controls.Add(boxPasswordLogin);
@@ -114,39 +130,43 @@
             // lblDisplayError
             // 
             lblDisplayError.AutoSize = true;
-            lblDisplayError.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblDisplayError.Font = new Font("Verdana", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblDisplayError.ForeColor = Color.Red;
-            lblDisplayError.Location = new Point(163, 36);
+            lblDisplayError.Location = new Point(163, 185);
             lblDisplayError.Name = "lblDisplayError";
-            lblDisplayError.Size = new Size(88, 45);
+            lblDisplayError.Size = new Size(124, 45);
             lblDisplayError.TabIndex = 9;
             lblDisplayError.Text = "Error";
+            lblDisplayError.Visible = false;
             // 
             // LoginButton
             // 
             LoginButton.BackColor = Color.FromArgb(47, 208, 116);
             LoginButton.Font = new Font("Impact", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            LoginButton.Location = new Point(91, 296);
+            LoginButton.ForeColor = SystemColors.Control;
+            LoginButton.Location = new Point(100, 296);
             LoginButton.Name = "LoginButton";
             LoginButton.Size = new Size(237, 41);
             LoginButton.TabIndex = 8;
             LoginButton.Text = "Login";
             LoginButton.UseVisualStyleBackColor = false;
+            LoginButton.Click += LoginButton_Click;
             // 
             // boxPasswordLogin
             // 
             boxPasswordLogin.AcceptsReturn = true;
             boxPasswordLogin.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            boxPasswordLogin.Location = new Point(163, 185);
+            boxPasswordLogin.Location = new Point(163, 100);
             boxPasswordLogin.Name = "boxPasswordLogin";
             boxPasswordLogin.PasswordChar = '*';
             boxPasswordLogin.Size = new Size(262, 39);
             boxPasswordLogin.TabIndex = 5;
+            boxPasswordLogin.KeyUp += boxPasswordLogin_KeyUp;
             // 
             // boxUsernameLogin
             // 
             boxUsernameLogin.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            boxUsernameLogin.Location = new Point(163, 115);
+            boxUsernameLogin.Location = new Point(163, 30);
             boxUsernameLogin.Name = "boxUsernameLogin";
             boxUsernameLogin.Size = new Size(262, 39);
             boxUsernameLogin.TabIndex = 4;
@@ -154,20 +174,22 @@
             // lblDisplayUsernamePassword
             // 
             lblDisplayUsernamePassword.AutoSize = true;
-            lblDisplayUsernamePassword.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblDisplayUsernamePassword.Location = new Point(3, 190);
+            lblDisplayUsernamePassword.Font = new Font("Verdana", 15.75F, FontStyle.Bold);
+            lblDisplayUsernamePassword.ForeColor = Color.Orange;
+            lblDisplayUsernamePassword.Location = new Point(16, 105);
             lblDisplayUsernamePassword.Name = "lblDisplayUsernamePassword";
-            lblDisplayUsernamePassword.Size = new Size(99, 30);
+            lblDisplayUsernamePassword.Size = new Size(125, 25);
             lblDisplayUsernamePassword.TabIndex = 2;
             lblDisplayUsernamePassword.Text = "Password";
             // 
             // lblDisplayEmailLogin
             // 
             lblDisplayEmailLogin.AutoSize = true;
-            lblDisplayEmailLogin.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblDisplayEmailLogin.Location = new Point(3, 120);
+            lblDisplayEmailLogin.Font = new Font("Verdana", 15.75F, FontStyle.Bold);
+            lblDisplayEmailLogin.ForeColor = Color.Orange;
+            lblDisplayEmailLogin.Location = new Point(17, 35);
             lblDisplayEmailLogin.Name = "lblDisplayEmailLogin";
-            lblDisplayEmailLogin.Size = new Size(63, 30);
+            lblDisplayEmailLogin.Size = new Size(76, 25);
             lblDisplayEmailLogin.TabIndex = 0;
             lblDisplayEmailLogin.Text = "Email";
             // 
@@ -258,6 +280,7 @@
             // 
             btnSwitchAccountView.BackColor = Color.FromArgb(235, 167, 54);
             btnSwitchAccountView.Font = new Font("Impact", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnSwitchAccountView.ForeColor = SystemColors.Control;
             btnSwitchAccountView.Location = new Point(34, 642);
             btnSwitchAccountView.Name = "btnSwitchAccountView";
             btnSwitchAccountView.Size = new Size(237, 41);
@@ -268,31 +291,39 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 21.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(25, 167);
+            label2.Font = new Font("Verdana", 21.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.DarkOrange;
+            label2.Location = new Point(6, 167);
             label2.Name = "label2";
-            label2.Size = new Size(452, 40);
+            label2.Size = new Size(511, 35);
             label2.TabIndex = 11;
             label2.Text = "Rental Car Program by Taufeeq Ali";
             // 
-            // lblDisplayTitle
+            // loginDebugbtn
             // 
-            lblDisplayTitle.AutoSize = true;
-            lblDisplayTitle.Font = new Font("Segoe UI", 99.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblDisplayTitle.Location = new Point(0, -1);
-            lblDisplayTitle.Name = "lblDisplayTitle";
-            lblDisplayTitle.Size = new Size(507, 175);
-            lblDisplayTitle.TabIndex = 10;
-            lblDisplayTitle.Text = "Carpick";
+            loginDebugbtn.BackColor = Color.RoyalBlue;
+            loginDebugbtn.Font = new Font("Impact", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            loginDebugbtn.ForeColor = SystemColors.Control;
+            loginDebugbtn.Location = new Point(100, 249);
+            loginDebugbtn.Name = "loginDebugbtn";
+            loginDebugbtn.Size = new Size(237, 41);
+            loginDebugbtn.TabIndex = 10;
+            loginDebugbtn.Text = "Login (Debug)";
+            loginDebugbtn.UseVisualStyleBackColor = false;
+            loginDebugbtn.Click += loginDebugbtn_Click;
             // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1054, 865);
+            BackColor = Color.Bisque;
+            ClientSize = new Size(547, 770);
             Controls.Add(splashPanel);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "LoginForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "LoginForm";
+            Load += LoginForm_Load;
             splashPanel.ResumeLayout(false);
             splashPanel.PerformLayout();
             createAccountPanel.ResumeLayout(false);
@@ -325,6 +356,7 @@
         private Label lblDisplayUsernamePrompt;
         private Button btnSwitchAccountView;
         private Label label2;
-        private Label lblDisplayTitle;
+        private Label titleLabelLogin;
+        private Button loginDebugbtn;
     }
 }

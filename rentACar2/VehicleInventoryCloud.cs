@@ -7,14 +7,22 @@ using System.Threading.Tasks;
 using Azure.Storage.Blobs.Models;
 using Azure.Storage.Blobs;
 using System.IO;
+using System.DirectoryServices;
+using System.IO.Enumeration;
+using System.Xml;
+using System.Xml.Linq;
+using Microsoft.VisualBasic.ApplicationServices;
 
 namespace rentACar2
 {
-    internal class VehicleInventoryCloud : IVehicleInventory
+    public class VehicleInventoryCloud : IVehicleInventory
     {
         public List<Vehicle> vehicleList = new List<Vehicle>();
         public string testStr;
-        private string connectionString;
+        private string connectionString = string.Empty;
+        private string cloudFilePath;
+        private string imagePath;
+        private string informationPath;
 
         public VehicleInventoryCloud()
         {
@@ -23,21 +31,25 @@ namespace rentACar2
 
         private void blobManager()
         {
-            var filename = @"C:\temp\connectionStr.txt";
 
-            // Read connection string
-            connectionString = File.ReadAllText(filename);
+            cloudFilePath = "C:\\Users\\taufe\\source\\repos\\rentACar2\\rentACar2\\dw";
+            //Enumerator to read through the connectionString File and find the correct connectionString file
+            foreach (string f in Directory.EnumerateFiles("C:\\Users\\taufe\\source\\repos\\rentACar2\\rentACar2\\cloudresx\\", "*.txt"))
+            {
+                //connectionString = File.ReadAllText(f);
+            }
 
-            var blobServiceClient = new BlobServiceClient(
-        new Uri("https://<storage-account-name>.blob.core.windows.net"),
-        new DefaultAzureCredential());
+            connectionString = "";
+            var blobServiceClient = new BlobServiceClient(connectionString.ToString());
 
-            BlobContainerClient blobContainerClient = new BlobContainerClient(connectionString, "null");
+            BlobContainerClient vehicleInformationContainer = new BlobContainerClient(connectionString, "null");
+            BlobContainerClient vehicleImagesContainer = new BlobContainerClient(connectionString, "null");
 
             try
-            
-            { 
-                blobContainerClient = blobServiceClient.GetBlobContainerClient("vehicleinformation");
+
+            {
+                vehicleImagesContainer = blobServiceClient.GetBlobContainerClient("vehicleimages");
+                vehicleInformationContainer = blobServiceClient.GetBlobContainerClient("vehicleinformation");
             }
             
             catch (Exception ex)
@@ -47,17 +59,49 @@ namespace rentACar2
                 Thread.Sleep(5000);
                 Environment.Exit(0);
             }
+           
+            informationPath = cloudFilePath + "\\cloudFile.txt";
+            imagePath = cloudFilePath + "\\images";
 
-             string downloadFilePath = "cloudresx\\";
-
-            foreach (BlobItem item in blobContainerClient.GetBlobs())
-            
+            if (!File.Exists(informationPath))
             {
-                BlobClient blobClient = new BlobClient(connectionString, blobContainerClient.Name, item.Name);
-                
-                //blobClient.Upload()
+                DialogResult result = MessageBox.Show("Vehicle info file not found, would you like to create it?", "Notice", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    File.CreateText(informationPath);
+                }
+                else
+                {
+                    Environment.Exit(0);
+                }
             }
 
+            foreach (BlobItem item in vehicleInformationContainer.GetBlobs())
+            
+            {
+                BlobClient informationClient = new BlobClient(connectionString, vehicleInformationContainer.Name, item.Name);
+                informationClient.DownloadTo(informationPath);
+
+            }
+
+            foreach (BlobItem item in vehicleImagesContainer.GetBlobs())
+            {
+                BlobClient imagesClient = new BlobClient(connectionString, vehicleImagesContainer.Name, item.Name);
+                try
+                {
+                    if (!File.Exists((imagePath + "\\" + imagesClient.Name)))
+                        imagesClient.DownloadTo(File.Create(imagePath + "\\" + imagesClient.Name));
+
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Error loading images from cloud", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            loadInventory(informationPath, imagePath);
+
+            File.CreateText(informationPath).Close();
         }
 
         public void addVehicle(Vehicle v)
@@ -92,20 +136,39 @@ namespace rentACar2
 
         public void loadInventory()
         {
-            //blobManager();
-            string returnStr = string.Empty;
-            string filePath = "Vehicle\\VehicleInformation.txt";
-            if (File.Exists(filePath))
+            loadInventory(informationPath, imagePath);
+        }
+        private void loadInventory(string vehicleInfomationPath, string vehicleImagePath)
+        {
+            if (File.Exists(vehicleInfomationPath))
             {
-                string[] lines = File.ReadAllLines(filePath);
+                string[] lines = File.ReadAllLines(vehicleInfomationPath);
+
+                Vehicle v = null;
 
                 foreach (string line in lines)
                 {
+                    v = null;
                     if (line.StartsWith("Id"))
                         continue;
-
-                    vehicleList.Add(new Vehicle(line.Split(",")));
+                    v = new Vehicle(line.Split(","));
+                    foreach (string file in Directory.GetFiles(vehicleImagePath))
+                    {
+                        if (file.Contains(v.getId().ToUpper()))
+                        {
+                            v.setVehicleImage(Image.FromFile(file));
+                            vehicleList.Add(v);
+                        }
+                    }
                 }
+
+                
+
+                    //if ((v.getVehicleImage() == rentACar2.Properties.Resources.image_missing))
+                    //{
+                    //    MessageBox.Show("Image for " + v.getTitle() + " not found at\n" + vehicleImagePath + "\\" + v.getId().ToUpper(), "Notice", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //}
+                    
             }
             else
             {

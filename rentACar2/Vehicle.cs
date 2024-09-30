@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Windows.Forms.VisualStyles;
+using System.IO;
 
 namespace rentACar2
 {
@@ -29,7 +30,8 @@ namespace rentACar2
         private int range;
         private int totalRentalLife; // Keeps track of the number of days the vehicle has been rented in its life cycle
         private double averageRentalPeriod; // Tracks the average rental period for a specific vehicle
-        private string errorMsg;
+        private string title;
+        private Image Image;
 
         public Vehicle()
         {
@@ -47,7 +49,7 @@ namespace rentACar2
             this.storage = 0;
             this.drivetrain = "";
             this.range = 0;
-            this.errorMsg = "Empty Vehicle";
+            this.Image = Image.FromFile(rentACar2.Properties.Resources.image_missing.ToString());
         }
 
         public Vehicle(string[] vehicleInfo)
@@ -66,7 +68,25 @@ namespace rentACar2
             this.storage = Int32.Parse(vehicleInfo[10]);
             this.drivetrain = vehicleInfo[11];
             this.range = Int32.Parse(vehicleInfo[12]);
-            this.errorMsg = string.Empty;
+        }
+
+        public Vehicle(string[] vehicleInfo, Image vehicleImage)
+        {
+            vehicleInformation = new List<string>();
+            this.Id = Guid.Parse(vehicleInfo[0]);
+            this.make = vehicleInfo[1];
+            this.model = vehicleInfo[2];
+            this.year = Int32.Parse(vehicleInfo[3]);
+            this.type = vehicleInfo[4];
+            this.mileage = Int32.Parse(vehicleInfo[5]);
+            this.condition = vehicleInfo[6];
+            this.color = vehicleInfo[7];
+            this.seats = Int32.Parse(vehicleInfo[8]);
+            this.passengers = Int32.Parse(vehicleInfo[9]);
+            this.storage = Int32.Parse(vehicleInfo[10]);
+            this.drivetrain = vehicleInfo[11];
+            this.range = Int32.Parse(vehicleInfo[12]);
+            this.Image = vehicleImage;
         }
 
         public string[] getVehicleDetails()
@@ -89,30 +109,38 @@ namespace rentACar2
         public String getStorage() => storage.ToString().Trim();
         public String getDrivetrain() => drivetrain.Trim();
         public String getRange() => range.ToString().Trim();
-        public String getErrorMsg() => this.errorMsg;
+        public String getTitle() => (this.getYear() + " " + this.getMake() + " " + this.getModel());
 
         //public double getRate() => rate;
-        public void setErrorMsg(String message)
-        {
-            this.errorMsg = message;
-        }
 
-        public Image getVehicleImage()
+        public void setVehicleImage(string path)
         {
-            string imagePath = "Vehicle\\" + this.Id.ToString() + ".jpeg"; 
-            Image image = null;
-            
+             
             try
             {
-                image = Image.FromFile(imagePath);
-                setErrorMsg(this.getYear() + " " + this.getMake() + " " + this.getModel());
-                return image;
+                Image = Image.FromFile(path);
+             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error With setting new Image from path\n" + ex.ToString(), "Error in Vehicle Class", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Image = rentACar2.Properties.Resources.image_missing;
+            }
+        }
+
+        public void setVehicleImage(Image userImage)
+        {
+           try
+            {
+                Image = userImage;
             }
             catch (Exception ex)
             {
-                setErrorMsg("Error With Loading Image");
-                return image;
+                MessageBox.Show("Error With setting new Image from image\n" + ex.Message, "Error in Vehicle Class", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        public Image getVehicleImage()
+        {
+            return Image;
         }
 
         public void updateRentalLife(int d)
@@ -124,6 +152,5 @@ namespace rentACar2
         {
             
         }
-
     }
 }

@@ -6,23 +6,26 @@ using System.Windows.Forms;
 
 namespace rentACar2
 {
-    public partial class Carpick : Form
+    public partial class RentalCarMainForm : System.Windows.Forms.Form
     {
         public List<Vehicle> lot;
         public List<Vehicle> currentLot;
         public List<Customer> database;
+        static VehicleInventoryCloud vehiclesCloud;
+        static VehicleInventoryLocal vehiclesLocal;
         int currentVehicleIndex = 0;
         private Dictionary<Vehicle, String> matchVehicles = new Dictionary<Vehicle, String>();
-        //VehicleInventoryLocal localVeh = new VehicleInventoryLocal();
-        IVehicleInventory localVeh = new VehicleInventoryCloud();
-        CustomerInventoryLocal localCus = new CustomerInventoryLocal();
+        private CustomerProfileForm customerProfileForm = Program.customerForm;
 
 
-        public Carpick()
+        public RentalCarMainForm()
         {
+            
             InitializeComponent();
             lot = new List<Vehicle>();
             database = new List<Customer>();
+            //vehiclesLocal = new VehicleInventoryLocal();
+            vehiclesCloud = new VehicleInventoryCloud();
         }
 
         private void nextBtn_Click(object sender, EventArgs e)
@@ -51,21 +54,20 @@ namespace rentACar2
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            setupSplashInfo();
-            foreach (Vehicle v in localVeh.getInventory())
+             var vehicles = vehiclesCloud;
+             foreach (Vehicle v in vehicles.getInventory())
             {
                 lot.Add(v);
                 string veh2Desc = $"{v.getYear()} {v.getMake()} {v.getModel()}";
                 matchVehicles.Add(v, veh2Desc);
             }
 
-            foreach (Customer c in localCus.getInventory())
+            foreach (Customer c in LoginForm.customersLocal.getInventory())
             {
                 database.Add(c);
             }
 
             SetupVehicleDisplayInfo();
-            SetupProfileDisplayInfo();
 
             Dictionary<string, bool> makesList = new Dictionary<string, bool>();
             Dictionary<string, bool> typesList = new Dictionary<string, bool>();
@@ -93,52 +95,12 @@ namespace rentACar2
             DisplayVehicleList();
         }
 
-        private void setupSplashInfo()
-        {
-            //lblDisplayError.Visible = false;
-            //mainPanel.Controls.Add(BrowsePanel);
-            //mainPanel.Controls.Add(MainMenuStrip);
-            //mainPanel.Controls.Add(listPanel);
-            //mainPanel.Controls.Add(MenuBar);
-            //mainPanel.Controls.Add(splashPanel);
-
-            //foreach (Control item in mainPanel.Controls)
-            //{
-            //    if (item != splashPanel)
-            //    {
-            //        item.Visible = false;
-            //    }
-            //}
-        }
-
-        private void checkLogin(string userEmail, string userPassword)
-        {
-            //if (localCus.checkforCustomer(userEmail, userPassword))
-            //{
-            //    foreach (Control item in mainPanel.Controls)
-            //    {
-            //        if ((item != splashPanel))
-            //        {
-            //            item.Visible = true;
-            //            item.Enabled = true;
-            //        }
-            //    }
-            //    splashPanel.Visible = false;
-            //}
-            //else
-            //{
-            //    lblDisplayError.Visible = true;
-            //    lblDisplayError.Text = "User not found";
-            //}
-        }
-
         private void SetupVehicleDisplayInfo()
         {
             Vehicle veh = matchVehicles.Keys.ToArray()[currentVehicleIndex];
-            //Vehicle veh = (Vehicle)lot[0];
             carPictureBox.Image = veh.getVehicleImage();
 
-            lblDisplayVehicleTitle.Text = veh.getErrorMsg();
+            lblDisplayVehicleTitle.Text = veh.getTitle();
             lblDisplayType.Text = veh.getType();
             lblDisplayMileage.Text = veh.getMiles();
             lblDisplayColor.Text = veh.getColor();
@@ -152,21 +114,6 @@ namespace rentACar2
 
             lblCombo1.Text = "Make";
             lblCombo2.Text = "Type";
-        }
-
-        private void SetupProfileDisplayInfo()
-        {
-            Customer cus = (Customer)database[0];
-
-            //carPictureBox.Image = cus.getVehicleImage();
-
-            //lblDisplayFirst.Text = cus.getFirstName();
-            //lblDisplayLast.Text = cus.getLastName();
-            //lblDisplayAge.Text = cus.getAge().ToString();
-            //lblDisplayPhone.Text = cus.getPhone();
-            //lblDisplayEmail.Text = cus.getEmail();
-            //boxDisplayID.Text = cus.getIdNum().ToString();
-
         }
 
         private void DisplayVehicleList()
@@ -197,18 +144,6 @@ namespace rentACar2
                     listboxVehicles.Items.Add(veh2Desc);
                 }
             }
-
-            //foreach (int index in vehicleList.Values)
-            //{
-            //    Vehicle veh2 = lot[index];
-            //    string veh2Desc = $"{veh2.getYear()} {veh2.getMake()} {veh2.getModel()}";
-            //    matchVehicles.Add(veh2, veh2Desc);
-            //}
-            //matchVehicles.Add(new Vehicle(), "");
-            //listboxVehicles.Items.AddRange(matchVehicles.Values.ToArray());
-            //indices = vehicleList.Values.ToList();
-            //if (indices.Count > 0)
-            //    currentVehicleIndex = indices[0];
         }
 
         private void DisplayCustomerList()
@@ -250,44 +185,16 @@ namespace rentACar2
             currentVehicleIndex = listboxVehicles.SelectedIndex;
             SetupVehicleDisplayInfo();
         }
-
-        //private void getVehicleFromDescription()
-        //{
-        //    for (int i = 0; i < lot.Count; i++)
-        //    {
-        //        string selectedVehicleDetails = listboxVehicles.Items[listboxVehicles.SelectedIndex].ToString();
-        //        if (selectedVehicleDetails.Contains(lot[i].getMake()) && selectedVehicleDetails.Contains(lot[i].getModel()))
-        //        {
-        //            currentVehicleIndex = i;
-
-        //            lblDisplayRange.Text = i.ToString();
-        //        }
-        //    }
-        //    SetupVehicleDisplayInfo();
-        //}
-
-
-        private void rentalsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //BrowsePanel.Visible = true;
-            //profilePanel.Visible = false;
-        }
-
-        private void browseToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //BrowsePanel.Visible = true;
-            //profilePanel.Visible = false;
-        }
         private void profileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //profilePanel.Visible = true;
+            this.Visible = false;
+            customerProfileForm.Show();
         }
 
         private void homeToolStripMenuItem_DoubleClick(object sender, EventArgs e)
         {
             homeToolStripMenuItem.DropDown.Close();
             BrowsePanel.Visible = true;
-            //profilePanel.Visible = false;
         }
 
         private void listboxVehicles_SelectedValueChanged(object sender, EventArgs e)
@@ -297,42 +204,13 @@ namespace rentACar2
             SetupVehicleDisplayInfo();
         }
 
-        private void lblDisplayRentalNum_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Close();
-        }
-
-        private void lblDisplayAge_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblDisplayLast_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkLogin(object sender, EventArgs e)
-        {
-            //checkLogin(boxUsernameLogin.Text, boxPasswordLogin.Text);
-        }
-
-        private void enterPressed(object sender, KeyEventArgs e)
-        {
-            //if (e.KeyCode == Keys.Enter)
-            //{
-            //    checkLogin(boxUsernameLogin.Text, boxPasswordLogin.Text);
-            //}
-        }
-
-        private void exitBtnLogin_Click(object sender, EventArgs e)
-        {
             Environment.Exit(0);
+        }
+        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
