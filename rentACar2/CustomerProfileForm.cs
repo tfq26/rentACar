@@ -12,8 +12,18 @@ namespace rentACar2
 {
     public partial class CustomerProfileForm : System.Windows.Forms.Form
     {
+        private HomeForm homeForm;
+        private LoginForm loginForm;
+
         public CustomerProfileForm()
         {
+            InitializeComponent();
+        }
+
+        public CustomerProfileForm(HomeForm hf, LoginForm lf)
+        {
+            this.homeForm = hf;
+            this.loginForm = lf;
             InitializeComponent();
         }
 
@@ -28,7 +38,8 @@ namespace rentACar2
 
         public void logout_Click(object sender, EventArgs e)
         {
-            Program.loginForm.Visible = true;
+            loginForm.Visible = true;
+            this.Visible = false;
         }
     }
 }

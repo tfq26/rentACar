@@ -132,20 +132,20 @@
             // homeToolStripMenuItemProfile
             // 
             homeToolStripMenuItemProfile.Name = "homeToolStripMenuItemProfile";
-            homeToolStripMenuItemProfile.Size = new Size(180, 30);
+            homeToolStripMenuItemProfile.Size = new Size(151, 30);
             homeToolStripMenuItemProfile.Text = "Home";
             // 
             // optionsToolStripMenuItemProfile
             // 
             optionsToolStripMenuItemProfile.DropDownItems.AddRange(new ToolStripItem[] { logoutToolStripMenuItemProfile, editToolStripMenuItemProfile });
             optionsToolStripMenuItemProfile.Name = "optionsToolStripMenuItemProfile";
-            optionsToolStripMenuItemProfile.Size = new Size(180, 30);
+            optionsToolStripMenuItemProfile.Size = new Size(151, 30);
             optionsToolStripMenuItemProfile.Text = "Options";
             // 
             // logoutToolStripMenuItemProfile
             // 
             logoutToolStripMenuItemProfile.Name = "logoutToolStripMenuItemProfile";
-            logoutToolStripMenuItemProfile.Size = new Size(180, 30);
+            logoutToolStripMenuItemProfile.Size = new Size(144, 30);
             logoutToolStripMenuItemProfile.Text = "Logout";
             logoutToolStripMenuItemProfile.TextImageRelation = TextImageRelation.TextBeforeImage;
             logoutToolStripMenuItemProfile.ToolTipText = "Logout of current Account";
@@ -154,14 +154,14 @@
             // editToolStripMenuItemProfile
             // 
             editToolStripMenuItemProfile.Name = "editToolStripMenuItemProfile";
-            editToolStripMenuItemProfile.Size = new Size(180, 30);
+            editToolStripMenuItemProfile.Size = new Size(144, 30);
             editToolStripMenuItemProfile.Text = "Edit";
             // 
             // exitToolStripMenuItemProfile
             // 
             exitToolStripMenuItemProfile.ForeColor = Color.Red;
             exitToolStripMenuItemProfile.Name = "exitToolStripMenuItemProfile";
-            exitToolStripMenuItemProfile.Size = new Size(180, 30);
+            exitToolStripMenuItemProfile.Size = new Size(151, 30);
             exitToolStripMenuItemProfile.Text = "Exit";
             exitToolStripMenuItemProfile.ToolTipText = "Exit Application";
             exitToolStripMenuItemProfile.Click += exitToolStripMenuItem_Click;
@@ -192,6 +192,7 @@
             numberBox.ReadOnly = true;
             numberBox.Size = new Size(234, 31);
             numberBox.TabIndex = 61;
+            numberBox.Text = "555-555-5555";
             // 
             // emailBox
             // 
@@ -204,6 +205,7 @@
             emailBox.ReadOnly = true;
             emailBox.Size = new Size(234, 31);
             emailBox.TabIndex = 60;
+            emailBox.Text = "test@carpick.net";
             // 
             // ageBox
             // 
@@ -216,6 +218,7 @@
             ageBox.ReadOnly = true;
             ageBox.Size = new Size(234, 31);
             ageBox.TabIndex = 59;
+            ageBox.Text = "21";
             // 
             // idBox
             // 
@@ -228,6 +231,7 @@
             idBox.ReadOnly = true;
             idBox.Size = new Size(234, 31);
             idBox.TabIndex = 58;
+            idBox.Text = "321321321312";
             // 
             // lblDisplayLast
             // 

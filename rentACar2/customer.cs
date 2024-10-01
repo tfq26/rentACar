@@ -18,6 +18,7 @@ namespace rentACar2
         private Boolean rentalState;
         private Guid id;
         private List<string> customerDetails;
+        private Image customerImage;
 
 
         public Customer()
@@ -31,6 +32,7 @@ namespace rentACar2
             customerDetails = new List<string>();
             this.rentalState = false;
             this.id = Guid.Empty;
+            this.customerImage = rentACar2.Properties.Resources.defaultPFP;
     }
 
     public Customer(string firstName, string lastName, int age, long DOLNum, string email, string phoneNum, Guid userId)
@@ -44,7 +46,7 @@ namespace rentACar2
             this.rentalState = false;
             this.id = userId;
             customerDetails = new List<string>();
-            addDetails();
+            this.customerImage = rentACar2.Properties.Resources.defaultPFP;
         }
 
         public Customer(string[] customerInfo)
@@ -56,24 +58,29 @@ namespace rentACar2
             this.age = Int32.Parse(customerInfo[3]);
             this.email= customerInfo[4];
             this.phoneNum = customerInfo[5];
+            this.customerImage = rentACar2.Properties.Resources.defaultPFP;
         }
 
-        private void addDetails()
+        public Customer(string[] customerInfo, Image customerPfp)
         {
-            customerDetails.Add("First Name: " + this.getFirstName());
-            customerDetails.Add("Last Name: " + this.getLastName());
-            customerDetails.Add("Age: " + this.getAge().ToString());
-            customerDetails.Add("Email: " + this.getEmail());
-            customerDetails.Add("Phone Number: " + this.getPhone());
-            customerDetails.Add("DOL ID Number: " + this.getIdNum().ToString());
+            customerDetails = new List<string>();
+            this.id = Guid.Parse(customerInfo[0]);
+            this.firstName = customerInfo[1];
+            this.lastName = customerInfo[2];
+            this.age = Int32.Parse(customerInfo[3]);
+            this.email = customerInfo[4];
+            this.phoneNum = customerInfo[5];
+            this.customerImage = customerPfp;
         }
+
+       
 
         public String getFirstName() => firstName;
         public String getLastName() => lastName;
         public String getEmail() => email;
         public String getPhone() => phoneNum;
         public Boolean getRentalState() => this.rentalState;
-        public Guid getId() => id;
+        public String getId() => id.ToString().Trim().ToUpper();
         public int getAge() => age;
         public long getIdNum() => idNum;
 
@@ -119,7 +126,7 @@ namespace rentACar2
 
         public string[] getCustomerDetails()
         {
-            addDetails();
+           
 
             String[] temp = customerDetails.ToArray();
 
@@ -129,6 +136,35 @@ namespace rentACar2
         private void updateRentalNum()
         {
             this.rentalNums++;
+        }
+
+        public void setCustomerImage(string path)
+        {
+
+            try
+            {
+                customerImage = Image.FromFile(path);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error With setting new Image from path\n" + ex.ToString(), "Error in Customer Class", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void setCustomerImage(Image userImage)
+        {
+            try
+            {
+                customerImage = userImage;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error With setting new Image from image\n" + ex.Message, "Error in Customer Class", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public Image getCustomerImage()
+        {
+            return customerImage;
         }
 
     }

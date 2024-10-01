@@ -34,11 +34,11 @@ namespace rentACar2
             Customers.Remove(c);
         }
 
-        public Boolean checkforCustomer(Guid id)
+        public Boolean checkforCustomer(string id)
         {
             foreach (Customer c in Customers)
             {
-                if(c.getId() == id)
+                if(c.getId().Equals(id))
                 {
                     return true;
                 }

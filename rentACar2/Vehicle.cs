@@ -31,11 +31,10 @@ namespace rentACar2
         private int totalRentalLife; // Keeps track of the number of days the vehicle has been rented in its life cycle
         private double averageRentalPeriod; // Tracks the average rental period for a specific vehicle
         private string title;
-        private Image Image;
+        private Image vehcileImage;
 
         public Vehicle()
         {
-            vehicleInformation = new List<string>();
             this.Id = Guid.Empty;
             this.make = "";
             this.model = "";
@@ -49,12 +48,11 @@ namespace rentACar2
             this.storage = 0;
             this.drivetrain = "";
             this.range = 0;
-            this.Image = Image.FromFile(rentACar2.Properties.Resources.image_missing.ToString());
+            this.vehcileImage = Image.FromFile(rentACar2.Properties.Resources.image_missing.ToString());
         }
 
         public Vehicle(string[] vehicleInfo)
         {
-            vehicleInformation = new List<string>();
             this.Id = Guid.Parse(vehicleInfo[0]);
             this.make = vehicleInfo[1];
             this.model = vehicleInfo[2];
@@ -72,7 +70,6 @@ namespace rentACar2
 
         public Vehicle(string[] vehicleInfo, Image vehicleImage)
         {
-            vehicleInformation = new List<string>();
             this.Id = Guid.Parse(vehicleInfo[0]);
             this.make = vehicleInfo[1];
             this.model = vehicleInfo[2];
@@ -86,15 +83,15 @@ namespace rentACar2
             this.storage = Int32.Parse(vehicleInfo[10]);
             this.drivetrain = vehicleInfo[11];
             this.range = Int32.Parse(vehicleInfo[12]);
-            this.Image = vehicleImage;
+            this.vehcileImage = vehicleImage;
         }
 
-        public string[] getVehicleDetails()
-        {
-            String[] temp = vehicleInformation.ToArray();
+        //public string[] getVehicleDetails()
+        //{
+        //    String[] temp = vehicleInformation.ToArray();
 
-            return temp;
-        }
+        //    return temp;
+        //}
 
         public String getMake() => make.Trim();
         public String getModel() => model.Trim();
@@ -103,7 +100,7 @@ namespace rentACar2
         public String getCondition() => condition.Trim();
         public String getColor() => color.Trim();
         public String getMiles() => mileage.ToString().Trim();
-        public String getId() => Id.ToString().Trim();
+        public String getId() => Id.ToString().Trim().ToUpper();
         public String getSeats() => seats.ToString().Trim();
         public String getPassengers() => passengers.ToString().Trim();
         public String getStorage() => storage.ToString().Trim();
@@ -115,15 +112,14 @@ namespace rentACar2
 
         public void setVehicleImage(string path)
         {
-             
             try
             {
-                Image = Image.FromFile(path);
+                vehcileImage = Image.FromFile(path);
              }
             catch (Exception ex)
             {
                 MessageBox.Show("Error With setting new Image from path\n" + ex.ToString(), "Error in Vehicle Class", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Image = rentACar2.Properties.Resources.image_missing;
+                vehcileImage = rentACar2.Properties.Resources.image_missing;
             }
         }
 
@@ -131,7 +127,7 @@ namespace rentACar2
         {
            try
             {
-                Image = userImage;
+                vehcileImage = userImage;
             }
             catch (Exception ex)
             {
@@ -140,7 +136,7 @@ namespace rentACar2
         }
         public Image getVehicleImage()
         {
-            return Image;
+            return vehcileImage;
         }
 
         public void updateRentalLife(int d)

@@ -323,7 +323,6 @@
             Name = "LoginForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "LoginForm";
-            Load += LoginForm_Load;
             splashPanel.ResumeLayout(false);
             splashPanel.PerformLayout();
             createAccountPanel.ResumeLayout(false);

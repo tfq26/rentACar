@@ -14,7 +14,7 @@ namespace rentACar2
 
         public void removeCustomer(Customer c);
 
-        public Boolean checkforCustomer(Guid id);
+        public Boolean checkforCustomer(string id);
 
         public int getInventoryCount();
 

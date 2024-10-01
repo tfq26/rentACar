@@ -11,6 +11,8 @@ namespace rentACar2
     {
         public List<Customer> Customers = new List<Customer>();
         public Dictionary<string, string> customerLoginDetails = new Dictionary<string, string>();
+        private string informationPath;
+        private string imagesPath;
         public string testStr;
 
         public CustomerInventoryCloud()
@@ -43,11 +45,11 @@ namespace rentACar2
             return false;
         }
 
-        public Boolean checkforCustomer(Guid id)
+        public Boolean checkforCustomer(string id)
         {
             foreach (Customer c in Customers)
             {
-                if (c.getId() == id)
+                if (c.getId().Equals(id))
                 {
                     return true;
                 }
@@ -65,6 +67,11 @@ namespace rentACar2
         public int getInventoryCount()
         {
             return Customers.Count;
+        }
+
+        public void loadInventory()
+        {
+            loadInventory(informationPath, imagesPath);
         }
 
         public Customer getCustomer(string email, string password)
@@ -86,20 +93,28 @@ namespace rentACar2
             return customer;
         }
 
-        public void loadInventory()
+        private void loadInventory(string customerInfomationPath, string customerImagePath)
         {
-            string returnStr = string.Empty;
-            string filePath = "Vehicle\\VehicleInformation.txt";
-            if (File.Exists(filePath))
+            if (File.Exists(customerInfomationPath))
             {
-                string[] lines = File.ReadAllLines(filePath);
+                string[] lines = File.ReadAllLines(customerInfomationPath);
+
+                Customer c = null;
 
                 foreach (string line in lines)
                 {
-                    if (line.StartsWith("GUID"))
+                    c = null;
+                    if (line.StartsWith("Id"))
                         continue;
-
-                    Customers.Add(new Customer(line.Split(",")));
+                    c = new Customer(line.Split(","));
+                    foreach (string file in Directory.GetFiles(customerImagePath))
+                    {
+                        if (file.Contains(c.getId().ToUpper()))
+                        {
+                            c.setCustomerImage(Image.FromFile(file));
+                            Customers.Add(c);
+                        }
+                    }
                 }
             }
             else

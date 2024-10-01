@@ -36,10 +36,10 @@ namespace rentACar2
             //Enumerator to read through the connectionString File and find the correct connectionString file
             foreach (string f in Directory.EnumerateFiles("C:\\Users\\taufe\\source\\repos\\rentACar2\\rentACar2\\cloudresx\\", "*.txt"))
             {
-                //connectionString = File.ReadAllText(f);
+                connectionString = File.ReadAllText(f).Trim();
             }
 
-            connectionString = "";
+            //connectionString = "DefaultEndpointsProtocol=https;AccountName=storage2608;AccountKey=4bFTW2bjmXSdoKcwTtLdvFTUdsexC9d0/yogv4TNWGQZz+bIn9RIVbtTH1m1gHcvR8SrPp7VxCxg+AStMmakww==;EndpointSuffix=core.windows.net";
             var blobServiceClient = new BlobServiceClient(connectionString.ToString());
 
             BlobContainerClient vehicleInformationContainer = new BlobContainerClient(connectionString, "null");
@@ -154,21 +154,13 @@ namespace rentACar2
                     v = new Vehicle(line.Split(","));
                     foreach (string file in Directory.GetFiles(vehicleImagePath))
                     {
-                        if (file.Contains(v.getId().ToUpper()))
+                        if (file.Contains(v.getId()))
                         {
                             v.setVehicleImage(Image.FromFile(file));
                             vehicleList.Add(v);
                         }
                     }
                 }
-
-                
-
-                    //if ((v.getVehicleImage() == rentACar2.Properties.Resources.image_missing))
-                    //{
-                    //    MessageBox.Show("Image for " + v.getTitle() + " not found at\n" + vehicleImagePath + "\\" + v.getId().ToUpper(), "Notice", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    //}
-                    
             }
             else
             {

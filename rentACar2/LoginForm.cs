@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,25 +13,34 @@ namespace rentACar2
 {
     public partial class LoginForm : System.Windows.Forms.Form
     {
-        public static CustomerInventoryCloud customersCloud;
-        public static CustomerInventoryLocal customersLocal;
-        private RentalCarMainForm rentalCarMainForm = Program.rentalCarForm;
+        public CustomerInventoryCloud customersCloud;
+        public CustomerInventoryLocal customersLocal;
+        private HomeForm homeForm;
+        private CustomerProfileForm customerProfileForm;
         private Boolean bypass = false;
         public static Customer user;
         public LoginForm()
         {
             customersLocal = new CustomerInventoryLocal();
-            //customersCloud = new CustomerInventoryCloud();
-           
             InitializeComponent();
+            this.customerProfileForm = new CustomerProfileForm(homeForm, this);
+            this.homeForm = new HomeForm(customerProfileForm, this);
         }
 
-
+        public LoginForm(CustomerProfileForm cf, HomeForm rf)
+        {
+            customersLocal = new CustomerInventoryLocal();
+            InitializeComponent();
+            this.customerProfileForm = cf;
+            this.homeForm = rf;
+        }
 
         public LoginForm(CustomerInventoryCloud customerInventory)
         {
             customersCloud = customerInventory;
             InitializeComponent();
+            this.customerProfileForm = new CustomerProfileForm(homeForm, this);
+            this.homeForm = new HomeForm(customerProfileForm, this);
         }
 
         private void checkLogin(string userEmail, string userPassword)
@@ -41,12 +51,12 @@ namespace rentACar2
             {
                 customers.getCustomer(userEmail, userPassword);
                 this.Visible = false;
-                rentalCarMainForm.Show();
+                homeForm.Show();
             }
             else if (customers != null && customersCloud.checkforCustomer(userEmail, userPassword) || bypass)
             {
                 this.Visible = false;
-                rentalCarMainForm.Show();
+                homeForm.Show();
             }
             else
             {
@@ -71,11 +81,6 @@ namespace rentACar2
         private void exitBtnLogin_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);
-        }
-
-        private void LoginForm_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void loginDebugbtn_Click(object sender, EventArgs e)

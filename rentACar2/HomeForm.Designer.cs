@@ -1,6 +1,6 @@
 ﻿namespace rentACar2
 {
-    partial class RentalCarMainForm
+    partial class HomeForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RentalCarMainForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeForm));
             BrowsePanel = new Panel();
             lblRange = new Label();
             lblDisplayDrivetrain = new Label();
@@ -105,10 +105,10 @@
             // 
             lblRange.Anchor = AnchorStyles.None;
             lblRange.AutoSize = true;
-            lblRange.Font = new Font("Impact", 12F);
-            lblRange.Location = new Point(521, 539);
+            lblRange.Font = new Font("Verdana", 12F, FontStyle.Bold);
+            lblRange.Location = new Point(509, 538);
             lblRange.Name = "lblRange";
-            lblRange.Size = new Size(50, 20);
+            lblRange.Size = new Size(65, 18);
             lblRange.TabIndex = 49;
             lblRange.Text = "Range";
             // 
@@ -116,11 +116,11 @@
             // 
             lblDisplayDrivetrain.Anchor = AnchorStyles.None;
             lblDisplayDrivetrain.AutoSize = true;
-            lblDisplayDrivetrain.Font = new Font("Impact", 12F);
+            lblDisplayDrivetrain.Font = new Font("Verdana", 12F, FontStyle.Bold);
             lblDisplayDrivetrain.ForeColor = SystemColors.WindowFrame;
             lblDisplayDrivetrain.Location = new Point(158, 539);
             lblDisplayDrivetrain.Name = "lblDisplayDrivetrain";
-            lblDisplayDrivetrain.Size = new Size(34, 20);
+            lblDisplayDrivetrain.Size = new Size(41, 18);
             lblDisplayDrivetrain.TabIndex = 48;
             lblDisplayDrivetrain.Text = "Gas";
             // 
@@ -128,10 +128,10 @@
             // 
             lblDrivetrain.Anchor = AnchorStyles.None;
             lblDrivetrain.AutoSize = true;
-            lblDrivetrain.Font = new Font("Impact", 12F);
+            lblDrivetrain.Font = new Font("Verdana", 12F, FontStyle.Bold);
             lblDrivetrain.Location = new Point(53, 538);
             lblDrivetrain.Name = "lblDrivetrain";
-            lblDrivetrain.Size = new Size(75, 20);
+            lblDrivetrain.Size = new Size(95, 18);
             lblDrivetrain.TabIndex = 47;
             lblDrivetrain.Text = "Drivetrain";
             // 
@@ -139,11 +139,11 @@
             // 
             lblDisplayStorage.Anchor = AnchorStyles.None;
             lblDisplayStorage.AutoSize = true;
-            lblDisplayStorage.Font = new Font("Impact", 12F);
+            lblDisplayStorage.Font = new Font("Verdana", 12F, FontStyle.Bold);
             lblDisplayStorage.ForeColor = SystemColors.WindowFrame;
             lblDisplayStorage.Location = new Point(626, 517);
             lblDisplayStorage.Name = "lblDisplayStorage";
-            lblDisplayStorage.Size = new Size(17, 20);
+            lblDisplayStorage.Size = new Size(19, 18);
             lblDisplayStorage.TabIndex = 46;
             lblDisplayStorage.Text = "3";
             // 
@@ -151,10 +151,10 @@
             // 
             lblStorage.Anchor = AnchorStyles.None;
             lblStorage.AutoSize = true;
-            lblStorage.Font = new Font("Impact", 12F);
-            lblStorage.Location = new Point(521, 518);
+            lblStorage.Font = new Font("Verdana", 12F, FontStyle.Bold);
+            lblStorage.Location = new Point(509, 517);
             lblStorage.Name = "lblStorage";
-            lblStorage.Size = new Size(60, 20);
+            lblStorage.Size = new Size(78, 18);
             lblStorage.TabIndex = 45;
             lblStorage.Text = "Storage";
             // 
@@ -162,11 +162,11 @@
             // 
             lblDisplayPassengers.Anchor = AnchorStyles.None;
             lblDisplayPassengers.AutoSize = true;
-            lblDisplayPassengers.Font = new Font("Impact", 12F);
+            lblDisplayPassengers.Font = new Font("Verdana", 12F, FontStyle.Bold);
             lblDisplayPassengers.ForeColor = SystemColors.WindowFrame;
             lblDisplayPassengers.Location = new Point(626, 494);
             lblDisplayPassengers.Name = "lblDisplayPassengers";
-            lblDisplayPassengers.Size = new Size(17, 20);
+            lblDisplayPassengers.Size = new Size(19, 18);
             lblDisplayPassengers.TabIndex = 44;
             lblDisplayPassengers.Text = "4";
             // 
@@ -174,10 +174,10 @@
             // 
             lblPassengers.Anchor = AnchorStyles.None;
             lblPassengers.AutoSize = true;
-            lblPassengers.Font = new Font("Impact", 12F);
-            lblPassengers.Location = new Point(521, 493);
+            lblPassengers.Font = new Font("Verdana", 12F, FontStyle.Bold);
+            lblPassengers.Location = new Point(509, 492);
             lblPassengers.Name = "lblPassengers";
-            lblPassengers.Size = new Size(87, 20);
+            lblPassengers.Size = new Size(110, 18);
             lblPassengers.TabIndex = 43;
             lblPassengers.Text = "Passengers";
             // 
@@ -185,11 +185,11 @@
             // 
             lblDisplaySeats.Anchor = AnchorStyles.None;
             lblDisplaySeats.AutoSize = true;
-            lblDisplaySeats.Font = new Font("Impact", 12F);
+            lblDisplaySeats.Font = new Font("Verdana", 12F, FontStyle.Bold);
             lblDisplaySeats.ForeColor = SystemColors.WindowFrame;
             lblDisplaySeats.Location = new Point(626, 471);
             lblDisplaySeats.Name = "lblDisplaySeats";
-            lblDisplaySeats.Size = new Size(17, 20);
+            lblDisplaySeats.Size = new Size(19, 18);
             lblDisplaySeats.TabIndex = 42;
             lblDisplaySeats.Text = "4";
             // 
@@ -197,10 +197,10 @@
             // 
             lblDoors.Anchor = AnchorStyles.None;
             lblDoors.AutoSize = true;
-            lblDoors.Font = new Font("Impact", 12F);
-            lblDoors.Location = new Point(521, 471);
+            lblDoors.Font = new Font("Verdana", 12F, FontStyle.Bold);
+            lblDoors.Location = new Point(509, 470);
             lblDoors.Name = "lblDoors";
-            lblDoors.Size = new Size(48, 20);
+            lblDoors.Size = new Size(60, 18);
             lblDoors.TabIndex = 41;
             lblDoors.Text = "Doors";
             // 
@@ -225,11 +225,11 @@
             // 
             lblDisplayColor.Anchor = AnchorStyles.None;
             lblDisplayColor.AutoSize = true;
-            lblDisplayColor.Font = new Font("Impact", 12F);
+            lblDisplayColor.Font = new Font("Verdana", 12F, FontStyle.Bold);
             lblDisplayColor.ForeColor = SystemColors.WindowFrame;
             lblDisplayColor.Location = new Point(157, 518);
             lblDisplayColor.Name = "lblDisplayColor";
-            lblDisplayColor.Size = new Size(38, 20);
+            lblDisplayColor.Size = new Size(46, 18);
             lblDisplayColor.TabIndex = 40;
             lblDisplayColor.Text = "Blue";
             // 
@@ -270,11 +270,11 @@
             // 
             lblDisplayMileage.Anchor = AnchorStyles.None;
             lblDisplayMileage.AutoSize = true;
-            lblDisplayMileage.Font = new Font("Impact", 12F);
+            lblDisplayMileage.Font = new Font("Verdana", 12F, FontStyle.Bold);
             lblDisplayMileage.ForeColor = SystemColors.WindowFrame;
             lblDisplayMileage.Location = new Point(154, 495);
             lblDisplayMileage.Name = "lblDisplayMileage";
-            lblDisplayMileage.Size = new Size(53, 20);
+            lblDisplayMileage.Size = new Size(63, 18);
             lblDisplayMileage.TabIndex = 39;
             lblDisplayMileage.Text = "30000";
             // 
@@ -282,11 +282,11 @@
             // 
             lblDisplayType.Anchor = AnchorStyles.None;
             lblDisplayType.AutoSize = true;
-            lblDisplayType.Font = new Font("Impact", 12F);
+            lblDisplayType.Font = new Font("Verdana", 12F, FontStyle.Bold);
             lblDisplayType.ForeColor = SystemColors.WindowFrame;
             lblDisplayType.Location = new Point(157, 471);
             lblDisplayType.Name = "lblDisplayType";
-            lblDisplayType.Size = new Size(47, 20);
+            lblDisplayType.Size = new Size(59, 18);
             lblDisplayType.TabIndex = 38;
             lblDisplayType.Text = "Hatch";
             // 
@@ -296,12 +296,12 @@
             lblDisplayVehicleTitle.AutoSize = true;
             lblDisplayVehicleTitle.BackColor = Color.Transparent;
             lblDisplayVehicleTitle.BorderStyle = BorderStyle.Fixed3D;
-            lblDisplayVehicleTitle.Font = new Font("Impact", 20.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            lblDisplayVehicleTitle.Font = new Font("Verdana", 36F, FontStyle.Bold);
             lblDisplayVehicleTitle.ForeColor = Color.DarkOrange;
             lblDisplayVehicleTitle.ImageAlign = ContentAlignment.TopCenter;
-            lblDisplayVehicleTitle.Location = new Point(242, 34);
+            lblDisplayVehicleTitle.Location = new Point(53, 43);
             lblDisplayVehicleTitle.Name = "lblDisplayVehicleTitle";
-            lblDisplayVehicleTitle.Size = new Size(208, 36);
+            lblDisplayVehicleTitle.Size = new Size(471, 61);
             lblDisplayVehicleTitle.TabIndex = 37;
             lblDisplayVehicleTitle.Text = "2012 Ford Focus";
             // 
@@ -309,10 +309,10 @@
             // 
             lblColor.Anchor = AnchorStyles.None;
             lblColor.AutoSize = true;
-            lblColor.Font = new Font("Impact", 12F);
+            lblColor.Font = new Font("Verdana", 12F, FontStyle.Bold);
             lblColor.Location = new Point(53, 517);
             lblColor.Name = "lblColor";
-            lblColor.Size = new Size(44, 20);
+            lblColor.Size = new Size(54, 18);
             lblColor.TabIndex = 36;
             lblColor.Text = "Color";
             // 
@@ -320,10 +320,10 @@
             // 
             lblMileage.Anchor = AnchorStyles.None;
             lblMileage.AutoSize = true;
-            lblMileage.Font = new Font("Impact", 12F);
+            lblMileage.Font = new Font("Verdana", 12F, FontStyle.Bold);
             lblMileage.Location = new Point(53, 494);
             lblMileage.Name = "lblMileage";
-            lblMileage.Size = new Size(60, 20);
+            lblMileage.Size = new Size(75, 18);
             lblMileage.TabIndex = 35;
             lblMileage.Text = "Mileage";
             // 
@@ -331,10 +331,10 @@
             // 
             lblType.Anchor = AnchorStyles.None;
             lblType.AutoSize = true;
-            lblType.Font = new Font("Impact", 12F);
+            lblType.Font = new Font("Verdana", 12F, FontStyle.Bold);
             lblType.Location = new Point(53, 471);
             lblType.Name = "lblType";
-            lblType.Size = new Size(39, 20);
+            lblType.Size = new Size(52, 18);
             lblType.TabIndex = 34;
             lblType.Text = "Type";
             // 
@@ -357,11 +357,11 @@
             // 
             lblDisplayRange.Anchor = AnchorStyles.None;
             lblDisplayRange.AutoSize = true;
-            lblDisplayRange.Font = new Font("Impact", 12F);
+            lblDisplayRange.Font = new Font("Verdana", 12F, FontStyle.Bold);
             lblDisplayRange.ForeColor = SystemColors.WindowFrame;
             lblDisplayRange.Location = new Point(616, 539);
             lblDisplayRange.Name = "lblDisplayRange";
-            lblDisplayRange.Size = new Size(27, 25);
+            lblDisplayRange.Size = new Size(41, 25);
             lblDisplayRange.TabIndex = 50;
             lblDisplayRange.Text = "115";
             lblDisplayRange.UseCompatibleTextRendering = true;
@@ -382,12 +382,12 @@
             // 
             listboxVehicles.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             listboxVehicles.BackColor = Color.Cornsilk;
-            listboxVehicles.Font = new Font("Microsoft New Tai Lue", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            listboxVehicles.Font = new Font("Verdana", 12F);
             listboxVehicles.FormattingEnabled = true;
-            listboxVehicles.ItemHeight = 21;
+            listboxVehicles.ItemHeight = 18;
             listboxVehicles.Location = new Point(26, 93);
             listboxVehicles.Name = "listboxVehicles";
-            listboxVehicles.Size = new Size(332, 613);
+            listboxVehicles.Size = new Size(332, 598);
             listboxVehicles.TabIndex = 6;
             listboxVehicles.Click += listboxVehicles_Click;
             listboxVehicles.SelectedIndexChanged += listboxVehicles_Click;
@@ -399,10 +399,11 @@
             comboType.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             comboType.BackColor = Color.PeachPuff;
             comboType.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboType.Font = new Font("Verdana", 9F);
             comboType.FormattingEnabled = true;
             comboType.Location = new Point(85, 52);
             comboType.Name = "comboType";
-            comboType.Size = new Size(273, 23);
+            comboType.Size = new Size(273, 22);
             comboType.TabIndex = 5;
             comboType.SelectedIndexChanged += comboType_SelectedIndexChanged;
             // 
@@ -411,10 +412,11 @@
             comboMake.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             comboMake.BackColor = Color.PeachPuff;
             comboMake.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboMake.Font = new Font("Verdana", 9F);
             comboMake.FormattingEnabled = true;
             comboMake.Location = new Point(85, 18);
             comboMake.Name = "comboMake";
-            comboMake.Size = new Size(273, 23);
+            comboMake.Size = new Size(273, 22);
             comboMake.TabIndex = 4;
             comboMake.SelectedIndexChanged += comboMake_SelectedIndexChanged;
             // 
@@ -422,9 +424,10 @@
             // 
             lblCombo2.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lblCombo2.AutoSize = true;
+            lblCombo2.Font = new Font("Verdana", 9F);
             lblCombo2.Location = new Point(19, 55);
             lblCombo2.Name = "lblCombo2";
-            lblCombo2.Size = new Size(31, 15);
+            lblCombo2.Size = new Size(36, 14);
             lblCombo2.TabIndex = 3;
             lblCombo2.Text = "Type";
             // 
@@ -432,9 +435,10 @@
             // 
             lblCombo1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lblCombo1.AutoSize = true;
+            lblCombo1.Font = new Font("Verdana", 9F);
             lblCombo1.Location = new Point(19, 21);
             lblCombo1.Name = "lblCombo1";
-            lblCombo1.Size = new Size(36, 15);
+            lblCombo1.Size = new Size(40, 14);
             lblCombo1.TabIndex = 1;
             lblCombo1.Text = "Make";
             // 
@@ -464,14 +468,14 @@
             // browseToolStripMenuItem
             // 
             browseToolStripMenuItem.Name = "browseToolStripMenuItem";
-            browseToolStripMenuItem.Size = new Size(180, 30);
+            browseToolStripMenuItem.Size = new Size(148, 30);
             browseToolStripMenuItem.Text = "Browse";
             browseToolStripMenuItem.ToolTipText = "Browse Vehicles";
             // 
             // rentalsToolStripMenuItem
             // 
             rentalsToolStripMenuItem.Name = "rentalsToolStripMenuItem";
-            rentalsToolStripMenuItem.Size = new Size(180, 30);
+            rentalsToolStripMenuItem.Size = new Size(148, 30);
             rentalsToolStripMenuItem.Text = "Rentals";
             rentalsToolStripMenuItem.ToolTipText = "Current Rentals";
             // 
@@ -479,7 +483,7 @@
             // 
             profileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { logoutToolStripMenuItem, editToolStripMenuItem });
             profileToolStripMenuItem.Name = "profileToolStripMenuItem";
-            profileToolStripMenuItem.Size = new Size(180, 30);
+            profileToolStripMenuItem.Size = new Size(148, 30);
             profileToolStripMenuItem.Text = "Profile";
             profileToolStripMenuItem.ToolTipText = "Current Profile";
             profileToolStripMenuItem.Click += profileToolStripMenuItem_Click;
@@ -487,26 +491,26 @@
             // logoutToolStripMenuItem
             // 
             logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            logoutToolStripMenuItem.Size = new Size(180, 30);
+            logoutToolStripMenuItem.Size = new Size(144, 30);
             logoutToolStripMenuItem.Text = "Logout";
             logoutToolStripMenuItem.Click += logoutToolStripMenuItem_Click;
             // 
             // editToolStripMenuItem
             // 
             editToolStripMenuItem.Name = "editToolStripMenuItem";
-            editToolStripMenuItem.Size = new Size(180, 30);
+            editToolStripMenuItem.Size = new Size(144, 30);
             editToolStripMenuItem.Text = "Edit";
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.ForeColor = Color.Red;
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(180, 30);
+            exitToolStripMenuItem.Size = new Size(148, 30);
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.ToolTipText = "Exit Application";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
-            // RentalCarMainForm
+            // HomeForm
             // 
             AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.Bisque;
@@ -515,10 +519,10 @@
             Controls.Add(BrowsePanel);
             Controls.Add(MenuBar);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "RentalCarMainForm";
+            Name = "HomeForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Carpick";
-            Load += Form1_Load;
+            Load += HomeForm_Load;
             BrowsePanel.ResumeLayout(false);
             BrowsePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)carPictureBox).EndInit();

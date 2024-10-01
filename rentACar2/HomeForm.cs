@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace rentACar2
 {
-    public partial class RentalCarMainForm : System.Windows.Forms.Form
+    public partial class HomeForm : System.Windows.Forms.Form
     {
         public List<Vehicle> lot;
         public List<Vehicle> currentLot;
@@ -15,16 +15,26 @@ namespace rentACar2
         static VehicleInventoryLocal vehiclesLocal;
         int currentVehicleIndex = 0;
         private Dictionary<Vehicle, String> matchVehicles = new Dictionary<Vehicle, String>();
-        private CustomerProfileForm customerProfileForm = Program.customerForm;
+        private CustomerProfileForm customerProfileForm;
+        private LoginForm loginForm;
 
-
-        public RentalCarMainForm()
+        public HomeForm()
         {
             
             InitializeComponent();
             lot = new List<Vehicle>();
             database = new List<Customer>();
             //vehiclesLocal = new VehicleInventoryLocal();
+            vehiclesCloud = new VehicleInventoryCloud();
+        }
+
+        public HomeForm(CustomerProfileForm cf, LoginForm lf)
+        {
+            this.customerProfileForm = cf;
+            InitializeComponent();
+            lot = new List<Vehicle>();
+            database = new List<Customer>();
+            loginForm = lf;
             vehiclesCloud = new VehicleInventoryCloud();
         }
 
@@ -52,7 +62,7 @@ namespace rentACar2
             this.Close();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void HomeForm_Load(object sender, EventArgs e)
         {
              var vehicles = vehiclesCloud;
              foreach (Vehicle v in vehicles.getInventory())
@@ -62,7 +72,7 @@ namespace rentACar2
                 matchVehicles.Add(v, veh2Desc);
             }
 
-            foreach (Customer c in LoginForm.customersLocal.getInventory())
+            foreach (Customer c in loginForm.customersLocal.getInventory())
             {
                 database.Add(c);
             }
@@ -210,7 +220,8 @@ namespace rentACar2
         }
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            loginForm.Visible = true;
+            this.Visible = false;
         }
     }
 }
