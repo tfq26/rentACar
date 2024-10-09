@@ -13,51 +13,74 @@ namespace rentACar2
 {
     public partial class LoginForm : System.Windows.Forms.Form
     {
-        public CustomerInventoryCloud customersCloud;
-        public CustomerInventoryLocal customersLocal;
-        private HomeForm homeForm;
-        private CustomerProfileForm customerProfileForm;
-        private Boolean bypass = false;
-        public static Customer user;
+        private CustomerInventoryCloud customersCloud;
+        private CustomerInventoryLocal customersLocal;
+        public HomeForm homeForm;
+        public Customer user;
+        public rentalForm rentalForm;
+        public CustomerProfileForm profileForm;
+        private FormManager formManager;
         public LoginForm()
         {
             customersLocal = new CustomerInventoryLocal();
+            customersCloud = new CustomerInventoryCloud();
             InitializeComponent();
-            this.customerProfileForm = new CustomerProfileForm(homeForm, this);
-            this.homeForm = new HomeForm(customerProfileForm, this);
-        }
-
-        public LoginForm(CustomerProfileForm cf, HomeForm rf)
-        {
-            customersLocal = new CustomerInventoryLocal();
-            InitializeComponent();
-            this.customerProfileForm = cf;
-            this.homeForm = rf;
+            homeForm = new HomeForm();
+            profileForm = new CustomerProfileForm();
+            rentalForm = new rentalForm();
+            formManager = new FormManager(homeForm, profileForm, rentalForm, this);
         }
 
         public LoginForm(CustomerInventoryCloud customerInventory)
         {
             customersCloud = customerInventory;
             InitializeComponent();
-            this.customerProfileForm = new CustomerProfileForm(homeForm, this);
-            this.homeForm = new HomeForm(customerProfileForm, this);
+            homeForm = new HomeForm();
         }
 
-        private void checkLogin(string userEmail, string userPassword)
+        public Customer[] GetCustomers()
+        {
+            if (customersCloud == null)
+            {
+                return this.customersLocal.getInventory();
+            }
+            else
+            {
+                return customersCloud.getInventory();
+            }
+        }
+
+        public void checkLogin(Boolean bypass)
+        {
+            if (bypass)
+            {
+                checkLogin(" ", " ", true);
+            } else
+            {
+                checkLogin(boxUsernameLogin.Text, boxPasswordLogin.Text, false);
+            }
+        }
+
+        private void checkLogin(string userEmail, string userPassword, Boolean bypass)
         {
             var customers = customersLocal;
 
-            if (customers.checkforCustomer(userEmail, userPassword) || bypass)
+            if (customers.checkforCustomer(userEmail, userPassword))
             {
                 customers.getCustomer(userEmail, userPassword);
-                this.Visible = false;
-                homeForm.Show();
+                FormManager.loadHome();
             }
-            else if (customers != null && customersCloud.checkforCustomer(userEmail, userPassword) || bypass)
+            
+            else if (customers != null && customersCloud.checkforCustomer(userEmail, userPassword))
             {
-                this.Visible = false;
-                homeForm.Show();
+                FormManager.loadHome();
+            } 
+            
+            else if (bypass)
+            {
+                FormManager.loadHome();
             }
+            
             else
             {
                 lblDisplayError.Visible = true;
@@ -69,13 +92,13 @@ namespace rentACar2
         {
             if (e.KeyCode == Keys.Enter)
             {
-                checkLogin(boxUsernameLogin.Text, boxPasswordLogin.Text);
+                checkLogin(boxUsernameLogin.Text, boxPasswordLogin.Text, false);
             }
         }
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
-            checkLogin(boxUsernameLogin.Text, boxPasswordLogin.Text);
+            checkLogin(false);
         }
 
         private void exitBtnLogin_Click(object sender, EventArgs e)
@@ -85,8 +108,7 @@ namespace rentACar2
 
         private void loginDebugbtn_Click(object sender, EventArgs e)
         {
-            bypass = true;
-            checkLogin(" ", " ");
+            checkLogin(true);
         }
     }
 }

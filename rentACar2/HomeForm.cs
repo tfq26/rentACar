@@ -1,9 +1,3 @@
-using rentACar2.Properties;
-using System;
-using System.ComponentModel;
-using System.Drawing;
-using System.Windows.Forms;
-
 namespace rentACar2
 {
     public partial class HomeForm : System.Windows.Forms.Form
@@ -15,27 +9,15 @@ namespace rentACar2
         static VehicleInventoryLocal vehiclesLocal;
         int currentVehicleIndex = 0;
         private Dictionary<Vehicle, String> matchVehicles = new Dictionary<Vehicle, String>();
-        private CustomerProfileForm customerProfileForm;
-        private LoginForm loginForm;
 
         public HomeForm()
         {
-            
             InitializeComponent();
             lot = new List<Vehicle>();
             database = new List<Customer>();
-            //vehiclesLocal = new VehicleInventoryLocal();
             vehiclesCloud = new VehicleInventoryCloud();
-        }
+            vehiclesLocal = new VehicleInventoryLocal();
 
-        public HomeForm(CustomerProfileForm cf, LoginForm lf)
-        {
-            this.customerProfileForm = cf;
-            InitializeComponent();
-            lot = new List<Vehicle>();
-            database = new List<Customer>();
-            loginForm = lf;
-            vehiclesCloud = new VehicleInventoryCloud();
         }
 
         private void nextBtn_Click(object sender, EventArgs e)
@@ -64,19 +46,16 @@ namespace rentACar2
 
         private void HomeForm_Load(object sender, EventArgs e)
         {
-             var vehicles = vehiclesCloud;
-             foreach (Vehicle v in vehicles.getInventory())
+            var vehicles = vehiclesCloud;
+            foreach (Vehicle v in vehicles.getInventory())
             {
                 lot.Add(v);
                 string veh2Desc = $"{v.getYear()} {v.getMake()} {v.getModel()}";
                 matchVehicles.Add(v, veh2Desc);
+
             }
 
-            foreach (Customer c in loginForm.customersLocal.getInventory())
-            {
-                database.Add(c);
-            }
-
+            currentVehicleIndex = 0;
             SetupVehicleDisplayInfo();
 
             Dictionary<string, bool> makesList = new Dictionary<string, bool>();
@@ -107,6 +86,7 @@ namespace rentACar2
 
         private void SetupVehicleDisplayInfo()
         {
+
             Vehicle veh = matchVehicles.Keys.ToArray()[currentVehicleIndex];
             carPictureBox.Image = veh.getVehicleImage();
 
@@ -130,7 +110,6 @@ namespace rentACar2
         {
             listboxVehicles.Items.Clear();
             matchVehicles.Clear();
-            currentVehicleIndex = 0;
 
             Dictionary<Vehicle, int> vehicleList = new Dictionary<Vehicle, int>();
             int count = 0;
@@ -154,6 +133,7 @@ namespace rentACar2
                     listboxVehicles.Items.Add(veh2Desc);
                 }
             }
+
         }
 
         private void DisplayCustomerList()
@@ -197,13 +177,13 @@ namespace rentACar2
         }
         private void profileToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            FormManager.loadCustomer();
             this.Visible = false;
-            customerProfileForm.Show();
         }
 
         private void homeToolStripMenuItem_DoubleClick(object sender, EventArgs e)
         {
-            homeToolStripMenuItem.DropDown.Close();
+            //homeToolStripMenuItem.DropDown.Close();
             BrowsePanel.Visible = true;
         }
 
@@ -220,8 +200,24 @@ namespace rentACar2
         }
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            loginForm.Visible = true;
-            this.Visible = false;
+            LoginForm loginForm = new LoginForm();
+            loginForm.Show();
+            this.Close();
+        }
+
+        private void rentBtn_Click(object sender, EventArgs e)
+        {
+            FormManager.loadRental();
+        }
+
+        private void exitToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private void profileToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            FormManager.loadCustomer();
         }
     }
 }

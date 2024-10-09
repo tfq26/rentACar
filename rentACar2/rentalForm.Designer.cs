@@ -38,7 +38,15 @@
             lblVehicleRentalLink = new LinkLabel();
             lblCustomerLink = new LinkLabel();
             label2 = new Label();
+            menuStrip1 = new MenuStrip();
+            viewToolStripMenuItem = new ToolStripMenuItem();
+            profileToolStripMenuItem = new ToolStripMenuItem();
+            editToolStripMenuItem = new ToolStripMenuItem();
+            rentalsToolStripMenuItem = new ToolStripMenuItem();
+            logoutToolStripMenuItem = new ToolStripMenuItem();
+            exitToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)displayVehiclePictureBox).BeginInit();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // displayVehiclePictureBox
@@ -46,7 +54,7 @@
             displayVehiclePictureBox.BackColor = Color.SandyBrown;
             displayVehiclePictureBox.ErrorImage = Properties.Resources.image_missing;
             displayVehiclePictureBox.InitialImage = Properties.Resources.image_missing;
-            displayVehiclePictureBox.Location = new Point(175, 20);
+            displayVehiclePictureBox.Location = new Point(174, 50);
             displayVehiclePictureBox.Name = "displayVehiclePictureBox";
             displayVehiclePictureBox.Size = new Size(650, 350);
             displayVehiclePictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -57,7 +65,7 @@
             // 
             monthCalendar1.BackColor = Color.Moccasin;
             monthCalendar1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            monthCalendar1.Location = new Point(175, 442);
+            monthCalendar1.Location = new Point(174, 472);
             monthCalendar1.MaximumSize = new Size(1000, 1000);
             monthCalendar1.Name = "monthCalendar1";
             monthCalendar1.TabIndex = 1;
@@ -68,7 +76,7 @@
             // 
             rentalStartLabel.AutoSize = true;
             rentalStartLabel.Font = new Font("Verdana", 15F);
-            rentalStartLabel.Location = new Point(470, 440);
+            rentalStartLabel.Location = new Point(469, 470);
             rentalStartLabel.Name = "rentalStartLabel";
             rentalStartLabel.Size = new Size(144, 25);
             rentalStartLabel.TabIndex = 2;
@@ -78,7 +86,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Verdana", 15F);
-            label1.Location = new Point(470, 490);
+            label1.Location = new Point(469, 520);
             label1.Name = "label1";
             label1.Size = new Size(131, 25);
             label1.TabIndex = 3;
@@ -88,7 +96,7 @@
             // 
             lblDisplayStartDate.AutoSize = true;
             lblDisplayStartDate.Font = new Font("Verdana", 15F);
-            lblDisplayStartDate.Location = new Point(642, 440);
+            lblDisplayStartDate.Location = new Point(641, 470);
             lblDisplayStartDate.Name = "lblDisplayStartDate";
             lblDisplayStartDate.Size = new Size(134, 25);
             lblDisplayStartDate.TabIndex = 4;
@@ -98,7 +106,7 @@
             // 
             lblDisplayEndDate.AutoSize = true;
             lblDisplayEndDate.Font = new Font("Verdana", 15F);
-            lblDisplayEndDate.Location = new Point(640, 490);
+            lblDisplayEndDate.Location = new Point(639, 520);
             lblDisplayEndDate.Name = "lblDisplayEndDate";
             lblDisplayEndDate.Size = new Size(134, 25);
             lblDisplayEndDate.TabIndex = 5;
@@ -108,7 +116,8 @@
             // 
             lblVehicleRentalLink.AutoSize = true;
             lblVehicleRentalLink.Font = new Font("Verdana", 20F);
-            lblVehicleRentalLink.Location = new Point(377, 386);
+            lblVehicleRentalLink.LinkBehavior = LinkBehavior.HoverUnderline;
+            lblVehicleRentalLink.Location = new Point(376, 416);
             lblVehicleRentalLink.Name = "lblVehicleRentalLink";
             lblVehicleRentalLink.Size = new Size(238, 32);
             lblVehicleRentalLink.TabIndex = 6;
@@ -121,7 +130,7 @@
             lblCustomerLink.Font = new Font("Verdana", 14F);
             lblCustomerLink.LinkBehavior = LinkBehavior.NeverUnderline;
             lblCustomerLink.LinkColor = Color.DarkOrange;
-            lblCustomerLink.Location = new Point(640, 540);
+            lblCustomerLink.Location = new Point(639, 570);
             lblCustomerLink.Name = "lblCustomerLink";
             lblCustomerLink.Size = new Size(125, 23);
             lblCustomerLink.TabIndex = 7;
@@ -133,11 +142,63 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Verdana", 15F);
-            label2.Location = new Point(470, 540);
+            label2.Location = new Point(469, 570);
             label2.Name = "label2";
             label2.Size = new Size(131, 25);
             label2.TabIndex = 8;
             label2.Text = "Rental End:";
+            // 
+            // menuStrip1
+            // 
+            menuStrip1.BackColor = Color.DarkSalmon;
+            menuStrip1.Font = new Font("Verdana", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            menuStrip1.Items.AddRange(new ToolStripItem[] { viewToolStripMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(984, 31);
+            menuStrip1.TabIndex = 35;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // viewToolStripMenuItem
+            // 
+            viewToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { profileToolStripMenuItem, rentalsToolStripMenuItem, logoutToolStripMenuItem, exitToolStripMenuItem });
+            viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            viewToolStripMenuItem.Size = new Size(76, 27);
+            viewToolStripMenuItem.Text = "View";
+            // 
+            // profileToolStripMenuItem
+            // 
+            profileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { editToolStripMenuItem });
+            profileToolStripMenuItem.Name = "profileToolStripMenuItem";
+            profileToolStripMenuItem.Size = new Size(180, 28);
+            profileToolStripMenuItem.Text = "Profile";
+            // 
+            // editToolStripMenuItem
+            // 
+            editToolStripMenuItem.Name = "editToolStripMenuItem";
+            editToolStripMenuItem.Size = new Size(122, 28);
+            editToolStripMenuItem.Text = "Edit";
+            // 
+            // rentalsToolStripMenuItem
+            // 
+            rentalsToolStripMenuItem.Name = "rentalsToolStripMenuItem";
+            rentalsToolStripMenuItem.Size = new Size(180, 28);
+            rentalsToolStripMenuItem.Text = "Rentals";
+            // 
+            // logoutToolStripMenuItem
+            // 
+            logoutToolStripMenuItem.ForeColor = Color.Orange;
+            logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
+            logoutToolStripMenuItem.Size = new Size(180, 28);
+            logoutToolStripMenuItem.Text = "Logout";
+            // 
+            // exitToolStripMenuItem
+            // 
+            exitToolStripMenuItem.ForeColor = Color.Red;
+            exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            exitToolStripMenuItem.Size = new Size(180, 28);
+            exitToolStripMenuItem.Text = "Exit";
+            exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
             // rentalForm
             // 
@@ -145,6 +206,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Bisque;
             ClientSize = new Size(984, 661);
+            Controls.Add(menuStrip1);
             Controls.Add(label2);
             Controls.Add(lblCustomerLink);
             Controls.Add(lblVehicleRentalLink);
@@ -158,6 +220,8 @@
             Name = "rentalForm";
             Text = "Carpick";
             ((System.ComponentModel.ISupportInitialize)displayVehiclePictureBox).EndInit();
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -173,5 +237,12 @@
         private LinkLabel lblVehicleRentalLink;
         private LinkLabel lblCustomerLink;
         private Label label2;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem viewToolStripMenuItem;
+        private ToolStripMenuItem profileToolStripMenuItem;
+        private ToolStripMenuItem editToolStripMenuItem;
+        private ToolStripMenuItem rentalsToolStripMenuItem;
+        private ToolStripMenuItem logoutToolStripMenuItem;
+        private ToolStripMenuItem exitToolStripMenuItem;
     }
 }

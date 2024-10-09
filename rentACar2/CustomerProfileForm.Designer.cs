@@ -30,20 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerProfileForm));
             profilePanel = new Panel();
-            MenuBar = new MenuStrip();
-            homeToolStripMenuItem = new ToolStripMenuItem();
-            homeToolStripMenuItemProfile = new ToolStripMenuItem();
-            optionsToolStripMenuItemProfile = new ToolStripMenuItem();
-            logoutToolStripMenuItemProfile = new ToolStripMenuItem();
-            editToolStripMenuItemProfile = new ToolStripMenuItem();
-            exitToolStripMenuItemProfile = new ToolStripMenuItem();
+            lblDisplayEdit = new Label();
+            btnDone = new Button();
+            nameBox = new TextBox();
             cusPictureBox = new PictureBox();
             numberBox = new TextBox();
             emailBox = new TextBox();
             ageBox = new TextBox();
             idBox = new TextBox();
-            lblDisplayLast = new Label();
-            lblDisplayFirst = new Label();
             lblID = new Label();
             lblPhone = new Label();
             lblEmail = new Label();
@@ -64,23 +58,30 @@
             label16 = new Label();
             label19 = new Label();
             label20 = new Label();
+            menuStrip1 = new MenuStrip();
+            viewToolStripMenuItem = new ToolStripMenuItem();
+            homeToolStripMenuItem = new ToolStripMenuItem();
+            editToolStripMenuItem = new ToolStripMenuItem();
+            rentalsToolStripMenuItem = new ToolStripMenuItem();
+            logoutToolStripMenuItem = new ToolStripMenuItem();
+            exitToolStripMenuItem = new ToolStripMenuItem();
             profilePanel.SuspendLayout();
-            MenuBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)cusPictureBox).BeginInit();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // profilePanel
             // 
             profilePanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             profilePanel.BackColor = Color.BlanchedAlmond;
-            profilePanel.Controls.Add(MenuBar);
+            profilePanel.Controls.Add(lblDisplayEdit);
+            profilePanel.Controls.Add(btnDone);
+            profilePanel.Controls.Add(nameBox);
             profilePanel.Controls.Add(cusPictureBox);
             profilePanel.Controls.Add(numberBox);
             profilePanel.Controls.Add(emailBox);
             profilePanel.Controls.Add(ageBox);
             profilePanel.Controls.Add(idBox);
-            profilePanel.Controls.Add(lblDisplayLast);
-            profilePanel.Controls.Add(lblDisplayFirst);
             profilePanel.Controls.Add(lblID);
             profilePanel.Controls.Add(lblPhone);
             profilePanel.Controls.Add(lblEmail);
@@ -107,64 +108,46 @@
             profilePanel.Size = new Size(950, 750);
             profilePanel.TabIndex = 34;
             // 
-            // MenuBar
+            // lblDisplayEdit
             // 
-            MenuBar.BackColor = Color.SandyBrown;
-            MenuBar.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            MenuBar.Items.AddRange(new ToolStripItem[] { homeToolStripMenuItem });
-            MenuBar.Location = new Point(0, 0);
-            MenuBar.MdiWindowListItem = homeToolStripMenuItem;
-            MenuBar.Name = "MenuBar";
-            MenuBar.ShowItemToolTips = true;
-            MenuBar.Size = new Size(950, 33);
-            MenuBar.TabIndex = 63;
-            MenuBar.Text = "menuStrip1";
+            lblDisplayEdit.AutoSize = true;
+            lblDisplayEdit.Font = new Font("Verdana", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblDisplayEdit.ForeColor = Color.MediumSeaGreen;
+            lblDisplayEdit.Location = new Point(702, 316);
+            lblDisplayEdit.Name = "lblDisplayEdit";
+            lblDisplayEdit.Size = new Size(143, 38);
+            lblDisplayEdit.TabIndex = 66;
+            lblDisplayEdit.Text = "Editing";
             // 
-            // homeToolStripMenuItem
+            // btnDone
             // 
-            homeToolStripMenuItem.AutoToolTip = true;
-            homeToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { homeToolStripMenuItemProfile, optionsToolStripMenuItemProfile, exitToolStripMenuItemProfile });
-            homeToolStripMenuItem.Name = "homeToolStripMenuItem";
-            homeToolStripMenuItem.Size = new Size(76, 29);
-            homeToolStripMenuItem.Text = "Home";
-            homeToolStripMenuItem.ToolTipText = "Home Window";
+            btnDone.BackColor = Color.PeachPuff;
+            btnDone.FlatAppearance.BorderColor = Color.Red;
+            btnDone.FlatAppearance.BorderSize = 3;
+            btnDone.Font = new Font("Verdana", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDone.ForeColor = Color.Coral;
+            btnDone.Location = new Point(673, 400);
+            btnDone.Name = "btnDone";
+            btnDone.Size = new Size(200, 61);
+            btnDone.TabIndex = 65;
+            btnDone.Text = "Done";
+            btnDone.UseVisualStyleBackColor = false;
+            btnDone.Click += btnDone_Click;
             // 
-            // homeToolStripMenuItemProfile
+            // nameBox
             // 
-            homeToolStripMenuItemProfile.Name = "homeToolStripMenuItemProfile";
-            homeToolStripMenuItemProfile.Size = new Size(151, 30);
-            homeToolStripMenuItemProfile.Text = "Home";
-            // 
-            // optionsToolStripMenuItemProfile
-            // 
-            optionsToolStripMenuItemProfile.DropDownItems.AddRange(new ToolStripItem[] { logoutToolStripMenuItemProfile, editToolStripMenuItemProfile });
-            optionsToolStripMenuItemProfile.Name = "optionsToolStripMenuItemProfile";
-            optionsToolStripMenuItemProfile.Size = new Size(151, 30);
-            optionsToolStripMenuItemProfile.Text = "Options";
-            // 
-            // logoutToolStripMenuItemProfile
-            // 
-            logoutToolStripMenuItemProfile.Name = "logoutToolStripMenuItemProfile";
-            logoutToolStripMenuItemProfile.Size = new Size(144, 30);
-            logoutToolStripMenuItemProfile.Text = "Logout";
-            logoutToolStripMenuItemProfile.TextImageRelation = TextImageRelation.TextBeforeImage;
-            logoutToolStripMenuItemProfile.ToolTipText = "Logout of current Account";
-            logoutToolStripMenuItemProfile.Click += logout_Click;
-            // 
-            // editToolStripMenuItemProfile
-            // 
-            editToolStripMenuItemProfile.Name = "editToolStripMenuItemProfile";
-            editToolStripMenuItemProfile.Size = new Size(144, 30);
-            editToolStripMenuItemProfile.Text = "Edit";
-            // 
-            // exitToolStripMenuItemProfile
-            // 
-            exitToolStripMenuItemProfile.ForeColor = Color.Red;
-            exitToolStripMenuItemProfile.Name = "exitToolStripMenuItemProfile";
-            exitToolStripMenuItemProfile.Size = new Size(151, 30);
-            exitToolStripMenuItemProfile.Text = "Exit";
-            exitToolStripMenuItemProfile.ToolTipText = "Exit Application";
-            exitToolStripMenuItemProfile.Click += exitToolStripMenuItem_Click;
+            nameBox.BackColor = Color.BlanchedAlmond;
+            nameBox.BorderStyle = BorderStyle.None;
+            nameBox.Font = new Font("Verdana", 27.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            nameBox.ForeColor = Color.Black;
+            nameBox.Location = new Point(66, 69);
+            nameBox.Name = "nameBox";
+            nameBox.PlaceholderText = "21";
+            nameBox.ReadOnly = true;
+            nameBox.Size = new Size(513, 45);
+            nameBox.TabIndex = 64;
+            nameBox.Text = "First Last";
+            nameBox.TextAlign = HorizontalAlignment.Center;
             // 
             // cusPictureBox
             // 
@@ -173,7 +156,7 @@
             cusPictureBox.ErrorImage = Properties.Resources.defaultPFP;
             cusPictureBox.Image = Properties.Resources.defaultPFP;
             cusPictureBox.InitialImage = Properties.Resources.defaultPFP;
-            cusPictureBox.Location = new Point(597, 61);
+            cusPictureBox.Location = new Point(673, 70);
             cusPictureBox.Name = "cusPictureBox";
             cusPictureBox.Size = new Size(200, 200);
             cusPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -186,7 +169,7 @@
             numberBox.BackColor = Color.Snow;
             numberBox.Font = new Font("Verdana", 14.25F);
             numberBox.ForeColor = Color.Black;
-            numberBox.Location = new Point(224, 230);
+            numberBox.Location = new Point(231, 298);
             numberBox.Name = "numberBox";
             numberBox.PlaceholderText = "555-555-5555";
             numberBox.ReadOnly = true;
@@ -199,7 +182,7 @@
             emailBox.BackColor = Color.Snow;
             emailBox.Font = new Font("Verdana", 14.25F);
             emailBox.ForeColor = Color.Black;
-            emailBox.Location = new Point(137, 175);
+            emailBox.Location = new Point(144, 243);
             emailBox.Name = "emailBox";
             emailBox.PlaceholderText = "test@carpick.net";
             emailBox.ReadOnly = true;
@@ -212,7 +195,7 @@
             ageBox.BackColor = Color.Snow;
             ageBox.Font = new Font("Verdana", 14.25F);
             ageBox.ForeColor = Color.Black;
-            ageBox.Location = new Point(120, 119);
+            ageBox.Location = new Point(127, 187);
             ageBox.Name = "ageBox";
             ageBox.PlaceholderText = "21";
             ageBox.ReadOnly = true;
@@ -225,48 +208,21 @@
             idBox.BackColor = Color.Snow;
             idBox.Font = new Font("Verdana", 14.25F);
             idBox.ForeColor = Color.Black;
-            idBox.Location = new Point(189, 283);
+            idBox.Location = new Point(196, 351);
             idBox.Name = "idBox";
             idBox.PlaceholderText = "321321321312";
             idBox.ReadOnly = true;
             idBox.Size = new Size(234, 31);
             idBox.TabIndex = 58;
             idBox.Text = "321321321312";
-            // 
-            // lblDisplayLast
-            // 
-            lblDisplayLast.Anchor = AnchorStyles.None;
-            lblDisplayLast.AutoSize = true;
-            lblDisplayLast.BackColor = Color.Transparent;
-            lblDisplayLast.Font = new Font("Verdana", 20.25F, FontStyle.Bold);
-            lblDisplayLast.ForeColor = Color.Black;
-            lblDisplayLast.ImageAlign = ContentAlignment.TopCenter;
-            lblDisplayLast.Location = new Point(249, 52);
-            lblDisplayLast.Name = "lblDisplayLast";
-            lblDisplayLast.Size = new Size(174, 32);
-            lblDisplayLast.TabIndex = 57;
-            lblDisplayLast.Text = "Last Name";
-            // 
-            // lblDisplayFirst
-            // 
-            lblDisplayFirst.Anchor = AnchorStyles.None;
-            lblDisplayFirst.AutoSize = true;
-            lblDisplayFirst.BackColor = Color.Transparent;
-            lblDisplayFirst.Font = new Font("Verdana", 20.25F, FontStyle.Bold);
-            lblDisplayFirst.ForeColor = Color.Black;
-            lblDisplayFirst.ImageAlign = ContentAlignment.TopCenter;
-            lblDisplayFirst.Location = new Point(61, 52);
-            lblDisplayFirst.Name = "lblDisplayFirst";
-            lblDisplayFirst.Size = new Size(179, 32);
-            lblDisplayFirst.TabIndex = 51;
-            lblDisplayFirst.Text = "First Name";
+            idBox.UseSystemPasswordChar = true;
             // 
             // lblID
             // 
             lblID.Anchor = AnchorStyles.None;
             lblID.AutoSize = true;
             lblID.Font = new Font("Verdana", 14.25F);
-            lblID.Location = new Point(59, 286);
+            lblID.Location = new Point(66, 354);
             lblID.Name = "lblID";
             lblID.Size = new Size(124, 23);
             lblID.TabIndex = 55;
@@ -277,7 +233,7 @@
             lblPhone.Anchor = AnchorStyles.None;
             lblPhone.AutoSize = true;
             lblPhone.Font = new Font("Verdana", 14.25F);
-            lblPhone.Location = new Point(59, 233);
+            lblPhone.Location = new Point(66, 301);
             lblPhone.Name = "lblPhone";
             lblPhone.Size = new Size(159, 23);
             lblPhone.TabIndex = 51;
@@ -288,7 +244,7 @@
             lblEmail.Anchor = AnchorStyles.None;
             lblEmail.AutoSize = true;
             lblEmail.Font = new Font("Verdana", 14.25F);
-            lblEmail.Location = new Point(59, 178);
+            lblEmail.Location = new Point(66, 246);
             lblEmail.Name = "lblEmail";
             lblEmail.Size = new Size(72, 23);
             lblEmail.TabIndex = 50;
@@ -299,7 +255,7 @@
             lblAge.Anchor = AnchorStyles.None;
             lblAge.AutoSize = true;
             lblAge.Font = new Font("Verdana", 14.25F);
-            lblAge.Location = new Point(59, 122);
+            lblAge.Location = new Point(66, 190);
             lblAge.Name = "lblAge";
             lblAge.Size = new Size(55, 23);
             lblAge.TabIndex = 49;
@@ -499,11 +455,66 @@
             label20.TabIndex = 10;
             label20.Text = "Mileage";
             // 
+            // menuStrip1
+            // 
+            menuStrip1.BackColor = Color.DarkSalmon;
+            menuStrip1.Font = new Font("Verdana", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            menuStrip1.Items.AddRange(new ToolStripItem[] { viewToolStripMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(949, 31);
+            menuStrip1.TabIndex = 35;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // viewToolStripMenuItem
+            // 
+            viewToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { homeToolStripMenuItem, rentalsToolStripMenuItem, logoutToolStripMenuItem, exitToolStripMenuItem });
+            viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            viewToolStripMenuItem.Size = new Size(76, 27);
+            viewToolStripMenuItem.Text = "View";
+            // 
+            // homeToolStripMenuItem
+            // 
+            homeToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { editToolStripMenuItem });
+            homeToolStripMenuItem.Name = "homeToolStripMenuItem";
+            homeToolStripMenuItem.Size = new Size(180, 28);
+            homeToolStripMenuItem.Text = "Home";
+            homeToolStripMenuItem.Click += homeToolStripMenuItem_Click;
+            // 
+            // editToolStripMenuItem
+            // 
+            editToolStripMenuItem.Name = "editToolStripMenuItem";
+            editToolStripMenuItem.Size = new Size(122, 28);
+            editToolStripMenuItem.Text = "Edit";
+            // 
+            // rentalsToolStripMenuItem
+            // 
+            rentalsToolStripMenuItem.Name = "rentalsToolStripMenuItem";
+            rentalsToolStripMenuItem.Size = new Size(180, 28);
+            rentalsToolStripMenuItem.Text = "Rentals";
+            // 
+            // logoutToolStripMenuItem
+            // 
+            logoutToolStripMenuItem.ForeColor = Color.Orange;
+            logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
+            logoutToolStripMenuItem.Size = new Size(180, 28);
+            logoutToolStripMenuItem.Text = "Logout";
+            logoutToolStripMenuItem.Click += logout_Click;
+            // 
+            // exitToolStripMenuItem
+            // 
+            exitToolStripMenuItem.ForeColor = Color.Red;
+            exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            exitToolStripMenuItem.Size = new Size(180, 28);
+            exitToolStripMenuItem.Text = "Exit";
+            exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
+            // 
             // CustomerProfileForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(949, 751);
+            Controls.Add(menuStrip1);
             Controls.Add(profilePanel);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "CustomerProfileForm";
@@ -512,18 +523,17 @@
             Load += CustomerProfileForm_Load;
             profilePanel.ResumeLayout(false);
             profilePanel.PerformLayout();
-            MenuBar.ResumeLayout(false);
-            MenuBar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)cusPictureBox).EndInit();
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private Panel profilePanel;
         private TextBox idBox;
-        private Label lblDisplayLast;
-        private Label lblDisplayFirst;
         private Label lblID;
         private Label lblPhone;
         private Label lblEmail;
@@ -547,13 +557,16 @@
         private TextBox numberBox;
         private TextBox emailBox;
         private TextBox ageBox;
-        private MenuStrip MenuBar;
-        private ToolStripMenuItem homeToolStripMenuItem;
-        private ToolStripMenuItem exitToolStripMenuItemProfile;
         private PictureBox cusPictureBox;
-        private ToolStripMenuItem homeToolStripMenuItemProfile;
-        private ToolStripMenuItem optionsToolStripMenuItemProfile;
-        private ToolStripMenuItem logoutToolStripMenuItemProfile;
-        private ToolStripMenuItem editToolStripMenuItemProfile;
+        private Button btnDone;
+        private TextBox nameBox;
+        private Label lblDisplayEdit;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem viewToolStripMenuItem;
+        private ToolStripMenuItem homeToolStripMenuItem;
+        private ToolStripMenuItem editToolStripMenuItem;
+        private ToolStripMenuItem rentalsToolStripMenuItem;
+        private ToolStripMenuItem logoutToolStripMenuItem;
+        private ToolStripMenuItem exitToolStripMenuItem;
     }
 }

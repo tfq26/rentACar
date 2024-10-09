@@ -57,18 +57,17 @@
             comboMake = new ComboBox();
             lblCombo2 = new Label();
             lblCombo1 = new Label();
-            MenuBar = new MenuStrip();
-            homeToolStripMenuItem = new ToolStripMenuItem();
-            browseToolStripMenuItem = new ToolStripMenuItem();
-            rentalsToolStripMenuItem = new ToolStripMenuItem();
+            menuStrip1 = new MenuStrip();
+            viewToolStripMenuItem = new ToolStripMenuItem();
             profileToolStripMenuItem = new ToolStripMenuItem();
-            logoutToolStripMenuItem = new ToolStripMenuItem();
             editToolStripMenuItem = new ToolStripMenuItem();
+            rentalsToolStripMenuItem = new ToolStripMenuItem();
+            logoutToolStripMenuItem = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
             BrowsePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)carPictureBox).BeginInit();
             listPanel.SuspendLayout();
-            MenuBar.SuspendLayout();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // BrowsePanel
@@ -248,6 +247,7 @@
             rentBtn.TabIndex = 31;
             rentBtn.Text = "Rent";
             rentBtn.UseVisualStyleBackColor = false;
+            rentBtn.Click += rentBtn_Click;
             // 
             // prevBtn
             // 
@@ -442,73 +442,59 @@
             lblCombo1.TabIndex = 1;
             lblCombo1.Text = "Make";
             // 
-            // MenuBar
+            // menuStrip1
             // 
-            MenuBar.BackColor = Color.SandyBrown;
-            MenuBar.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            MenuBar.Items.AddRange(new ToolStripItem[] { homeToolStripMenuItem });
-            MenuBar.Location = new Point(0, 0);
-            MenuBar.MdiWindowListItem = homeToolStripMenuItem;
-            MenuBar.Name = "MenuBar";
-            MenuBar.ShowItemToolTips = true;
-            MenuBar.Size = new Size(1172, 33);
-            MenuBar.TabIndex = 32;
-            MenuBar.Text = "menuStrip1";
+            menuStrip1.BackColor = Color.DarkSalmon;
+            menuStrip1.Font = new Font("Verdana", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            menuStrip1.Items.AddRange(new ToolStripItem[] { viewToolStripMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(1172, 31);
+            menuStrip1.TabIndex = 34;
+            menuStrip1.Text = "menuStrip1";
             // 
-            // homeToolStripMenuItem
+            // viewToolStripMenuItem
             // 
-            homeToolStripMenuItem.AutoToolTip = true;
-            homeToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { browseToolStripMenuItem, rentalsToolStripMenuItem, profileToolStripMenuItem, exitToolStripMenuItem });
-            homeToolStripMenuItem.Name = "homeToolStripMenuItem";
-            homeToolStripMenuItem.Size = new Size(76, 29);
-            homeToolStripMenuItem.Text = "Home";
-            homeToolStripMenuItem.ToolTipText = "Home Window";
-            homeToolStripMenuItem.DoubleClick += homeToolStripMenuItem_DoubleClick;
-            // 
-            // browseToolStripMenuItem
-            // 
-            browseToolStripMenuItem.Name = "browseToolStripMenuItem";
-            browseToolStripMenuItem.Size = new Size(148, 30);
-            browseToolStripMenuItem.Text = "Browse";
-            browseToolStripMenuItem.ToolTipText = "Browse Vehicles";
-            // 
-            // rentalsToolStripMenuItem
-            // 
-            rentalsToolStripMenuItem.Name = "rentalsToolStripMenuItem";
-            rentalsToolStripMenuItem.Size = new Size(148, 30);
-            rentalsToolStripMenuItem.Text = "Rentals";
-            rentalsToolStripMenuItem.ToolTipText = "Current Rentals";
+            viewToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { profileToolStripMenuItem, rentalsToolStripMenuItem, logoutToolStripMenuItem, exitToolStripMenuItem });
+            viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            viewToolStripMenuItem.Size = new Size(76, 27);
+            viewToolStripMenuItem.Text = "View";
             // 
             // profileToolStripMenuItem
             // 
-            profileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { logoutToolStripMenuItem, editToolStripMenuItem });
+            profileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { editToolStripMenuItem });
             profileToolStripMenuItem.Name = "profileToolStripMenuItem";
-            profileToolStripMenuItem.Size = new Size(148, 30);
+            profileToolStripMenuItem.Size = new Size(180, 28);
             profileToolStripMenuItem.Text = "Profile";
-            profileToolStripMenuItem.ToolTipText = "Current Profile";
-            profileToolStripMenuItem.Click += profileToolStripMenuItem_Click;
-            // 
-            // logoutToolStripMenuItem
-            // 
-            logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            logoutToolStripMenuItem.Size = new Size(144, 30);
-            logoutToolStripMenuItem.Text = "Logout";
-            logoutToolStripMenuItem.Click += logoutToolStripMenuItem_Click;
+            profileToolStripMenuItem.Click += profileToolStripMenuItem_Click_1;
             // 
             // editToolStripMenuItem
             // 
             editToolStripMenuItem.Name = "editToolStripMenuItem";
-            editToolStripMenuItem.Size = new Size(144, 30);
+            editToolStripMenuItem.Size = new Size(180, 28);
             editToolStripMenuItem.Text = "Edit";
+            // 
+            // rentalsToolStripMenuItem
+            // 
+            rentalsToolStripMenuItem.Name = "rentalsToolStripMenuItem";
+            rentalsToolStripMenuItem.Size = new Size(180, 28);
+            rentalsToolStripMenuItem.Text = "Rentals";
+            // 
+            // logoutToolStripMenuItem
+            // 
+            logoutToolStripMenuItem.ForeColor = Color.Orange;
+            logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
+            logoutToolStripMenuItem.Size = new Size(180, 28);
+            logoutToolStripMenuItem.Text = "Logout";
+            logoutToolStripMenuItem.Click += logoutToolStripMenuItem_Click;
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.ForeColor = Color.Red;
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(148, 30);
+            exitToolStripMenuItem.Size = new Size(180, 28);
             exitToolStripMenuItem.Text = "Exit";
-            exitToolStripMenuItem.ToolTipText = "Exit Application";
-            exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
+            exitToolStripMenuItem.Click += exitToolStripMenuItem_Click_1;
             // 
             // HomeForm
             // 
@@ -517,8 +503,9 @@
             ClientSize = new Size(1172, 874);
             Controls.Add(listPanel);
             Controls.Add(BrowsePanel);
-            Controls.Add(MenuBar);
+            Controls.Add(menuStrip1);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MainMenuStrip = menuStrip1;
             Name = "HomeForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Carpick";
@@ -528,26 +515,20 @@
             ((System.ComponentModel.ISupportInitialize)carPictureBox).EndInit();
             listPanel.ResumeLayout(false);
             listPanel.PerformLayout();
-            MenuBar.ResumeLayout(false);
-            MenuBar.PerformLayout();
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
         private Panel BrowsePanel;
-        private MenuStrip MenuBar;
-        private ToolStripMenuItem homeToolStripMenuItem;
-        private ToolStripMenuItem browseToolStripMenuItem;
-        private ToolStripMenuItem rentalsToolStripMenuItem;
-        private ToolStripMenuItem profileToolStripMenuItem;
         private Panel listPanel;
         private ListBox listboxVehicles;
         private ComboBox comboType;
         private ComboBox comboMake;
         private Label lblCombo2;
         private Label lblCombo1;
-        private ToolStripMenuItem exitToolStripMenuItem;
         private Label lblDisplayRange;
         private Label lblRange;
         private Label lblDisplayDrivetrain;
@@ -569,7 +550,12 @@
         private Label lblMileage;
         private Label lblType;
         private PictureBox carPictureBox;
-        private ToolStripMenuItem logoutToolStripMenuItem;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem viewToolStripMenuItem;
+        private ToolStripMenuItem profileToolStripMenuItem;
         private ToolStripMenuItem editToolStripMenuItem;
+        private ToolStripMenuItem rentalsToolStripMenuItem;
+        private ToolStripMenuItem logoutToolStripMenuItem;
+        private ToolStripMenuItem exitToolStripMenuItem;
     }
 }
