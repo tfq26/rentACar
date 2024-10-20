@@ -9,6 +9,7 @@ namespace rentACar2
         static VehicleInventoryLocal vehiclesLocal;
         int currentVehicleIndex = 0;
         private Dictionary<Vehicle, String> matchVehicles = new Dictionary<Vehicle, String>();
+        private Customer currentCustomer;
 
         public HomeForm()
         {
@@ -17,7 +18,7 @@ namespace rentACar2
             database = new List<Customer>();
             vehiclesCloud = new VehicleInventoryCloud();
             vehiclesLocal = new VehicleInventoryLocal();
-
+            currentCustomer = new Customer();
         }
 
         private void nextBtn_Click(object sender, EventArgs e)
@@ -135,7 +136,6 @@ namespace rentACar2
             }
 
         }
-
         private void DisplayCustomerList()
         {
             Dictionary<Customer, String> customerList = new Dictionary<Customer, String>();
@@ -207,7 +207,8 @@ namespace rentACar2
 
         private void rentBtn_Click(object sender, EventArgs e)
         {
-            FormManager.loadRental();
+            Vehicle temp = matchVehicles.Keys.ToArray()[currentVehicleIndex];
+            FormManager.loadRental(temp, currentCustomer);
         }
 
         private void exitToolStripMenuItem_Click_1(object sender, EventArgs e)

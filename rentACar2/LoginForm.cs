@@ -1,15 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace rentACar2
+﻿namespace rentACar2
 {
     public partial class LoginForm : System.Windows.Forms.Form
     {
@@ -31,13 +20,13 @@ namespace rentACar2
             formManager = new FormManager(homeForm, profileForm, rentalForm, this);
         }
 
-        public LoginForm(CustomerInventoryCloud customerInventory)
+       /* public LoginForm(CustomerInventoryCloud customerInventory)
         {
             customersCloud = customerInventory;
             InitializeComponent();
             homeForm = new HomeForm();
         }
-
+*/
         public Customer[] GetCustomers()
         {
             if (customersCloud == null)
@@ -55,7 +44,8 @@ namespace rentACar2
             if (bypass)
             {
                 checkLogin(" ", " ", true);
-            } else
+            }
+            else
             {
                 checkLogin(boxUsernameLogin.Text, boxPasswordLogin.Text, false);
             }
@@ -63,24 +53,24 @@ namespace rentACar2
 
         private void checkLogin(string userEmail, string userPassword, Boolean bypass)
         {
-            var customers = customersLocal;
+            var customers = customersCloud;
 
             if (customers.checkforCustomer(userEmail, userPassword))
             {
                 customers.getCustomer(userEmail, userPassword);
                 FormManager.loadHome();
             }
-            
+
             else if (customers != null && customersCloud.checkforCustomer(userEmail, userPassword))
             {
                 FormManager.loadHome();
-            } 
-            
+            }
+
             else if (bypass)
             {
                 FormManager.loadHome();
             }
-            
+
             else
             {
                 lblDisplayError.Visible = true;

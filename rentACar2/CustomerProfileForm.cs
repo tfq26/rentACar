@@ -97,7 +97,5 @@ namespace rentACar2
         {
             FormManager.loadHome();
         }
-
-        
     }
 }

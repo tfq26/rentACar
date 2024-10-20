@@ -95,7 +95,7 @@ namespace rentACar2
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show("Error loading images from cloud", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Error loading Vehicle images from cloud", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 

@@ -3,6 +3,7 @@ namespace rentACar2
     internal static class Program
     {
         public static LoginForm loginForm = new LoginForm();
+        public static HomeForm hf = new HomeForm();
         
         
         /// <summary>

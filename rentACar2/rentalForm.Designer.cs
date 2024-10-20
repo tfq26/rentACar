@@ -37,12 +37,12 @@
             lblDisplayEndDate = new Label();
             lblVehicleRentalLink = new LinkLabel();
             lblCustomerLink = new LinkLabel();
-            label2 = new Label();
+            lblDisplayRenter = new Label();
             menuStrip1 = new MenuStrip();
             viewToolStripMenuItem = new ToolStripMenuItem();
             profileToolStripMenuItem = new ToolStripMenuItem();
             editToolStripMenuItem = new ToolStripMenuItem();
-            rentalsToolStripMenuItem = new ToolStripMenuItem();
+            homeToolStripMenuItem = new ToolStripMenuItem();
             logoutToolStripMenuItem = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)displayVehiclePictureBox).BeginInit();
@@ -52,8 +52,8 @@
             // displayVehiclePictureBox
             // 
             displayVehiclePictureBox.BackColor = Color.SandyBrown;
-            displayVehiclePictureBox.ErrorImage = Properties.Resources.image_missing;
-            displayVehiclePictureBox.InitialImage = Properties.Resources.image_missing;
+            displayVehiclePictureBox.ErrorImage = null;
+            displayVehiclePictureBox.InitialImage = null;
             displayVehiclePictureBox.Location = new Point(174, 50);
             displayVehiclePictureBox.Name = "displayVehiclePictureBox";
             displayVehiclePictureBox.Size = new Size(650, 350);
@@ -123,6 +123,7 @@
             lblVehicleRentalLink.TabIndex = 6;
             lblVehicleRentalLink.TabStop = true;
             lblVehicleRentalLink.Text = "2012 Ford Focus";
+            lblVehicleRentalLink.LinkClicked += lblVehicleRentalLink_LinkClicked;
             // 
             // lblCustomerLink
             // 
@@ -138,15 +139,15 @@
             lblCustomerLink.Text = "Joe Schmoe";
             lblCustomerLink.VisitedLinkColor = Color.Chocolate;
             // 
-            // label2
+            // lblDisplayRenter
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Verdana", 15F);
-            label2.Location = new Point(469, 570);
-            label2.Name = "label2";
-            label2.Size = new Size(131, 25);
-            label2.TabIndex = 8;
-            label2.Text = "Rental End:";
+            lblDisplayRenter.AutoSize = true;
+            lblDisplayRenter.Font = new Font("Verdana", 15F);
+            lblDisplayRenter.Location = new Point(469, 570);
+            lblDisplayRenter.Name = "lblDisplayRenter";
+            lblDisplayRenter.Size = new Size(118, 25);
+            lblDisplayRenter.TabIndex = 8;
+            lblDisplayRenter.Text = "Customer:";
             // 
             // menuStrip1
             // 
@@ -161,7 +162,7 @@
             // 
             // viewToolStripMenuItem
             // 
-            viewToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { profileToolStripMenuItem, rentalsToolStripMenuItem, logoutToolStripMenuItem, exitToolStripMenuItem });
+            viewToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { profileToolStripMenuItem, homeToolStripMenuItem, logoutToolStripMenuItem, exitToolStripMenuItem });
             viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             viewToolStripMenuItem.Size = new Size(76, 27);
             viewToolStripMenuItem.Text = "View";
@@ -179,11 +180,12 @@
             editToolStripMenuItem.Size = new Size(122, 28);
             editToolStripMenuItem.Text = "Edit";
             // 
-            // rentalsToolStripMenuItem
+            // homeToolStripMenuItem
             // 
-            rentalsToolStripMenuItem.Name = "rentalsToolStripMenuItem";
-            rentalsToolStripMenuItem.Size = new Size(180, 28);
-            rentalsToolStripMenuItem.Text = "Rentals";
+            homeToolStripMenuItem.Name = "homeToolStripMenuItem";
+            homeToolStripMenuItem.Size = new Size(180, 28);
+            homeToolStripMenuItem.Text = "Home";
+            homeToolStripMenuItem.Click += homeToolStripMenuItem_Click;
             // 
             // logoutToolStripMenuItem
             // 
@@ -191,6 +193,7 @@
             logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
             logoutToolStripMenuItem.Size = new Size(180, 28);
             logoutToolStripMenuItem.Text = "Logout";
+            logoutToolStripMenuItem.Click += logoutToolStripMenuItem_Click;
             // 
             // exitToolStripMenuItem
             // 
@@ -207,7 +210,7 @@
             BackColor = Color.Bisque;
             ClientSize = new Size(984, 661);
             Controls.Add(menuStrip1);
-            Controls.Add(label2);
+            Controls.Add(lblDisplayRenter);
             Controls.Add(lblCustomerLink);
             Controls.Add(lblVehicleRentalLink);
             Controls.Add(lblDisplayEndDate);
@@ -219,6 +222,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "rentalForm";
             Text = "Carpick";
+            Load += rentalForm_Load;
             ((System.ComponentModel.ISupportInitialize)displayVehiclePictureBox).EndInit();
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
@@ -236,12 +240,12 @@
         private Label lblDisplayEndDate;
         private LinkLabel lblVehicleRentalLink;
         private LinkLabel lblCustomerLink;
-        private Label label2;
+        private Label lblDisplayRenter;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem viewToolStripMenuItem;
         private ToolStripMenuItem profileToolStripMenuItem;
         private ToolStripMenuItem editToolStripMenuItem;
-        private ToolStripMenuItem rentalsToolStripMenuItem;
+        private ToolStripMenuItem homeToolStripMenuItem;
         private ToolStripMenuItem logoutToolStripMenuItem;
         private ToolStripMenuItem exitToolStripMenuItem;
     }

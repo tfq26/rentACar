@@ -341,11 +341,10 @@
             // carPictureBox
             // 
             carPictureBox.Anchor = AnchorStyles.None;
-            carPictureBox.BackgroundImage = Properties.Resources.image_missing;
             carPictureBox.BackgroundImageLayout = ImageLayout.Center;
             carPictureBox.BorderStyle = BorderStyle.FixedSingle;
-            carPictureBox.ErrorImage = Properties.Resources.image_missing;
-            carPictureBox.InitialImage = Properties.Resources.image_missing;
+            carPictureBox.ErrorImage = null;
+            carPictureBox.InitialImage = null;
             carPictureBox.Location = new Point(53, 136);
             carPictureBox.Name = "carPictureBox";
             carPictureBox.Size = new Size(560, 317);
@@ -464,27 +463,27 @@
             // 
             profileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { editToolStripMenuItem });
             profileToolStripMenuItem.Name = "profileToolStripMenuItem";
-            profileToolStripMenuItem.Size = new Size(180, 28);
+            profileToolStripMenuItem.Size = new Size(162, 28);
             profileToolStripMenuItem.Text = "Profile";
             profileToolStripMenuItem.Click += profileToolStripMenuItem_Click_1;
             // 
             // editToolStripMenuItem
             // 
             editToolStripMenuItem.Name = "editToolStripMenuItem";
-            editToolStripMenuItem.Size = new Size(180, 28);
+            editToolStripMenuItem.Size = new Size(122, 28);
             editToolStripMenuItem.Text = "Edit";
             // 
             // rentalsToolStripMenuItem
             // 
             rentalsToolStripMenuItem.Name = "rentalsToolStripMenuItem";
-            rentalsToolStripMenuItem.Size = new Size(180, 28);
+            rentalsToolStripMenuItem.Size = new Size(162, 28);
             rentalsToolStripMenuItem.Text = "Rentals";
             // 
             // logoutToolStripMenuItem
             // 
             logoutToolStripMenuItem.ForeColor = Color.Orange;
             logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            logoutToolStripMenuItem.Size = new Size(180, 28);
+            logoutToolStripMenuItem.Size = new Size(162, 28);
             logoutToolStripMenuItem.Text = "Logout";
             logoutToolStripMenuItem.Click += logoutToolStripMenuItem_Click;
             // 
@@ -492,7 +491,7 @@
             // 
             exitToolStripMenuItem.ForeColor = Color.Red;
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(180, 28);
+            exitToolStripMenuItem.Size = new Size(162, 28);
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click_1;
             // 

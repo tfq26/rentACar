@@ -477,7 +477,7 @@
             // 
             homeToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { editToolStripMenuItem });
             homeToolStripMenuItem.Name = "homeToolStripMenuItem";
-            homeToolStripMenuItem.Size = new Size(180, 28);
+            homeToolStripMenuItem.Size = new Size(162, 28);
             homeToolStripMenuItem.Text = "Home";
             homeToolStripMenuItem.Click += homeToolStripMenuItem_Click;
             // 
@@ -490,14 +490,14 @@
             // rentalsToolStripMenuItem
             // 
             rentalsToolStripMenuItem.Name = "rentalsToolStripMenuItem";
-            rentalsToolStripMenuItem.Size = new Size(180, 28);
+            rentalsToolStripMenuItem.Size = new Size(162, 28);
             rentalsToolStripMenuItem.Text = "Rentals";
             // 
             // logoutToolStripMenuItem
             // 
             logoutToolStripMenuItem.ForeColor = Color.Orange;
             logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            logoutToolStripMenuItem.Size = new Size(180, 28);
+            logoutToolStripMenuItem.Size = new Size(162, 28);
             logoutToolStripMenuItem.Text = "Logout";
             logoutToolStripMenuItem.Click += logout_Click;
             // 
@@ -505,7 +505,7 @@
             // 
             exitToolStripMenuItem.ForeColor = Color.Red;
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(180, 28);
+            exitToolStripMenuItem.Size = new Size(162, 28);
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 

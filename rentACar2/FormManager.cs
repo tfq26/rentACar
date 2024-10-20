@@ -28,61 +28,64 @@ namespace rentACar2
         {
             home.database = login.GetCustomers().ToList();
             currentForm = home;
-            getCurrent();
+            login.Hide();
+            customer.Hide();
+            rental.Hide();
+            currentForm.Refresh();
+            currentForm.Show();
         }
 
         public static void loadCustomer()
         {
             currentForm = customer;
+            home.Hide();
+            login.Hide();
+            rental.Hide();
+            currentForm.Refresh();
             currentForm.Show();
-            getCurrent();
-
         }
 
         public static void loadLogin()
         {
             currentForm = login;
             currentForm.Show();
-            getCurrent();
-
+            currentForm.Refresh();
+            home.Hide();
+            customer.Hide();
+            rental.Hide();
         }
 
-        public static void loadRental()
+        public static void loadRental(Vehicle v, Customer c)
         {
+            rental.setCustomer(c);
+            rental.setVehicle(v);
             currentForm = rental;
-            currentForm.Show();
-            getCurrent();
+            currentForm.Refresh();
+            home.Hide();
+            login.Hide();
+            customer.Hide();
         }
-        private static void getCurrent()
+       /* private static void getCurrent()
         {
             if (currentForm != null)
             {
                 if (currentForm == home)
                 {
-                    rental.Hide();
-                    customer.Hide();
-                    login.Hide();
+                    currentForm = home;
                 }
                 if (currentForm == rental)
                 {
-                    home.Hide();
-                    customer.Hide();
-                    login.Hide();
+                    currentForm = rental;
                 }
                 if (currentForm == customer)
                 {
-                    rental.Hide();
-                    home.Hide();
-                    login.Hide();
+                    currentForm = customer;
                 }
                 if (currentForm == login)
                 {
-                    rental.Hide();
-                    customer.Hide();
-                    customer.Hide();
+                    currentForm = login;
                 }
             }
-            currentForm.Show();
-        }
+        }*/
     }
 }

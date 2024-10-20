@@ -26,7 +26,7 @@ namespace rentACar2
         private int seats;
         private int passengers;
         private int storage;
-        private string drivetrain;
+        private string drivetrain; 
         private int range;
         private int totalRentalLife; // Keeps track of the number of days the vehicle has been rented in its life cycle
         private double averageRentalPeriod; // Tracks the average rental period for a specific vehicle
@@ -48,7 +48,8 @@ namespace rentACar2
             this.storage = 0;
             this.drivetrain = "";
             this.range = 0;
-            this.vehcileImage = Image.FromFile(rentACar2.Properties.Resources.image_missing.ToString());
+            
+            this.vehcileImage = rentACar2.Properties.Resources.image_missing;
         }
 
         public Vehicle(string[] vehicleInfo)
@@ -115,7 +116,7 @@ namespace rentACar2
             try
             {
                 vehcileImage = Image.FromFile(path);
-             }
+            }
             catch (Exception ex)
             {
                 MessageBox.Show("Error With setting new Image from path\n" + ex.ToString(), "Error in Vehicle Class", MessageBoxButtons.OK, MessageBoxIcon.Error);

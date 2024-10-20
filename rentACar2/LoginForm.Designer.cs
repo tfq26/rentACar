@@ -34,12 +34,11 @@
             exitBtnLogin = new Button();
             createAccountPanel = new Panel();
             loginPanel = new Panel();
+            loginDebugbtn = new Button();
             lblDisplayError = new Label();
             LoginButton = new Button();
             boxPasswordLogin = new TextBox();
             boxUsernameLogin = new TextBox();
-            lblDisplayUsernamePassword = new Label();
-            lblDisplayEmailLogin = new Label();
             btnCreateAccount = new Button();
             boxUserPhone = new TextBox();
             boxUserEmail = new TextBox();
@@ -51,7 +50,6 @@
             lblDisplayUsernamePrompt = new Label();
             btnSwitchAccountView = new Button();
             label2 = new Label();
-            loginDebugbtn = new Button();
             splashPanel.SuspendLayout();
             createAccountPanel.SuspendLayout();
             loginPanel.SuspendLayout();
@@ -119,24 +117,37 @@
             loginPanel.Controls.Add(LoginButton);
             loginPanel.Controls.Add(boxPasswordLogin);
             loginPanel.Controls.Add(boxUsernameLogin);
-            loginPanel.Controls.Add(lblDisplayUsernamePassword);
-            loginPanel.Controls.Add(lblDisplayEmailLogin);
             loginPanel.Dock = DockStyle.Fill;
             loginPanel.Location = new Point(0, 0);
             loginPanel.Name = "loginPanel";
             loginPanel.Size = new Size(443, 375);
             loginPanel.TabIndex = 10;
             // 
+            // loginDebugbtn
+            // 
+            loginDebugbtn.BackColor = Color.RoyalBlue;
+            loginDebugbtn.Font = new Font("Impact", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            loginDebugbtn.ForeColor = SystemColors.Control;
+            loginDebugbtn.Location = new Point(100, 249);
+            loginDebugbtn.Name = "loginDebugbtn";
+            loginDebugbtn.Size = new Size(237, 41);
+            loginDebugbtn.TabIndex = 10;
+            loginDebugbtn.Text = "Login (Debug)";
+            loginDebugbtn.UseVisualStyleBackColor = false;
+            loginDebugbtn.Click += loginDebugbtn_Click;
+            // 
             // lblDisplayError
             // 
             lblDisplayError.AutoSize = true;
             lblDisplayError.Font = new Font("Verdana", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblDisplayError.ForeColor = Color.Red;
-            lblDisplayError.Location = new Point(163, 185);
+            lblDisplayError.Location = new Point(160, 200);
+            lblDisplayError.Margin = new Padding(0);
             lblDisplayError.Name = "lblDisplayError";
             lblDisplayError.Size = new Size(124, 45);
             lblDisplayError.TabIndex = 9;
             lblDisplayError.Text = "Error";
+            lblDisplayError.TextAlign = ContentAlignment.MiddleCenter;
             lblDisplayError.Visible = false;
             // 
             // LoginButton
@@ -156,42 +167,22 @@
             // 
             boxPasswordLogin.AcceptsReturn = true;
             boxPasswordLogin.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            boxPasswordLogin.Location = new Point(163, 100);
+            boxPasswordLogin.Location = new Point(17, 100);
             boxPasswordLogin.Name = "boxPasswordLogin";
             boxPasswordLogin.PasswordChar = '*';
-            boxPasswordLogin.Size = new Size(262, 39);
+            boxPasswordLogin.PlaceholderText = "Password";
+            boxPasswordLogin.Size = new Size(408, 39);
             boxPasswordLogin.TabIndex = 5;
             boxPasswordLogin.KeyUp += boxPasswordLogin_KeyUp;
             // 
             // boxUsernameLogin
             // 
             boxUsernameLogin.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            boxUsernameLogin.Location = new Point(163, 30);
+            boxUsernameLogin.Location = new Point(17, 30);
             boxUsernameLogin.Name = "boxUsernameLogin";
-            boxUsernameLogin.Size = new Size(262, 39);
+            boxUsernameLogin.PlaceholderText = "Email";
+            boxUsernameLogin.Size = new Size(408, 39);
             boxUsernameLogin.TabIndex = 4;
-            // 
-            // lblDisplayUsernamePassword
-            // 
-            lblDisplayUsernamePassword.AutoSize = true;
-            lblDisplayUsernamePassword.Font = new Font("Verdana", 15.75F, FontStyle.Bold);
-            lblDisplayUsernamePassword.ForeColor = Color.Orange;
-            lblDisplayUsernamePassword.Location = new Point(16, 105);
-            lblDisplayUsernamePassword.Name = "lblDisplayUsernamePassword";
-            lblDisplayUsernamePassword.Size = new Size(125, 25);
-            lblDisplayUsernamePassword.TabIndex = 2;
-            lblDisplayUsernamePassword.Text = "Password";
-            // 
-            // lblDisplayEmailLogin
-            // 
-            lblDisplayEmailLogin.AutoSize = true;
-            lblDisplayEmailLogin.Font = new Font("Verdana", 15.75F, FontStyle.Bold);
-            lblDisplayEmailLogin.ForeColor = Color.Orange;
-            lblDisplayEmailLogin.Location = new Point(17, 35);
-            lblDisplayEmailLogin.Name = "lblDisplayEmailLogin";
-            lblDisplayEmailLogin.Size = new Size(76, 25);
-            lblDisplayEmailLogin.TabIndex = 0;
-            lblDisplayEmailLogin.Text = "Email";
             // 
             // btnCreateAccount
             // 
@@ -299,19 +290,6 @@
             label2.TabIndex = 11;
             label2.Text = "Rental Car Program by Taufeeq Ali";
             // 
-            // loginDebugbtn
-            // 
-            loginDebugbtn.BackColor = Color.RoyalBlue;
-            loginDebugbtn.Font = new Font("Impact", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            loginDebugbtn.ForeColor = SystemColors.Control;
-            loginDebugbtn.Location = new Point(100, 249);
-            loginDebugbtn.Name = "loginDebugbtn";
-            loginDebugbtn.Size = new Size(237, 41);
-            loginDebugbtn.TabIndex = 10;
-            loginDebugbtn.Text = "Login (Debug)";
-            loginDebugbtn.UseVisualStyleBackColor = false;
-            loginDebugbtn.Click += loginDebugbtn_Click;
-            // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -342,8 +320,6 @@
         private Button LoginButton;
         private TextBox boxPasswordLogin;
         private TextBox boxUsernameLogin;
-        private Label lblDisplayUsernamePassword;
-        private Label lblDisplayEmailLogin;
         private Button btnCreateAccount;
         private TextBox boxUserPhone;
         private TextBox boxUserEmail;

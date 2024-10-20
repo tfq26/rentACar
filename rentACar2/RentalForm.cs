@@ -19,12 +19,12 @@ namespace rentACar2
             InitializeComponent();
         }
 
-        private void setVehicle(Vehicle v)
+        public void setVehicle(Vehicle v)
         {
             vehicle = v;
         }
 
-        private void setCustomer(Customer c)
+        public void setCustomer(Customer c)
         {
             customer = c;
         }
@@ -40,6 +40,30 @@ namespace rentACar2
             {
                 return;
             }
+        }
+
+        private void rentalForm_Load(object sender, EventArgs e)
+        {
+            displayVehiclePictureBox.Image = vehicle.getVehicleImage();
+            lblVehicleRentalLink.Text = vehicle.getTitle();
+            lblCustomerLink.Text = customer.getFirstName() + " " + customer.getLastName();
+        }
+
+        private void lblVehicleRentalLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            //Go to home page and load vehicle in home page
+        }
+
+        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoginForm loginForm = new LoginForm();
+            loginForm.Show();
+            this.Close();
+        }
+
+        private void homeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormManager.loadHome();
         }
     }
 }

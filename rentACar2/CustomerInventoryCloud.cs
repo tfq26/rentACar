@@ -1,4 +1,6 @@
-﻿using rentACar2.Properties;
+﻿using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
+using rentACar2.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +16,82 @@ namespace rentACar2
         private string informationPath;
         private string imagesPath;
         public string testStr;
+        private string connectionString = string.Empty;
+        private string cloudFilePath;
 
         public CustomerInventoryCloud()
         {
-            
+            loadCloud();
+            loadInventory();
+        }
+
+        private void loadCloud()
+        {
+            cloudFilePath = "C:\\Users\\taufe\\source\\repos\\rentACar2\\rentACar2\\dw";
+            //Enumerator to read through the connectionString File and find the correct connectionString file
+            foreach (string f in Directory.EnumerateFiles("C:\\Users\\taufe\\source\\repos\\rentACar2\\rentACar2\\cloudresx\\", "*.txt"))
+            {
+                connectionString = File.ReadAllText(f).Trim();
+            }
+
+            var blobServiceClient = new BlobServiceClient(connectionString);
+
+            BlobContainerClient customerInformationContainer = null;
+            BlobContainerClient customerImagesContainer = null;
+
+            try
+            {
+                customerImagesContainer = blobServiceClient.GetBlobContainerClient("customerimages");
+                customerInformationContainer = blobServiceClient.GetBlobContainerClient("customerinformation");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Error Accessing Customer Blobs");
+                Thread.Sleep(5000);
+                Environment.Exit(0);
+            }
+
+            informationPath = cloudFilePath + "\\customerCloudFile.txt";
+            imagesPath = cloudFilePath + "\\customerImages";
+
+            if (!File.Exists(informationPath))
+            {
+                DialogResult result = MessageBox.Show("Customer info file not found, would you like to create it?", "Notice", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    File.CreateText(informationPath);
+                }
+                else
+                {
+                    Environment.Exit(0);
+                }
+            }
+
+            foreach (BlobItem item in customerInformationContainer.GetBlobs())
+
+            {
+                BlobClient informationClient = new BlobClient(connectionString, customerInformationContainer.Name, item.Name);
+                informationClient.DownloadTo(informationPath);
+            }
+
+            foreach (BlobItem item in customerImagesContainer.GetBlobs())
+            {
+                BlobClient imagesClient = new BlobClient(connectionString, customerImagesContainer.Name, item.Name);
+                try
+                {
+                    if (!File.Exists((imagesPath + "\\" + imagesClient.Name)))
+                        imagesClient.DownloadTo(File.Create(imagesPath + "\\" + imagesClient.Name));
+
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Error loading Customer images from cloud", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            loadInventory(informationPath, imagesPath);
+
+            File.CreateText(informationPath).Close();
         }
 
         public void addCustomer(Customer c)
@@ -119,7 +193,7 @@ namespace rentACar2
             }
             else
             {
-                MessageBox.Show("Vehicle info file not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Customer info file not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
