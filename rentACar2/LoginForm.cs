@@ -4,29 +4,13 @@
     {
         private CustomerInventoryCloud customersCloud;
         private CustomerInventoryLocal customersLocal;
-        public HomeForm homeForm;
-        public Customer user;
-        public rentalForm rentalForm;
-        public CustomerProfileForm profileForm;
-        private FormManager formManager;
+
         public LoginForm()
         {
-            customersLocal = new CustomerInventoryLocal();
             customersCloud = new CustomerInventoryCloud();
             InitializeComponent();
-            homeForm = new HomeForm();
-            profileForm = new CustomerProfileForm();
-            rentalForm = new rentalForm();
-            formManager = new FormManager(homeForm, profileForm, rentalForm, this);
         }
 
-       /* public LoginForm(CustomerInventoryCloud customerInventory)
-        {
-            customersCloud = customerInventory;
-            InitializeComponent();
-            homeForm = new HomeForm();
-        }
-*/
         public Customer[] GetCustomers()
         {
             if (customersCloud == null)
@@ -57,13 +41,9 @@
 
             if (customers.checkforCustomer(userEmail, userPassword))
             {
-                customers.getCustomer(userEmail, userPassword);
-                FormManager.loadHome();
-            }
+                Customer temp = customers.getCustomer(userEmail, userPassword);
 
-            else if (customers != null && customersCloud.checkforCustomer(userEmail, userPassword))
-            {
-                FormManager.loadHome();
+                FormManager.loadHome(temp);
             }
 
             else if (bypass)
@@ -75,14 +55,6 @@
             {
                 lblDisplayError.Visible = true;
                 lblDisplayError.Text = "User not found";
-            }
-        }
-
-        private void boxPasswordLogin_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                checkLogin(boxUsernameLogin.Text, boxPasswordLogin.Text, false);
             }
         }
 
@@ -99,6 +71,11 @@
         private void loginDebugbtn_Click(object sender, EventArgs e)
         {
             checkLogin(true);
+        }
+
+        private void password_enter(object sender, EventArgs e)
+        {
+            checkLogin(false);
         }
     }
 }

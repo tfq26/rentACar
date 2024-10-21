@@ -14,6 +14,7 @@ namespace rentACar2
         private string phoneNum;
         private int age;
         private long idNum;
+        private string password;
         private int rentalNums; // Keeps track of the number of rentals by a specific customer
         private Boolean rentalState;
         private Guid id;
@@ -53,12 +54,13 @@ namespace rentACar2
         {
             customerDetails = new List<string>();
             this.id = Guid.Parse(customerInfo[0]);
-            this.firstName = customerInfo[1];
-            this.lastName = customerInfo[2];
+            this.lastName = customerInfo[1];
+            this.firstName = customerInfo[2];
             this.age = Int32.Parse(customerInfo[3]);
             this.email= customerInfo[4];
             this.phoneNum = customerInfo[5];
-            this.customerImage = rentACar2.Properties.Resources.defaultPFP;
+            this.password = customerInfo[6];
+            this.customerImage = null;
         }
 
         public Customer(string[] customerInfo, Image customerPfp)
@@ -73,11 +75,10 @@ namespace rentACar2
             this.customerImage = customerPfp;
         }
 
-       
-
         public String getFirstName() => firstName;
         public String getLastName() => lastName;
         public String getEmail() => email;
+        public String getPassword() => password;
         public String getPhone() => phoneNum;
         public Boolean getRentalState() => this.rentalState;
         public String getId() => id.ToString().Trim().ToUpper();
@@ -97,6 +98,11 @@ namespace rentACar2
         public void setGUID(Guid id)
         {
             this.id = id;
+        }
+
+        public void setPassword(string password)
+        {
+            this.password = password;
         }
 
         public void setAge(int a)

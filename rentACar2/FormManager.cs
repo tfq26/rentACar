@@ -14,22 +14,36 @@ namespace rentACar2
         public static LoginForm login;
         public static rentalForm rental;
         public static Form currentForm;
+        
 
-        public FormManager(HomeForm hf, CustomerProfileForm cf, rentalForm rf, LoginForm lf)
+        public FormManager()
         {
-            home = hf;
-            customer = cf;
-            rental = rf;
-            login = lf;
-            currentForm = null;
+            home = new HomeForm();
+            customer = new CustomerProfileForm();
+            rental = new rentalForm();
+            login = new LoginForm();
+        }
+
+        public Form startUp()
+        {
+            return login;
         }
 
         public static void loadHome()
         {
-            home.database = login.GetCustomers().ToList();
             currentForm = home;
             login.Hide();
             customer.Hide();
+            rental.Hide();
+            currentForm.Refresh();
+            currentForm.Show();
+        }
+        public static void loadHome(Customer c)
+        {
+            currentForm = home;
+            login.Hide();
+            customer.Hide();
+            customer.setCustomer(c);
             rental.Hide();
             currentForm.Refresh();
             currentForm.Show();
@@ -65,27 +79,5 @@ namespace rentACar2
             login.Hide();
             customer.Hide();
         }
-       /* private static void getCurrent()
-        {
-            if (currentForm != null)
-            {
-                if (currentForm == home)
-                {
-                    currentForm = home;
-                }
-                if (currentForm == rental)
-                {
-                    currentForm = rental;
-                }
-                if (currentForm == customer)
-                {
-                    currentForm = customer;
-                }
-                if (currentForm == login)
-                {
-                    currentForm = login;
-                }
-            }
-        }*/
     }
 }

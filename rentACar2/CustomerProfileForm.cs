@@ -19,19 +19,13 @@ namespace rentACar2
         public CustomerProfileForm()
         {
             InitializeComponent();
+            this.c = new Customer();
+            displayCustomer();
         }
 
-        public CustomerProfileForm(HomeForm hf)
+        public void setCustomer(Customer c)
         {
-            this.homeForm = hf;
-            InitializeComponent();
-        }
-
-        public CustomerProfileForm(HomeForm hf, LoginForm lf)
-        {
-            this.loginForm = lf;
-            this.homeForm = hf;
-            InitializeComponent();
+            this.c = c;
         }
 
         private void CustomerProfileForm_Load(object sender, EventArgs e)
@@ -76,7 +70,7 @@ namespace rentACar2
 
         private void displayCustomer()
         {
-            this.nameBox.Text = c.getFirstName + " " + c.getLastName;
+            this.nameBox.Text = c.getFirstName() + " " + c.getLastName();
             this.ageBox.Text = c.getAge().ToString();
             this.emailBox.Text = c.getEmail();
             this.numberBox.Text = c.getPhone();

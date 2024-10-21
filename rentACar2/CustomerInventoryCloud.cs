@@ -27,6 +27,11 @@ namespace rentACar2
 
         private void loadCloud()
         {
+            if (File.Exists(informationPath))
+            {
+                File.Delete(informationPath);
+            }
+
             cloudFilePath = "C:\\Users\\taufe\\source\\repos\\rentACar2\\rentACar2\\dw";
             //Enumerator to read through the connectionString File and find the correct connectionString file
             foreach (string f in Directory.EnumerateFiles("C:\\Users\\taufe\\source\\repos\\rentACar2\\rentACar2\\cloudresx\\", "*.txt"))
@@ -67,10 +72,31 @@ namespace rentACar2
                 }
             }
 
+            if (!File.Exists(imagesPath))
+            {
+                DialogResult result = MessageBox.Show("Customer Image Directory not found, would you like to create it?", "Notice", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    try
+                    {
+                        Directory.CreateDirectory(imagesPath);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error creating directory: {ex.Message}");
+                    }
+                }
+                else
+                {
+                    Environment.Exit(0);
+                }
+            }
+
             foreach (BlobItem item in customerInformationContainer.GetBlobs())
 
             {
                 BlobClient informationClient = new BlobClient(connectionString, customerInformationContainer.Name, item.Name);
+
                 informationClient.DownloadTo(informationPath);
             }
 
@@ -78,7 +104,7 @@ namespace rentACar2
             {
                 BlobClient imagesClient = new BlobClient(connectionString, customerImagesContainer.Name, item.Name);
                 try
-                {
+                { 
                     if (!File.Exists((imagesPath + "\\" + imagesClient.Name)))
                         imagesClient.DownloadTo(File.Create(imagesPath + "\\" + imagesClient.Name));
 
@@ -97,6 +123,14 @@ namespace rentACar2
         public void addCustomer(Customer c)
         {
             Customers.Add(c); 
+        }
+
+        private void addCustomerDetails(Customer c)
+        {
+            if (checkforCustomer(c))
+            {
+                customerLoginDetails.Add(c.getEmail().Trim(), c.getPassword().Trim());
+            }
         }
 
         public Customer[] getInventory()
@@ -150,21 +184,15 @@ namespace rentACar2
 
         public Customer getCustomer(string email, string password)
         {
-            Customer customer = null;
-            if (checkforCustomer(email, password))
+            foreach(Customer c in Customers)
             {
-                IEnumerator<Customer> enumerator = Customers.GetEnumerator();
-
-                if (enumerator.Current.getEmail() != email)
+                if (c.getEmail().Trim().Equals(email))
                 {
-                    enumerator.MoveNext();
-                }
-                else
-                {
-                    customer = enumerator.Current;
+                    return c;
                 }
             }
-            return customer;
+
+            return new Customer();
         }
 
         private void loadInventory(string customerInfomationPath, string customerImagePath)
@@ -178,16 +206,24 @@ namespace rentACar2
                 foreach (string line in lines)
                 {
                     c = null;
-                    if (line.StartsWith("Id"))
+                    if (line.StartsWith("GUID"))
                         continue;
                     c = new Customer(line.Split(","));
-                    foreach (string file in Directory.GetFiles(customerImagePath))
+                    Customers.Add(c);
+                    addCustomerDetails(c);
+                    if (File.Exists(customerInfomationPath))
                     {
-                        if (file.Contains(c.getId().ToUpper()))
+                        foreach (string file in Directory.GetFiles(customerImagePath))
                         {
-                            c.setCustomerImage(Image.FromFile(file));
-                            Customers.Add(c);
+                            if (file.Contains(c.getId().ToUpper()))
+                            {
+                                c.setCustomerImage(Image.FromFile(file));
+                            }
                         }
+                    } else
+                    
+                    {
+                        MessageBox.Show("Customer Image Directory Not Found");
                     }
                 }
             }

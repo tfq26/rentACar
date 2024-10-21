@@ -4,7 +4,6 @@ namespace rentACar2
     {
         public List<Vehicle> lot;
         public List<Vehicle> currentLot;
-        public List<Customer> database;
         static VehicleInventoryCloud vehiclesCloud;
         static VehicleInventoryLocal vehiclesLocal;
         int currentVehicleIndex = 0;
@@ -15,7 +14,6 @@ namespace rentACar2
         {
             InitializeComponent();
             lot = new List<Vehicle>();
-            database = new List<Customer>();
             vehiclesCloud = new VehicleInventoryCloud();
             vehiclesLocal = new VehicleInventoryLocal();
             currentCustomer = new Customer();
@@ -135,26 +133,6 @@ namespace rentACar2
                 }
             }
 
-        }
-        private void DisplayCustomerList()
-        {
-            Dictionary<Customer, String> customerList = new Dictionary<Customer, String>();
-
-            foreach (Customer cus in database)
-            {
-                string vehicleDesc = $"{cus.getFirstName()} {cus.getLastName()}";
-
-                if (!customerList.ContainsKey(cus))
-                {
-                    customerList.Add(cus, vehicleDesc);
-                }
-            }
-
-            listboxVehicles.Items.Clear();
-            listboxVehicles.Items.AddRange(customerList.Values.ToArray());
-            database.Clear();
-            database = customerList.Keys.ToList();
-            currentVehicleIndex = 0;
         }
 
         private void comboMake_SelectedIndexChanged(object sender, EventArgs e)

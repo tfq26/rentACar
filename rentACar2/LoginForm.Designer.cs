@@ -173,7 +173,6 @@
             boxPasswordLogin.PlaceholderText = "Password";
             boxPasswordLogin.Size = new Size(408, 39);
             boxPasswordLogin.TabIndex = 5;
-            boxPasswordLogin.KeyUp += boxPasswordLogin_KeyUp;
             // 
             // boxUsernameLogin
             // 

@@ -2,8 +2,7 @@ namespace rentACar2
 {
     internal static class Program
     {
-        public static LoginForm loginForm = new LoginForm();
-        public static HomeForm hf = new HomeForm();
+        public static FormManager formManager = new FormManager();
         
         
         /// <summary>
@@ -17,7 +16,7 @@ namespace rentACar2
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             
-            Application.Run(loginForm);
+            Application.Run(formManager.startUp());
         }
     }
 }
