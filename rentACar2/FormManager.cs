@@ -19,7 +19,6 @@ namespace rentACar2
         public FormManager()
         {
             home = new HomeForm();
-            customer = new CustomerProfileForm();
             rental = new rentalForm();
             login = new LoginForm();
         }
@@ -40,10 +39,10 @@ namespace rentACar2
         }
         public static void loadHome(Customer c)
         {
+            customer = new CustomerProfileForm(c);
             currentForm = home;
             login.Hide();
             customer.Hide();
-            customer.setCustomer(c);
             rental.Hide();
             currentForm.Refresh();
             currentForm.Show();

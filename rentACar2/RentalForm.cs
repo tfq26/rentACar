@@ -63,7 +63,7 @@ namespace rentACar2
 
         private void homeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormManager.loadHome();
+            FormManager.loadHome(customer);
         }
     }
 }

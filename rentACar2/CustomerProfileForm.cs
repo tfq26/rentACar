@@ -14,18 +14,13 @@ namespace rentACar2
     {
         private HomeForm homeForm;
         private LoginForm loginForm;
-        private Customer c;
+        public Customer customer;
 
-        public CustomerProfileForm()
+        public CustomerProfileForm(Customer c)
         {
             InitializeComponent();
-            this.c = new Customer();
+            this.customer = c;
             displayCustomer();
-        }
-
-        public void setCustomer(Customer c)
-        {
-            this.c = c;
         }
 
         private void CustomerProfileForm_Load(object sender, EventArgs e)
@@ -70,11 +65,11 @@ namespace rentACar2
 
         private void displayCustomer()
         {
-            this.nameBox.Text = c.getFirstName() + " " + c.getLastName();
-            this.ageBox.Text = c.getAge().ToString();
-            this.emailBox.Text = c.getEmail();
-            this.numberBox.Text = c.getPhone();
-            this.idBox.Text = c.getId();
+            this.nameBox.Text = customer.getFirstName() + " " + customer.getLastName();
+            this.ageBox.Text = customer.getAge().ToString();
+            this.emailBox.Text = customer.getEmail();
+            this.numberBox.Text = customer.getPhone();
+            this.idBox.Text = customer.getId();
         }
 
         private void updateCustomer()
@@ -89,7 +84,7 @@ namespace rentACar2
 
         private void homeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormManager.loadHome();
+            FormManager.loadHome(customer);
         }
     }
 }

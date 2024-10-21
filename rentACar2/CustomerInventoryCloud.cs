@@ -32,6 +32,11 @@ namespace rentACar2
                 File.Delete(informationPath);
             }
 
+            if (Directory.Exists(imagesPath))
+            {
+                Directory.Delete(imagesPath);
+            }
+
             cloudFilePath = "C:\\Users\\taufe\\source\\repos\\rentACar2\\rentACar2\\dw";
             //Enumerator to read through the connectionString File and find the correct connectionString file
             foreach (string f in Directory.EnumerateFiles("C:\\Users\\taufe\\source\\repos\\rentACar2\\rentACar2\\cloudresx\\", "*.txt"))
@@ -72,7 +77,7 @@ namespace rentACar2
                 }
             }
 
-            if (!File.Exists(imagesPath))
+            if (!Directory.Exists(imagesPath))
             {
                 DialogResult result = MessageBox.Show("Customer Image Directory not found, would you like to create it?", "Notice", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
@@ -80,6 +85,12 @@ namespace rentACar2
                     try
                     {
                         Directory.CreateDirectory(imagesPath);
+
+                        if (Directory.Exists(imagesPath))
+                        {
+                            MessageBox.Show("Images Directory Exists");
+                        }
+
                     }
                     catch (Exception ex)
                     {
@@ -98,6 +109,7 @@ namespace rentACar2
                 BlobClient informationClient = new BlobClient(connectionString, customerInformationContainer.Name, item.Name);
 
                 informationClient.DownloadTo(informationPath);
+
             }
 
             foreach (BlobItem item in customerImagesContainer.GetBlobs())
@@ -116,8 +128,6 @@ namespace rentACar2
             }
 
             loadInventory(informationPath, imagesPath);
-
-            File.CreateText(informationPath).Close();
         }
 
         public void addCustomer(Customer c)
@@ -182,6 +192,11 @@ namespace rentACar2
             loadInventory(informationPath, imagesPath);
         }
 
+        public void uploadCustomer(Customer c)
+        {
+
+        }
+
         public Customer getCustomer(string email, string password)
         {
             foreach(Customer c in Customers)
@@ -197,6 +212,9 @@ namespace rentACar2
 
         private void loadInventory(string customerInfomationPath, string customerImagePath)
         {
+            Customers.Clear();
+            customerLoginDetails.Clear();
+
             if (File.Exists(customerInfomationPath))
             {
                 string[] lines = File.ReadAllLines(customerInfomationPath);
@@ -215,7 +233,7 @@ namespace rentACar2
                     {
                         foreach (string file in Directory.GetFiles(customerImagePath))
                         {
-                            if (file.Contains(c.getId().ToUpper()))
+                            if (file.Contains(c.getId().ToUpper()) || file.Contains(c.getFirstName().ToUpper()))
                             {
                                 c.setCustomerImage(Image.FromFile(file));
                             }

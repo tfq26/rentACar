@@ -186,7 +186,7 @@
             emailBox.Name = "emailBox";
             emailBox.PlaceholderText = "test@carpick.net";
             emailBox.ReadOnly = true;
-            emailBox.Size = new Size(234, 31);
+            emailBox.Size = new Size(321, 31);
             emailBox.TabIndex = 60;
             emailBox.Text = "test@carpick.net";
             // 
@@ -199,7 +199,7 @@
             ageBox.Name = "ageBox";
             ageBox.PlaceholderText = "21";
             ageBox.ReadOnly = true;
-            ageBox.Size = new Size(234, 31);
+            ageBox.Size = new Size(63, 31);
             ageBox.TabIndex = 59;
             ageBox.Text = "21";
             // 
@@ -208,11 +208,11 @@
             idBox.BackColor = Color.Snow;
             idBox.Font = new Font("Verdana", 14.25F);
             idBox.ForeColor = Color.Black;
-            idBox.Location = new Point(196, 351);
+            idBox.Location = new Point(66, 400);
             idBox.Name = "idBox";
             idBox.PlaceholderText = "321321321312";
             idBox.ReadOnly = true;
-            idBox.Size = new Size(234, 31);
+            idBox.Size = new Size(473, 31);
             idBox.TabIndex = 58;
             idBox.Text = "321321321312";
             idBox.UseSystemPasswordChar = true;
@@ -468,36 +468,36 @@
             // 
             // viewToolStripMenuItem
             // 
-            viewToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { homeToolStripMenuItem, rentalsToolStripMenuItem, logoutToolStripMenuItem, exitToolStripMenuItem });
+            viewToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { homeToolStripMenuItem, editToolStripMenuItem, rentalsToolStripMenuItem, logoutToolStripMenuItem, exitToolStripMenuItem });
             viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             viewToolStripMenuItem.Size = new Size(76, 27);
             viewToolStripMenuItem.Text = "View";
             // 
             // homeToolStripMenuItem
             // 
-            homeToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { editToolStripMenuItem });
             homeToolStripMenuItem.Name = "homeToolStripMenuItem";
-            homeToolStripMenuItem.Size = new Size(162, 28);
+            homeToolStripMenuItem.Size = new Size(180, 28);
             homeToolStripMenuItem.Text = "Home";
             homeToolStripMenuItem.Click += homeToolStripMenuItem_Click;
             // 
             // editToolStripMenuItem
             // 
             editToolStripMenuItem.Name = "editToolStripMenuItem";
-            editToolStripMenuItem.Size = new Size(122, 28);
+            editToolStripMenuItem.Size = new Size(180, 28);
             editToolStripMenuItem.Text = "Edit";
+            editToolStripMenuItem.Click += editToolStripMenuItemProfile_Click;
             // 
             // rentalsToolStripMenuItem
             // 
             rentalsToolStripMenuItem.Name = "rentalsToolStripMenuItem";
-            rentalsToolStripMenuItem.Size = new Size(162, 28);
+            rentalsToolStripMenuItem.Size = new Size(180, 28);
             rentalsToolStripMenuItem.Text = "Rentals";
             // 
             // logoutToolStripMenuItem
             // 
             logoutToolStripMenuItem.ForeColor = Color.Orange;
             logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            logoutToolStripMenuItem.Size = new Size(162, 28);
+            logoutToolStripMenuItem.Size = new Size(180, 28);
             logoutToolStripMenuItem.Text = "Logout";
             logoutToolStripMenuItem.Click += logout_Click;
             // 
@@ -505,7 +505,7 @@
             // 
             exitToolStripMenuItem.ForeColor = Color.Red;
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(162, 28);
+            exitToolStripMenuItem.Size = new Size(180, 28);
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
@@ -564,9 +564,9 @@
         private MenuStrip menuStrip1;
         private ToolStripMenuItem viewToolStripMenuItem;
         private ToolStripMenuItem homeToolStripMenuItem;
-        private ToolStripMenuItem editToolStripMenuItem;
         private ToolStripMenuItem rentalsToolStripMenuItem;
         private ToolStripMenuItem logoutToolStripMenuItem;
         private ToolStripMenuItem exitToolStripMenuItem;
+        private ToolStripMenuItem editToolStripMenuItem;
     }
 }

@@ -30,7 +30,6 @@ namespace rentACar2
             this.phoneNum = string.Empty;
             this.age = 0;
             this.idNum = 0;
-            customerDetails = new List<string>();
             this.rentalState = false;
             this.id = Guid.Empty;
             this.customerImage = rentACar2.Properties.Resources.defaultPFP;
@@ -46,16 +45,14 @@ namespace rentACar2
             this.idNum = DOLNum;
             this.rentalState = false;
             this.id = userId;
-            customerDetails = new List<string>();
             this.customerImage = rentACar2.Properties.Resources.defaultPFP;
         }
 
         public Customer(string[] customerInfo)
         {
-            customerDetails = new List<string>();
             this.id = Guid.Parse(customerInfo[0]);
-            this.lastName = customerInfo[1];
-            this.firstName = customerInfo[2];
+            this.firstName = customerInfo[1];
+            this.lastName = customerInfo[2];
             this.age = Int32.Parse(customerInfo[3]);
             this.email= customerInfo[4];
             this.phoneNum = customerInfo[5];
@@ -65,7 +62,6 @@ namespace rentACar2
 
         public Customer(string[] customerInfo, Image customerPfp)
         {
-            customerDetails = new List<string>();
             this.id = Guid.Parse(customerInfo[0]);
             this.firstName = customerInfo[1];
             this.lastName = customerInfo[2];
@@ -73,6 +69,18 @@ namespace rentACar2
             this.email = customerInfo[4];
             this.phoneNum = customerInfo[5];
             this.customerImage = customerPfp;
+        }
+
+        public Customer(Customer copy)
+        {
+            this.id= Guid.Parse(copy.getId());
+            this.firstName = copy.getFirstName();
+            this.lastName = copy.getLastName();
+            this.email =(String)copy.getEmail();
+            this.phoneNum = copy.getPhone();
+            this.age =(Int32)copy.getAge();
+            this.password =(String)copy.getPassword();
+            this.customerImage = copy.getCustomerImage();
         }
 
         public String getFirstName() => firstName;
@@ -133,7 +141,6 @@ namespace rentACar2
         public string[] getCustomerDetails()
         {
            
-
             String[] temp = customerDetails.ToArray();
 
             return temp;
@@ -146,7 +153,6 @@ namespace rentACar2
 
         public void setCustomerImage(string path)
         {
-
             try
             {
                 customerImage = Image.FromFile(path);
