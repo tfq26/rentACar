@@ -1,4 +1,6 @@
-﻿namespace rentACar2
+﻿using RentalCarApplication;
+
+namespace rentACar2
 {
     internal interface IVehicleInventory
     {

@@ -1,6 +1,6 @@
 ﻿using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
-using rentACar2.Properties;
+using RentalCarApplication.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;

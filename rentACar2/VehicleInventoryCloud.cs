@@ -1,4 +1,5 @@
-﻿using rentACar2.Properties;
+﻿
+using RentalCarApplication.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ using System.IO.Enumeration;
 using System.Xml;
 using System.Xml.Linq;
 using Microsoft.VisualBasic.ApplicationServices;
+using RentalCarApplication;
 
 namespace rentACar2
 {
@@ -23,85 +25,16 @@ namespace rentACar2
         private string cloudFilePath;
         private string imagePath;
         private string informationPath;
+        private CloudManager cloudManager;
 
         public VehicleInventoryCloud()
         {
-            blobManager();
-        }
-
-        private void blobManager()
-        {
-
-            cloudFilePath = "C:\\Users\\taufe\\source\\repos\\rentACar2\\rentACar2\\dw";
-            //Enumerator to read through the connectionString File and find the correct connectionString file
-            foreach (string f in Directory.EnumerateFiles("C:\\Users\\taufe\\source\\repos\\rentACar2\\rentACar2\\cloudresx\\", "*.txt"))
-            {
-                connectionString = File.ReadAllText(f).Trim();
-            }
-
-            //connectionString = "DefaultEndpointsProtocol=https;AccountName=storage2608;AccountKey=4bFTW2bjmXSdoKcwTtLdvFTUdsexC9d0/yogv4TNWGQZz+bIn9RIVbtTH1m1gHcvR8SrPp7VxCxg+AStMmakww==;EndpointSuffix=core.windows.net";
-            var blobServiceClient = new BlobServiceClient(connectionString.ToString());
-
-            BlobContainerClient vehicleInformationContainer = new BlobContainerClient(connectionString, "null");
-            BlobContainerClient vehicleImagesContainer = new BlobContainerClient(connectionString, "null");
-
-            try
-
-            {
-                vehicleImagesContainer = blobServiceClient.GetBlobContainerClient("vehicleimages");
-                vehicleInformationContainer = blobServiceClient.GetBlobContainerClient("vehicleinformation");
-            }
-            
-            catch (Exception ex)
-            
-            {
-                MessageBox.Show("Error accessing Vehicle Information");
-                Thread.Sleep(5000);
-                Environment.Exit(0);
-            }
-           
-            informationPath = cloudFilePath + "\\cloudFile.txt";
-            imagePath = cloudFilePath + "\\images";
-
-            if (!File.Exists(informationPath))
-            {
-                DialogResult result = MessageBox.Show("Vehicle info file not found, would you like to create it?", "Notice", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (result == DialogResult.Yes)
-                {
-                    File.CreateText(informationPath);
-                }
-                else
-                {
-                    Environment.Exit(0);
-                }
-            }
-
-            foreach (BlobItem item in vehicleInformationContainer.GetBlobs())
-            
-            {
-                BlobClient informationClient = new BlobClient(connectionString, vehicleInformationContainer.Name, item.Name);
-                informationClient.DownloadTo(informationPath);
-
-            }
-
-            foreach (BlobItem item in vehicleImagesContainer.GetBlobs())
-            {
-                BlobClient imagesClient = new BlobClient(connectionString, vehicleImagesContainer.Name, item.Name);
-                try
-                {
-                    if (!File.Exists((imagePath + "\\" + imagesClient.Name)))
-                        imagesClient.DownloadTo(File.Create(imagePath + "\\" + imagesClient.Name));
-
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show("Error loading Vehicle images from cloud", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-
-            loadInventory(informationPath, imagePath);
-
-            File.CreateText(informationPath).Close();
+            cloudFilePath = @"cloudresx";
+            cloudManager = new CloudManager(cloudFilePath);
+            informationPath = @"dw";
+            imagePath = @"dw\images";
+            cloudManager.downloadContainer("vehicleInformation", informationPath);
+            cloudManager.downloadContainer("vehicleInformation", imagePath);
         }
 
         public void addVehicle(Vehicle v)
@@ -156,10 +89,10 @@ namespace rentACar2
                     {
                         if (file.Contains(v.getId()))
                         {
-                            v.setVehicleImage(Image.FromFile(file));
-                            vehicleList.Add(v);
+                            v.setVehicleImage(Image.FromFile(file)); 
                         }
                     }
+                    vehicleList.Add(v);
                 }
             }
             else

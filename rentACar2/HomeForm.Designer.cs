@@ -389,9 +389,7 @@
             listboxVehicles.Size = new Size(332, 598);
             listboxVehicles.TabIndex = 6;
             listboxVehicles.Click += listboxVehicles_Click;
-            listboxVehicles.SelectedIndexChanged += listboxVehicles_Click;
             listboxVehicles.SelectedValueChanged += listboxVehicles_SelectedValueChanged;
-            listboxVehicles.DoubleClick += listboxVehicles_Click;
             // 
             // comboType
             // 

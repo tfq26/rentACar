@@ -23,6 +23,13 @@ namespace rentACar2
             displayCustomer();
         }
 
+        public CustomerProfileForm()
+        {
+            InitializeComponent();
+            this.customer = new Customer();
+            displayCustomer();
+        }
+
         private void CustomerProfileForm_Load(object sender, EventArgs e)
         {
             this.lblDisplayEdit.Visible = false;

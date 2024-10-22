@@ -32,7 +32,7 @@ namespace rentACar2
             this.idNum = 0;
             this.rentalState = false;
             this.id = Guid.Empty;
-            this.customerImage = rentACar2.Properties.Resources.defaultPFP;
+            this.customerImage = RentalCarApplication.Properties.Resources.defaultPFP;
     }
 
     public Customer(string firstName, string lastName, int age, long DOLNum, string email, string phoneNum, Guid userId)
@@ -45,7 +45,7 @@ namespace rentACar2
             this.idNum = DOLNum;
             this.rentalState = false;
             this.id = userId;
-            this.customerImage = rentACar2.Properties.Resources.defaultPFP;
+            this.customerImage = RentalCarApplication.Properties.Resources.defaultPFP;
         }
 
         public Customer(string[] customerInfo)

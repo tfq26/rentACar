@@ -1,6 +1,0 @@
-﻿Id, Make, Model, Year, Type, Mileage, Condition, Color
-D3A926B9-2E93-4733-A5B9-302D5BF7C15B, Tesla, Model 3, 2024, Sedan, 64230, Like-New, Ultra Red, 4, 5, 5, Electric, 363
-B1BD52A6-0425-432D-8DC7-BD5063F875B0, Tesla, Model Y, 2023, SUV, 14130, Like-New, White, 4, 5, 5, Electric, 363
-A9A81A05-998E-4EB4-BDF3-438C6C2691B9, Rivian, R2, 2024, Truck, 9000, Like-New, Gray, 4, 5, 5, Electric, 363
-EA2C7184-E6A9-45C3-ABEB-E9B6BF36A74E, Toyota, Camry, 2021, Sedan, 71230, Good, Silver, 4, 5, 5, Gas, 363
-C518322F-8E30-46C5-9085-9777342A34A1, BMW, M3, 2022, Sedan, 24230, Good, Blue, 4, 5, 5, Gas, 363

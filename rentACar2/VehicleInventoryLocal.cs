@@ -1,4 +1,6 @@
-﻿using rentACar2.Properties;
+﻿
+using RentalCarApplication;
+using RentalCarApplication.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;

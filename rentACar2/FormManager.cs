@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RentalCarApplication;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -28,15 +29,7 @@ namespace rentACar2
             return login;
         }
 
-        public static void loadHome()
-        {
-            currentForm = home;
-            login.Hide();
-            customer.Hide();
-            rental.Hide();
-            currentForm.Refresh();
-            currentForm.Show();
-        }
+        
         public static void loadHome(Customer c)
         {
             customer = new CustomerProfileForm(c);
@@ -46,6 +39,11 @@ namespace rentACar2
             rental.Hide();
             currentForm.Refresh();
             currentForm.Show();
+        }
+
+        public static void loadHome()
+        {
+            loadHome(new Customer());
         }
 
         public static void loadCustomer()

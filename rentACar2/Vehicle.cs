@@ -9,7 +9,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Windows.Forms.VisualStyles;
 using System.IO;
 
-namespace rentACar2
+namespace RentalCarApplication
 {
     public class Vehicle
     {
@@ -48,8 +48,7 @@ namespace rentACar2
             this.storage = 0;
             this.drivetrain = "";
             this.range = 0;
-            
-            this.vehcileImage = rentACar2.Properties.Resources.image_missing;
+            this.vehcileImage = RentalCarApplication.Properties.Resources.image_missing;
         }
 
         public Vehicle(string[] vehicleInfo)
@@ -120,7 +119,7 @@ namespace rentACar2
             catch (Exception ex)
             {
                 MessageBox.Show("Error With setting new Image from path\n" + ex.ToString(), "Error in Vehicle Class", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                vehcileImage = rentACar2.Properties.Resources.image_missing;
+                vehcileImage = RentalCarApplication.Properties.Resources.image_missing;
             }
         }
 

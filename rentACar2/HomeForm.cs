@@ -1,3 +1,5 @@
+using RentalCarApplication;
+
 namespace rentACar2
 {
     public partial class HomeForm : System.Windows.Forms.Form
